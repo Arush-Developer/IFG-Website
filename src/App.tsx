@@ -1,5 +1,6 @@
 // src/App.tsx
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider, useAuth } from './contexts/AuthContext';
 import Header from './components/Header';
 import ContactForm from './components/ContactForm';
@@ -8,21 +9,24 @@ import UserDashboard from './components/UserDashboard';
 import ChatBot from './components/ChatBot';
 import { MessageCircle } from 'lucide-react';
 
-const AppContent: React.FC = () => {
-  const { user, loading } = useAuth(); // <-- loading included
-  const [currentPage, setCurrentPage] = useState('home');
-  const [showChatBot, setShowChatBot] = useState(false);
+// Protected Route Component
+const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const { user, loading } = useAuth();
 
-  // Check URL for dashboard route
-  useEffect(() => {
-    if (window.location.pathname === '/dashboard' && user && !loading) {
-      setCurrentPage('dashboard');
-    }
-  }, [user, loading]);
-
-  if (currentPage === 'dashboard' && user && !loading) {
-    return <UserDashboard />;
+  if (loading) {
+    return <div className="p-6 text-center">Loading...</div>;
   }
+
+  if (!user) {
+    return <Navigate to="/" replace />;
+  }
+
+  return <>{children}</>;
+};
+
+// Home Page Component
+const HomePage: React.FC = () => {
+  const [showChatBot, setShowChatBot] = React.useState(false);
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -357,7 +361,19 @@ function App() {
 
   return (
     <AuthProvider>
-      <AppContent />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route 
+            path="/dashboard" 
+            element={
+              <ProtectedRoute>
+                <UserDashboard />
+              </ProtectedRoute>
+            } 
+          />
+        </Routes>
+      </BrowserRouter>
     </AuthProvider>
   );
 }
