@@ -1,3 +1,4 @@
+// src/components/UserDashboard.tsx
 import React, { useEffect, useState } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import {
@@ -6,7 +7,7 @@ import {
   getUserCompetitionEntries,
 } from '../lib/supabase';
 
-const Dashboard: React.FC = () => {
+const UserDashboard: React.FC = () => {
   const { user, profile, loading, refreshProfile, signOut } = useAuth();
 
   const [achievements, setAchievements] = useState<any[]>([]);
@@ -15,15 +16,20 @@ const Dashboard: React.FC = () => {
   const [dataLoading, setDataLoading] = useState(true);
   const [error, setError] = useState('');
 
+  // Fetch all user data
   const fetchUserData = async () => {
     if (!user) return;
     setDataLoading(true);
     setError('');
     try {
-      const [{ data: achData, error: achErr }, { data: courseData, error: courseErr }, { data: compData, error: compErr }] = await Promise.all([
-        getUserAchievements(),
-        getUserCourses(),
-        getUserCompetitionEntries(),
+      const [
+        { data: achData, error: achErr },
+        { data: courseData, error: courseErr },
+        { data: compData, error: compErr }
+      ] = await Promise.all([
+        getUserAchievements(user.id),
+        getUserCourses(user.id),
+        getUserCompetitionEntries(user.id),
       ]);
 
       if (achErr) throw achErr;
@@ -42,13 +48,11 @@ const Dashboard: React.FC = () => {
   };
 
   useEffect(() => {
-    if (user) {
-      fetchUserData();
-    }
+    if (user) fetchUserData();
   }, [user]);
 
-  if (loading) return <div className="p-6">Loading session...</div>;
-  if (!user) return <div className="p-6">You must be signed in to view the dashboard.</div>;
+  if (loading) return <div className="p-6 text-center">Loading session...</div>;
+  if (!user) return <div className="p-6 text-center">You must be signed in to view the dashboard.</div>;
 
   return (
     <div className="p-6 max-w-5xl mx-auto space-y-6">
@@ -81,9 +85,9 @@ const Dashboard: React.FC = () => {
       </section>
 
       {dataLoading ? (
-        <div>Loading your data...</div>
+        <div className="text-center py-6">Loading your data...</div>
       ) : error ? (
-        <div className="text-red-500">{error}</div>
+        <div className="text-red-500 text-center py-6">{error}</div>
       ) : (
         <>
           {/* Achievements */}
