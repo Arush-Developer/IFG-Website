@@ -29,34 +29,34 @@ const HomePage: React.FC = () => {
   const [showChatBot, setShowChatBot] = React.useState(false);
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-[#fefefe]">
       <Header />
-      
+
       {/* Hero Section */}
-      <section id="home" className="min-h-screen bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900 text-white flex items-center relative overflow-hidden pt-20">
+      <section id="home" className="min-h-screen bg-gradient-to-br from-cyan-500 via-pink-500 to-yellow-400 text-white flex items-center relative overflow-hidden pt-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-2 gap-12 items-center py-20">
-          <div className="text-white space-y-8" data-aos="fade-right">
+          <div className="space-y-8" data-aos="fade-right">
             <div className="space-y-4">
               <div className="inline-block px-4 py-2 bg-white/20 rounded-full text-sm font-semibold backdrop-blur-sm animate-bounce-in">
                 ✨ Global Youth Entrepreneurship Challenge
               </div>
               <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold leading-tight animate-fade-in">
-                Where <span className="text-yellow-300 animate-gradient-shift bg-gradient-to-r from-yellow-300 via-yellow-200 to-yellow-300 bg-clip-text text-transparent">Bold Ideas</span> Meet Global <span className="text-yellow-300 animate-gradient-shift bg-gradient-to-r from-yellow-300 via-yellow-200 to-yellow-300 bg-clip-text text-transparent">Impact</span>
+                Where <span className="text-yellow-200 animate-gradient-shift bg-gradient-to-r from-yellow-300 via-pink-200 to-yellow-300 bg-clip-text text-transparent">Bold Ideas</span> Meet Global <span className="text-yellow-200 animate-gradient-shift bg-gradient-to-r from-yellow-300 via-pink-200 to-yellow-300 bg-clip-text text-transparent">Impact</span>
               </h1>
               <p className="text-lg sm:text-xl md:text-2xl text-white/90 max-w-2xl animate-slide-in-left stagger-2">
                 "The biggest risk is not taking any risk. Your fearlessness and fresh perspective can lead to groundbreaking innovation."
-                <span className="text-blue-200"> - Join thousands changing the world.</span>
+                <span className="text-pink-200"> - Join thousands changing the world.</span>
               </p>
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4 animate-slide-in-right stagger-3">
               <a
                 href="#competition"
-                className="bg-white text-purple-600 px-6 sm:px-8 py-4 rounded-full font-bold text-lg hover:scale-105 transition-transform shadow-2xl text-center hover-lift animate-pulse-glow"
+                className="bg-white text-cyan-600 px-6 sm:px-8 py-4 rounded-full font-bold text-lg hover:scale-105 transition-transform shadow-2xl text-center hover-lift animate-pulse-glow"
               >
                 🚀 Start Your Journey
               </a>
-              <button className="border-2 border-white text-white px-6 sm:px-8 py-4 rounded-full font-bold text-lg hover:bg-white hover:text-purple-600 transition-all hover-scale">
+              <button className="border-2 border-white text-white px-6 sm:px-8 py-4 rounded-full font-bold text-lg hover:bg-white hover:text-cyan-600 transition-all hover-scale">
                 📺 Watch Demo
               </button>
             </div>
@@ -92,10 +92,10 @@ const HomePage: React.FC = () => {
       </section>
 
       {/* About Section */}
-      <section id="about" className="py-12 sm:py-20 bg-white">
+      <section id="about" className="py-12 sm:py-20 bg-[#fefefe]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12 sm:mb-16 animate-fade-in" data-aos="fade-up">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent mb-6 animate-gradient-shift">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-cyan-500 via-pink-500 to-yellow-400 bg-clip-text text-transparent mb-6 animate-gradient-shift">
               "Innovation distinguishes between a leader and a follower"
             </h2>
             <p className="text-lg sm:text-xl text-gray-600 max-w-4xl mx-auto">
@@ -125,12 +125,12 @@ const HomePage: React.FC = () => {
               </div>
 
               <div className="grid grid-cols-2 gap-4 sm:gap-6">
-                <div className="text-center p-4 sm:p-6 bg-gradient-to-br from-purple-50 to-blue-50 rounded-xl hover-scale">
-                  <div className="text-2xl sm:text-3xl font-bold text-purple-600 animate-bounce-in">24/7</div>
+                <div className="text-center p-4 sm:p-6 bg-gradient-to-br from-cyan-50 to-pink-50 rounded-xl hover-scale">
+                  <div className="text-2xl sm:text-3xl font-bold text-cyan-500 animate-bounce-in">24/7</div>
                   <div className="text-xs sm:text-sm text-gray-600">Mentorship Support</div>
                 </div>
-                <div className="text-center p-4 sm:p-6 bg-gradient-to-br from-blue-50 to-green-50 rounded-xl hover-scale">
-                  <div className="text-2xl sm:text-3xl font-bold text-blue-600 animate-bounce-in stagger-1">100%</div>
+                <div className="text-center p-4 sm:p-6 bg-gradient-to-br from-pink-50 to-yellow-50 rounded-xl hover-scale">
+                  <div className="text-2xl sm:text-3xl font-bold text-pink-500 animate-bounce-in stagger-1">100%</div>
                   <div className="text-xs sm:text-sm text-gray-600">Free to Join</div>
                 </div>
               </div>
@@ -140,10 +140,10 @@ const HomePage: React.FC = () => {
       </section>
 
       {/* Competition Section */}
-      <section id="competition" className="py-12 sm:py-20 bg-gradient-to-br from-gray-50 to-blue-50">
+      <section id="competition" className="py-12 sm:py-20 bg-gradient-to-br from-[#fefefe] to-cyan-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12 sm:mb-16 animate-fade-in" data-aos="fade-up">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent mb-6 animate-gradient-shift">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-cyan-500 via-pink-500 to-yellow-400 bg-clip-text text-transparent mb-6 animate-gradient-shift">
               The Challenge Awaits
             </h2>
             <p className="text-lg sm:text-xl text-gray-600">
@@ -156,7 +156,7 @@ const HomePage: React.FC = () => {
               <div className="grid gap-6 sm:gap-8">
                 <div className="bg-white p-6 sm:p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-shadow hover-lift animate-slide-in-left" data-aos="flip-left">
                   <div className="text-center">
-                    <div className="w-12 sm:w-16 h-12 sm:h-16 bg-gradient-to-br from-purple-600 to-blue-600 rounded-full flex items-center justify-center text-white text-xl sm:text-2xl font-bold mx-auto mb-4 sm:mb-6 animate-pulse-glow">
+                    <div className="w-12 sm:w-16 h-12 sm:h-16 bg-gradient-to-br from-cyan-500 via-pink-500 to-yellow-400 rounded-full flex items-center justify-center text-white text-xl sm:text-2xl font-bold mx-auto mb-4 sm:mb-6 animate-pulse-glow">
                       🏆
                     </div>
                     <h3 className="text-xl sm:text-2xl font-bold mb-4">Global Recognition</h3>
@@ -164,21 +164,21 @@ const HomePage: React.FC = () => {
                       Winners receive certificates, exciting prizes, and global recognition, while top entries get
                       featured on Google.
                     </p>
-                    <div className="text-2xl sm:text-3xl font-bold text-purple-600 animate-bounce-in">$50K+</div>
+                    <div className="text-2xl sm:text-3xl font-bold text-cyan-500 animate-bounce-in">$50K+</div>
                     <div className="text-xs sm:text-sm text-gray-500">Total Prize Pool</div>
                   </div>
                 </div>
 
                 <div className="bg-white p-6 sm:p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-shadow hover-lift animate-slide-in-left stagger-2" data-aos="flip-up">
                   <div className="text-center">
-                    <div className="w-12 sm:w-16 h-12 sm:h-16 bg-gradient-to-br from-purple-600 to-blue-600 rounded-full flex items-center justify-center text-white text-xl sm:text-2xl font-bold mx-auto mb-4 sm:mb-6 animate-pulse-glow">
+                    <div className="w-12 sm:w-16 h-12 sm:h-16 bg-gradient-to-br from-cyan-500 via-pink-500 to-yellow-400 rounded-full flex items-center justify-center text-white text-xl sm:text-2xl font-bold mx-auto mb-4 sm:mb-6 animate-pulse-glow">
                       🌍
                     </div>
                     <h3 className="text-xl sm:text-2xl font-bold mb-4">Global Network</h3>
                     <p className="text-gray-600 mb-4 sm:mb-6 text-sm sm:text-base">
                       Connect with students from around the world and share your vision on a global stage.
                     </p>
-                    <div className="text-2xl sm:text-3xl font-bold text-purple-600 animate-bounce-in stagger-1">50+</div>
+                    <div className="text-2xl sm:text-3xl font-bold text-cyan-500 animate-bounce-in stagger-1">50+</div>
                     <div className="text-xs sm:text-sm text-gray-500">Countries Participating</div>
                   </div>
                 </div>
@@ -193,10 +193,10 @@ const HomePage: React.FC = () => {
       </section>
 
       {/* Benefits Section */}
-      <section id="benefits" className="py-12 sm:py-20 bg-white">
+      <section id="benefits" className="py-12 sm:py-20 bg-[#fefefe]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12 sm:mb-16 animate-fade-in" data-aos="fade-up">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent mb-6 animate-gradient-shift">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-cyan-500 via-pink-500 to-yellow-400 bg-clip-text text-transparent mb-6 animate-gradient-shift">
               Why Join IdeaForge Global?
             </h2>
             <p className="text-lg sm:text-xl text-gray-600">
@@ -241,14 +241,14 @@ const HomePage: React.FC = () => {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-12 sm:py-20 bg-gradient-to-br from-gray-50 to-blue-50 animate-fade-in">
+      <section id="contact" className="py-12 sm:py-20 bg-gradient-to-br from-[#fefefe] to-cyan-50 animate-fade-in">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <ContactForm />
         </div>
       </section>
 
       {/* Call to Action */}
-      <section className="py-12 sm:py-20 bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900 text-white">
+      <section className="py-12 sm:py-20 bg-gradient-to-br from-cyan-500 via-pink-500 to-yellow-400 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="animate-bounce-in" data-aos="zoom-in">
             <h2 className="text-3xl sm:text-4xl md:text-6xl font-bold mb-6 animate-gradient-shift bg-gradient-to-r from-white via-yellow-300 to-white bg-clip-text text-transparent">
@@ -267,12 +267,12 @@ const HomePage: React.FC = () => {
       </section>
 
       {/* Footer */}
-      <footer className="bg-gray-900 text-white py-8 sm:py-12">
+      <footer className="bg-[#111111] text-white py-8 sm:py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8">
             <div className="col-span-2 md:col-span-1">
               <div className="flex items-center space-x-3 mb-4">
-                <div className="w-8 sm:w-10 h-8 sm:h-10 bg-gradient-to-br from-purple-600 to-blue-600 rounded-lg flex items-center justify-center text-white font-bold animate-pulse-glow">
+                <div className="w-8 sm:w-10 h-8 sm:h-10 bg-gradient-to-br from-cyan-500 via-pink-500 to-yellow-400 rounded-lg flex items-center justify-center text-white font-bold animate-pulse-glow">
                   IFG
                 </div>
                 <span className="text-lg sm:text-xl font-bold">IdeaForge Global</span>
@@ -322,39 +322,28 @@ const HomePage: React.FC = () => {
       {/* Floating Chatbot Button */}
       <button
         onClick={() => setShowChatBot(true)}
-        className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-full shadow-2xl hover:scale-110 transition-all duration-300 flex items-center justify-center z-40 animate-pulse-glow hover-lift"
+        className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-r from-cyan-500 via-pink-500 to-yellow-400 text-white rounded-full shadow-2xl hover:scale-110 transition-all duration-300 flex items-center justify-center z-40 animate-pulse-glow hover-lift"
         title="Need Help? Chat with our AI Assistant"
       >
         <MessageCircle className="w-6 h-6 sm:w-8 sm:h-8" />
       </button>
 
       {/* ChatBot Modal */}
-      {showChatBot && (
-        <ChatBot onClose={() => setShowChatBot(false)} />
-      )}
+      {showChatBot && <ChatBot onClose={() => setShowChatBot(false)} />}
     </div>
   );
 };
 
 function App() {
   useEffect(() => {
-    // Initialize AOS-like animations
-    const observerOptions = {
-      threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
-    };
-
+    const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('animate-fade-in');
-        }
+        if (entry.isIntersecting) entry.target.classList.add('animate-fade-in');
       });
     }, observerOptions);
 
-    document.querySelectorAll('[data-aos]').forEach(el => {
-      observer.observe(el);
-    });
+    document.querySelectorAll('[data-aos]').forEach(el => observer.observe(el));
 
     return () => observer.disconnect();
   }, []);
