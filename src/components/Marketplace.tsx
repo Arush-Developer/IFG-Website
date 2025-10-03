@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ArrowLeft, Plus, ShoppingCart, Coins, Search, Filter, Edit, Trash2, ExternalLink, User } from 'lucide-react';
+import { ArrowLeft, Plus, ShoppingCart, Coins, Search, Filter, CreditCard as Edit, Trash2, ExternalLink, User } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
 import { 
   getMarketplaceProducts, 
