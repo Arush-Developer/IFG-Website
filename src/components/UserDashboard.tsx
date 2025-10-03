@@ -1,24 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { 
-  User, 
-  Trophy, 
-  BookOpen, 
-  Award, 
-  Calendar, 
-  Download,
-  MessageCircle,
-  Settings,
-  LogOut,
-  ChevronRight,
-  Star,
-  Clock,
-  CheckCircle,
-  Target,
-  ArrowLeft,
-  Edit3,
-  Save,
-  X
-} from 'lucide-react';
+import { User, Trophy, BookOpen, Award, Calendar, Download, MessageCircle, Settings, LogOut, ChevronRight, Star, Clock, CheckCircle, Target, ArrowLeft, CreditCard as Edit3, Save, X } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
 import { getUserAchievements, getUserCourses, getUserCompetitionEntries, updateProfile } from '../lib/supabase';
 import { UserAchievement, UserCourse, CompetitionEntry } from '../types';
