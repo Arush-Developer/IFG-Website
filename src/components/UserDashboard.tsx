@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { User, Trophy, BookOpen, Award, Calendar, Download, MessageCircle, Settings, LogOut, ChevronRight, Star, Clock, CheckCircle, Target, ArrowLeft, CreditCard as Edit3, Save, X } from 'lucide-react';
+import { User, Trophy, BookOpen, Award, Calendar, Download, MessageCircle, Settings, LogOut, ChevronRight, Star, Clock, CheckCircle, Target, ArrowLeft, CreditCard as Edit3, Save, X, ShoppingCart, Coins } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
-import { getUserAchievements, getUserCourses, getUserCompetitionEntries, updateProfile } from '../lib/supabase';
-import { UserAchievement, UserCourse, CompetitionEntry } from '../types';
+import { getUserAchievements, getUserCourses, getUserCompetitionEntries, updateProfile, getUserProducts, getUserTokens } from '../lib/supabase';
+import { UserAchievement, UserCourse, CompetitionEntry, MarketplaceProduct, UserTokens } from '../types';
 import ChatBot from './ChatBot';
 
 interface UserDashboardProps {
@@ -15,6 +15,8 @@ const UserDashboard: React.FC<UserDashboardProps> = ({ onNavigateHome }) => {
   const [achievements, setAchievements] = useState<UserAchievement[]>([]);
   const [courses, setCourses] = useState<UserCourse[]>([]);
   const [competitions, setCompetitions] = useState<CompetitionEntry[]>([]);
+  const [userProducts, setUserProducts] = useState<MarketplaceProduct[]>([]);
+  const [userTokens, setUserTokens] = useState<UserTokens | null>(null);
   const [loading, setLoading] = useState(true);
   const [showChatBot, setShowChatBot] = useState(false);
   const [isEditingProfile, setIsEditingProfile] = useState(false);
@@ -44,15 +46,19 @@ const UserDashboard: React.FC<UserDashboardProps> = ({ onNavigateHome }) => {
       
       setLoading(true);
       try {
-        const [achievementsRes, coursesRes, competitionsRes] = await Promise.all([
+        const [achievementsRes, coursesRes, competitionsRes, productsRes, tokensRes] = await Promise.all([
           getUserAchievements(),
           getUserCourses(),
-          getUserCompetitionEntries()
+          getUserCompetitionEntries(),
+          getUserProducts(),
+          getUserTokens()
         ]);
 
         if (achievementsRes.data) setAchievements(achievementsRes.data);
         if (coursesRes.data) setCourses(coursesRes.data);
         if (competitionsRes.data) setCompetitions(competitionsRes.data);
+        if (productsRes.data) setUserProducts(productsRes.data);
+        if (tokensRes.data) setUserTokens(tokensRes.data);
       } catch (error) {
         console.error('Error fetching user data:', error);
       } finally {
@@ -139,12 +145,20 @@ const UserDashboard: React.FC<UserDashboardProps> = ({ onNavigateHome }) => {
               </div>
             </div>
           </div>
-          <button
-            onClick={() => setShowChatBot(true)}
-            className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
-          >
-            <MessageCircle className="w-6 h-6" />
-          </button>
+          <div className="flex items-center space-x-4">
+            {userTokens && (
+              <div className="flex items-center space-x-2 bg-gradient-to-r from-purple-100 to-blue-100 px-3 py-1 rounded-full">
+                <Coins className="w-4 h-4 text-purple-600" />
+                <span className="font-semibold text-purple-700 text-sm">{userTokens.balance} IFG</span>
+              </div>
+            )}
+            <button
+              onClick={() => setShowChatBot(true)}
+              className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
+            >
+              <MessageCircle className="w-6 h-6" />
+            </button>
+          </div>
         </div>
       </div>
 
@@ -160,6 +174,7 @@ const UserDashboard: React.FC<UserDashboardProps> = ({ onNavigateHome }) => {
                 { id: 'competitions', label: 'Competitions', icon: Trophy },
                 { id: 'courses', label: 'Courses', icon: BookOpen },
                 { id: 'achievements', label: 'Achievements', icon: Award },
+                { id: 'marketplace', label: 'My Products', icon: ShoppingCart },
               ].map((tab) => (
                 <button
                   key={tab.id}
@@ -236,12 +251,10 @@ const UserDashboard: React.FC<UserDashboardProps> = ({ onNavigateHome }) => {
                 <div className="card-3d bg-white p-4 lg:p-6 rounded-xl shadow-sm border">
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="text-sm text-gray-600">Certificates</p>
-                      <p className="text-2xl font-bold text-gray-900">
-                        {achievements.filter(a => a.type === 'certificate').length}
-                      </p>
+                      <p className="text-sm text-gray-600">Products</p>
+                      <p className="text-2xl font-bold text-gray-900">{userProducts.length}</p>
                     </div>
-                    <Star className="w-8 h-8 text-green-500" />
+                    <ShoppingCart className="w-8 h-8 text-indigo-500" />
                   </div>
                 </div>
               </div>
@@ -533,6 +546,63 @@ const UserDashboard: React.FC<UserDashboardProps> = ({ onNavigateHome }) => {
                     <Award className="w-12 h-12 text-gray-400 mx-auto mb-4" />
                     <h3 className="text-lg font-medium text-gray-900 mb-2">No achievements yet</h3>
                     <p className="text-gray-600">Complete courses and competitions to earn achievements</p>
+                  </div>
+                )}
+              </div>
+            </div>
+          )}
+
+          {activeTab === 'marketplace' && (
+            <div className="space-y-6">
+              <div>
+                <h2 className="text-2xl font-bold text-gray-900 mb-2">My Marketplace Products</h2>
+                <p className="text-gray-600">Manage your products in the IFG Marketplace</p>
+              </div>
+
+              <div className="grid gap-6">
+                {userProducts.map((product) => (
+                  <div key={product.id} className="card-3d bg-white rounded-xl shadow-sm border p-4 lg:p-6">
+                    <div className="flex flex-col lg:flex-row lg:items-center justify-between mb-4">
+                      <div>
+                        <h3 className="text-lg font-semibold text-gray-900">{product.title}</h3>
+                        <p className="text-gray-600">{product.category}</p>
+                      </div>
+                      <div className="flex items-center space-x-4 mt-2 lg:mt-0">
+                        <div className="flex items-center space-x-1">
+                          <Coins className="w-4 h-4 text-purple-600" />
+                          <span className="font-bold text-purple-700">{product.price} IFG</span>
+                        </div>
+                        <span className={`px-3 py-1 rounded-full text-sm font-medium ${
+                          product.status === 'active' ? 'bg-green-100 text-green-700' :
+                          product.status === 'sold' ? 'bg-blue-100 text-blue-700' :
+                          'bg-gray-100 text-gray-700'
+                        }`}>
+                          {product.status}
+                        </span>
+                      </div>
+                    </div>
+                    <p className="text-gray-700 mb-4">{product.description}</p>
+                    <div className="flex flex-wrap gap-4 text-sm text-gray-600">
+                      <div className="flex items-center space-x-1">
+                        <Calendar className="w-4 h-4" />
+                        <span>Created {new Date(product.created_at).toLocaleDateString()}</span>
+                      </div>
+                      {product.product_url && (
+                        <div className="flex items-center space-x-1">
+                          <Target className="w-4 h-4" />
+                          <a href={product.product_url} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-700">
+                            View Product
+                          </a>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                ))}
+                {userProducts.length === 0 && (
+                  <div className="text-center py-12">
+                    <ShoppingCart className="w-12 h-12 text-gray-400 mx-auto mb-4" />
+                    <h3 className="text-lg font-medium text-gray-900 mb-2">No products yet</h3>
+                    <p className="text-gray-600">Visit the marketplace to create your first product</p>
                   </div>
                 )}
               </div>
