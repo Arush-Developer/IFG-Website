@@ -269,6 +269,7 @@ Which course do you want recommendations for?`;
       }`}>
         {/* Header */}
         <div className="flex items-center justify-between p-3 sm:p-4 border-b bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-t-2xl">
+        <div className="flex items-center justify-between p-3 sm:p-4 border-b hero-gradient text-white rounded-t-2xl">
           <div className="flex items-center space-x-3">
             <div className="w-8 h-8 sm:w-10 sm:h-10 bg-white bg-opacity-20 rounded-full flex items-center justify-center">
               <Bot className="w-4 h-4 sm:w-6 sm:h-6" aria-hidden="true" />
@@ -326,7 +327,7 @@ Which course do you want recommendations for?`;
                     </div>
                     <div className={`px-3 py-2 sm:px-4 sm:py-2 rounded-2xl ${
                       message.sender_type === 'user'
-                        ? 'bg-purple-600 text-white'
+                        ? 'bg-blue-600 text-white'
                         : 'bg-gray-100 text-gray-900'
                     }`}>
                       <p className="text-xs sm:text-sm whitespace-pre-wrap">{message.message}</p>
@@ -364,13 +365,13 @@ Which course do you want recommendations for?`;
                   onKeyPress={handleKeyPress}
                   placeholder="Type your message..."
                   aria-label="Chat message input"
-                  className="flex-1 px-3 py-2 sm:px-4 sm:py-2 text-sm sm:text-base border border-gray-300 rounded-full focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                  className="flex-1 px-3 py-2 sm:px-4 sm:py-2 text-sm sm:text-base border border-gray-300 rounded-full focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                   disabled={loading}
                 />
                 <button
                   onClick={handleSendMessage}
                   disabled={!inputMessage.trim() || loading}
-                  className="px-4 py-2 sm:px-6 sm:py-2 bg-purple-600 text-white rounded-full hover:bg-purple-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center space-x-2"
+                  className="px-4 py-2 sm:px-6 sm:py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center space-x-2"
                 >
                   <Send className="w-3 h-3 sm:w-4 sm:h-4" aria-hidden="true" />
                 </button>

@@ -58,7 +58,7 @@ const ContactForm: React.FC = () => {
   return (
     <div className="bg-white p-8 rounded-2xl shadow-xl hover-lift animate-fade-in">
       <div className="text-center mb-8 animate-bounce-in">
-        <h3 className="text-3xl font-bold text-gray-900 mb-4 animate-gradient-shift bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">Get in Touch</h3>
+        <h3 className="text-3xl font-bold text-gray-900 mb-4 gradient-text animate-gradient-shift">Get in Touch</h3>
         <p className="text-gray-600 animate-fade-in stagger-2">
           Have questions about the competition or need support? We're here to help!
         </p>
@@ -77,7 +77,7 @@ const ContactForm: React.FC = () => {
               value={formData.name}
               onChange={handleChange}
               required
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all hover-glow"
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all hover-glow"
               placeholder="Your full name"
             />
           </div>
@@ -93,7 +93,7 @@ const ContactForm: React.FC = () => {
               value={formData.email}
               onChange={handleChange}
               required
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all hover-glow"
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all hover-glow"
               placeholder="your.email@example.com"
             />
           </div>
@@ -110,7 +110,7 @@ const ContactForm: React.FC = () => {
               name="phone_number"
               value={formData.phone_number}
               onChange={handleChange}
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all hover-glow"
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all hover-glow"
               placeholder="+1 (555) 123-4567"
             />
           </div>
@@ -126,7 +126,7 @@ const ContactForm: React.FC = () => {
             name="phone_number"
             value={formData.phone_number}
             onChange={handleChange}
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all hover-glow"
+            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all hover-glow"
             placeholder="+1 (555) 123-4567"
           />
         </div>
@@ -141,7 +141,7 @@ const ContactForm: React.FC = () => {
             value={formData.subject}
             onChange={handleChange}
             required
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all hover-glow"
+            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all hover-glow"
           >
             <option value="">Select a subject</option>
             <option value="Competition Inquiry">Competition Inquiry</option>
@@ -164,7 +164,7 @@ const ContactForm: React.FC = () => {
             onChange={handleChange}
             required
             rows={6}
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all resize-none hover-glow"
+            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all resize-none hover-glow"
             placeholder="Tell us how we can help you..."
           />
         </div>
@@ -178,7 +178,7 @@ const ContactForm: React.FC = () => {
         <button
           type="submit"
           disabled={loading}
-          className="w-full bg-gradient-to-r from-purple-600 to-blue-600 text-white py-4 rounded-lg font-semibold hover:scale-105 transition-transform disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2 animate-pulse-glow hover-lift animate-bounce-in stagger-5"
+          className="w-full hero-gradient text-white py-4 rounded-lg font-semibold hover:scale-105 transition-transform disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2 pulse-glow hover-lift animate-bounce-in stagger-5"
         >
           {loading ? (
             <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white animate-rotate"></div>
