@@ -13,21 +13,46 @@ import {
   Star,
   Clock,
   CheckCircle,
-  Target
+  Target,
+  ArrowLeft,
+  Edit3,
+  Save,
+  X
 } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
-import { getUserAchievements, getUserCourses, getUserCompetitionEntries } from '../lib/supabase';
+import { getUserAchievements, getUserCourses, getUserCompetitionEntries, updateProfile } from '../lib/supabase';
 import { UserAchievement, UserCourse, CompetitionEntry } from '../types';
 import ChatBot from './ChatBot';
 
-const UserDashboard: React.FC = () => {
-  const { user, profile, signOut } = useAuth();
+interface UserDashboardProps {
+  onNavigateHome: () => void;
+}
+
+const UserDashboard: React.FC<UserDashboardProps> = ({ onNavigateHome }) => {
+  const { user, profile, signOut, refreshProfile } = useAuth();
   const [activeTab, setActiveTab] = useState('overview');
   const [achievements, setAchievements] = useState<UserAchievement[]>([]);
   const [courses, setCourses] = useState<UserCourse[]>([]);
   const [competitions, setCompetitions] = useState<CompetitionEntry[]>([]);
   const [loading, setLoading] = useState(true);
   const [showChatBot, setShowChatBot] = useState(false);
+  const [isEditingProfile, setIsEditingProfile] = useState(false);
+  const [profileForm, setProfileForm] = useState({
+    full_name: profile?.full_name || '',
+    bio: profile?.bio || '',
+    website: profile?.website || ''
+  });
+  const [profileLoading, setProfileLoading] = useState(false);
+
+  useEffect(() => {
+    if (profile) {
+      setProfileForm({
+        full_name: profile.full_name || '',
+        bio: profile.bio || '',
+        website: profile.website || ''
+      });
+    }
+  }, [profile]);
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -57,6 +82,28 @@ const UserDashboard: React.FC = () => {
     fetchUserData();
   }, [user]);
 
+  const handleProfileUpdate = async () => {
+    if (!user) return;
+    
+    setProfileLoading(true);
+    try {
+      const { error } = await updateProfile(user.id, profileForm);
+      if (error) {
+        console.error('Error updating profile:', error);
+        alert('Failed to update profile. Please try again.');
+      } else {
+        await refreshProfile();
+        setIsEditingProfile(false);
+        alert('Profile updated successfully!');
+      }
+    } catch (error) {
+      console.error('Error updating profile:', error);
+      alert('Failed to update profile. Please try again.');
+    } finally {
+      setProfileLoading(false);
+    }
+  };
+
   const getStatusColor = (status: string) => {
     switch (status) {
       case 'completed': return 'text-green-600 bg-green-100';
@@ -82,28 +129,38 @@ const UserDashboard: React.FC = () => {
   if (loading) {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-600"></div>
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
       </div>
     );
   }
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Mobile Header */}
-      <div className="lg:hidden bg-white shadow-sm border-b px-4 py-3">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center space-x-3">
-            <div className="w-10 h-10 bg-gradient-to-br from-purple-600 to-blue-600 rounded-full flex items-center justify-center text-white font-bold">
-              {profile?.full_name?.charAt(0) || user?.email?.charAt(0) || 'U'}
-            </div>
-            <div>
-              <h1 className="font-semibold text-gray-900">{profile?.full_name || 'User'}</h1>
-              <p className="text-sm text-gray-500">Dashboard</p>
+      {/* Header with Back Button */}
+      <div className="bg-white shadow-sm border-b px-4 py-3">
+        <div className="max-w-7xl mx-auto flex items-center justify-between">
+          <div className="flex items-center space-x-4">
+            <button
+              onClick={onNavigateHome}
+              className="flex items-center space-x-2 text-blue-600 hover:text-blue-700 font-medium transition-colors hover-scale"
+            >
+              <ArrowLeft className="w-5 h-5" />
+              <span>Back to Home</span>
+            </button>
+            <div className="hidden sm:block w-px h-6 bg-gray-300"></div>
+            <div className="flex items-center space-x-3">
+              <div className="w-10 h-10 hero-gradient rounded-full flex items-center justify-center text-white font-bold pulse-glow">
+                {profile?.full_name?.charAt(0) || user?.email?.charAt(0) || 'U'}
+              </div>
+              <div>
+                <h1 className="font-semibold text-gray-900">{profile?.full_name || 'User'}</h1>
+                <p className="text-sm text-gray-500">Dashboard</p>
+              </div>
             </div>
           </div>
           <button
             onClick={() => setShowChatBot(true)}
-            className="p-2 text-purple-600 hover:bg-purple-50 rounded-lg transition-colors"
+            className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
           >
             <MessageCircle className="w-6 h-6" />
           </button>
@@ -113,23 +170,12 @@ const UserDashboard: React.FC = () => {
       <div className="flex flex-col lg:flex-row">
         {/* Sidebar */}
         <div className="lg:w-64 bg-white shadow-sm border-r">
-          <div className="p-6 hidden lg:block">
-            <div className="flex items-center space-x-3 mb-8">
-              <div className="w-12 h-12 bg-gradient-to-br from-purple-600 to-blue-600 rounded-full flex items-center justify-center text-white font-bold text-lg">
-                {profile?.full_name?.charAt(0) || user?.email?.charAt(0) || 'U'}
-              </div>
-              <div>
-                <h2 className="font-bold text-gray-900">{profile?.full_name || 'User'}</h2>
-                <p className="text-sm text-gray-500">{user?.email}</p>
-              </div>
-            </div>
-          </div>
-
           {/* Navigation */}
-          <nav className="px-4 lg:px-6 pb-6">
+          <nav className="px-4 lg:px-6 py-6">
             <div className="flex lg:flex-col space-x-2 lg:space-x-0 lg:space-y-2 overflow-x-auto lg:overflow-x-visible">
               {[
                 { id: 'overview', label: 'Overview', icon: User },
+                { id: 'profile', label: 'Profile', icon: Settings },
                 { id: 'competitions', label: 'Competitions', icon: Trophy },
                 { id: 'courses', label: 'Courses', icon: BookOpen },
                 { id: 'achievements', label: 'Achievements', icon: Award },
@@ -139,7 +185,7 @@ const UserDashboard: React.FC = () => {
                   onClick={() => setActiveTab(tab.id)}
                   className={`flex items-center space-x-3 px-4 py-3 rounded-lg transition-colors whitespace-nowrap ${
                     activeTab === tab.id
-                      ? 'bg-purple-100 text-purple-700'
+                      ? 'bg-blue-100 text-blue-700'
                       : 'text-gray-600 hover:bg-gray-100'
                   }`}
                 >
@@ -179,7 +225,7 @@ const UserDashboard: React.FC = () => {
 
               {/* Stats Cards */}
               <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
-                <div className="bg-white p-4 lg:p-6 rounded-xl shadow-sm border">
+                <div className="card-3d bg-white p-4 lg:p-6 rounded-xl shadow-sm border">
                   <div className="flex items-center justify-between">
                     <div>
                       <p className="text-sm text-gray-600">Competitions</p>
@@ -188,7 +234,7 @@ const UserDashboard: React.FC = () => {
                     <Trophy className="w-8 h-8 text-yellow-500" />
                   </div>
                 </div>
-                <div className="bg-white p-4 lg:p-6 rounded-xl shadow-sm border">
+                <div className="card-3d bg-white p-4 lg:p-6 rounded-xl shadow-sm border">
                   <div className="flex items-center justify-between">
                     <div>
                       <p className="text-sm text-gray-600">Courses</p>
@@ -197,7 +243,7 @@ const UserDashboard: React.FC = () => {
                     <BookOpen className="w-8 h-8 text-blue-500" />
                   </div>
                 </div>
-                <div className="bg-white p-4 lg:p-6 rounded-xl shadow-sm border">
+                <div className="card-3d bg-white p-4 lg:p-6 rounded-xl shadow-sm border">
                   <div className="flex items-center justify-between">
                     <div>
                       <p className="text-sm text-gray-600">Achievements</p>
@@ -206,7 +252,7 @@ const UserDashboard: React.FC = () => {
                     <Award className="w-8 h-8 text-purple-500" />
                   </div>
                 </div>
-                <div className="bg-white p-4 lg:p-6 rounded-xl shadow-sm border">
+                <div className="card-3d bg-white p-4 lg:p-6 rounded-xl shadow-sm border">
                   <div className="flex items-center justify-between">
                     <div>
                       <p className="text-sm text-gray-600">Certificates</p>
@@ -220,7 +266,7 @@ const UserDashboard: React.FC = () => {
               </div>
 
               {/* Recent Activity */}
-              <div className="bg-white rounded-xl shadow-sm border p-4 lg:p-6">
+              <div className="card-3d bg-white rounded-xl shadow-sm border p-4 lg:p-6">
                 <h3 className="text-lg font-semibold text-gray-900 mb-4">Recent Activity</h3>
                 <div className="space-y-4">
                   {competitions.slice(0, 3).map((competition) => (
@@ -252,6 +298,122 @@ const UserDashboard: React.FC = () => {
             </div>
           )}
 
+          {activeTab === 'profile' && (
+            <div className="space-y-6">
+              <div className="flex items-center justify-between">
+                <div>
+                  <h2 className="text-2xl font-bold text-gray-900 mb-2">Profile Settings</h2>
+                  <p className="text-gray-600">Manage your personal information</p>
+                </div>
+                {!isEditingProfile && (
+                  <button
+                    onClick={() => setIsEditingProfile(true)}
+                    className="flex items-center space-x-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                  >
+                    <Edit3 className="w-4 h-4" />
+                    <span>Edit Profile</span>
+                  </button>
+                )}
+              </div>
+
+              <div className="card-3d bg-white rounded-xl shadow-sm border p-6">
+                <div className="flex items-center space-x-6 mb-6">
+                  <div className="w-20 h-20 hero-gradient rounded-full flex items-center justify-center text-white font-bold text-2xl pulse-glow">
+                    {profile?.full_name?.charAt(0) || user?.email?.charAt(0) || 'U'}
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-semibold text-gray-900">{profile?.full_name || 'User'}</h3>
+                    <p className="text-gray-600">{user?.email}</p>
+                    <p className="text-sm text-gray-500">Member since {new Date(user?.created_at || '').toLocaleDateString()}</p>
+                  </div>
+                </div>
+
+                {isEditingProfile ? (
+                  <div className="space-y-4">
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">Full Name</label>
+                      <input
+                        type="text"
+                        value={profileForm.full_name}
+                        onChange={(e) => setProfileForm({ ...profileForm, full_name: e.target.value })}
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        placeholder="Enter your full name"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">Bio</label>
+                      <textarea
+                        value={profileForm.bio}
+                        onChange={(e) => setProfileForm({ ...profileForm, bio: e.target.value })}
+                        rows={4}
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
+                        placeholder="Tell us about yourself..."
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">Website</label>
+                      <input
+                        type="url"
+                        value={profileForm.website}
+                        onChange={(e) => setProfileForm({ ...profileForm, website: e.target.value })}
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        placeholder="https://your-website.com"
+                      />
+                    </div>
+
+                    <div className="flex space-x-4 pt-4">
+                      <button
+                        onClick={handleProfileUpdate}
+                        disabled={profileLoading}
+                        className="flex items-center space-x-2 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50"
+                      >
+                        {profileLoading ? (
+                          <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
+                        ) : (
+                          <Save className="w-4 h-4" />
+                        )}
+                        <span>{profileLoading ? 'Saving...' : 'Save Changes'}</span>
+                      </button>
+                      <button
+                        onClick={() => {
+                          setIsEditingProfile(false);
+                          setProfileForm({
+                            full_name: profile?.full_name || '',
+                            bio: profile?.bio || '',
+                            website: profile?.website || ''
+                          });
+                        }}
+                        className="flex items-center space-x-2 px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
+                      >
+                        <X className="w-4 h-4" />
+                        <span>Cancel</span>
+                      </button>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="space-y-4">
+                    <div>
+                      <h4 className="text-sm font-medium text-gray-700 mb-1">Bio</h4>
+                      <p className="text-gray-900">{profile?.bio || 'No bio added yet.'}</p>
+                    </div>
+                    <div>
+                      <h4 className="text-sm font-medium text-gray-700 mb-1">Website</h4>
+                      {profile?.website ? (
+                        <a href={profile.website} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-700">
+                          {profile.website}
+                        </a>
+                      ) : (
+                        <p className="text-gray-500">No website added yet.</p>
+                      )}
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
+          )}
+
           {activeTab === 'competitions' && (
             <div className="space-y-6">
               <div>
@@ -261,7 +423,7 @@ const UserDashboard: React.FC = () => {
 
               <div className="grid gap-6">
                 {competitions.map((competition) => (
-                  <div key={competition.id} className="bg-white rounded-xl shadow-sm border p-4 lg:p-6">
+                  <div key={competition.id} className="card-3d bg-white rounded-xl shadow-sm border p-4 lg:p-6">
                     <div className="flex flex-col lg:flex-row lg:items-center justify-between mb-4">
                       <div>
                         <h3 className="text-lg font-semibold text-gray-900">{competition.project_title}</h3>
@@ -304,7 +466,7 @@ const UserDashboard: React.FC = () => {
 
               <div className="grid gap-6">
                 {courses.map((course) => (
-                  <div key={course.id} className="bg-white rounded-xl shadow-sm border p-4 lg:p-6">
+                  <div key={course.id} className="card-3d bg-white rounded-xl shadow-sm border p-4 lg:p-6">
                     <div className="flex flex-col lg:flex-row lg:items-center justify-between mb-4">
                       <div>
                         <h3 className="text-lg font-semibold text-gray-900">{course.course_title}</h3>
@@ -321,7 +483,7 @@ const UserDashboard: React.FC = () => {
                       </div>
                       <div className="w-full bg-gray-200 rounded-full h-2">
                         <div 
-                          className="bg-purple-600 h-2 rounded-full transition-all duration-300"
+                          className="bg-blue-600 h-2 rounded-full transition-all duration-300"
                           style={{ width: `${course.progress_percentage}%` }}
                         ></div>
                       </div>
@@ -360,7 +522,7 @@ const UserDashboard: React.FC = () => {
 
               <div className="grid gap-6">
                 {achievements.map((achievement) => (
-                  <div key={achievement.id} className="bg-white rounded-xl shadow-sm border p-4 lg:p-6">
+                  <div key={achievement.id} className="card-3d bg-white rounded-xl shadow-sm border p-4 lg:p-6">
                     <div className="flex items-start space-x-4">
                       <div className="flex-shrink-0">
                         {getAchievementIcon(achievement.type)}
@@ -376,7 +538,7 @@ const UserDashboard: React.FC = () => {
                           <p className="text-gray-600 mb-3">{achievement.description}</p>
                         )}
                         {achievement.certificate_url && (
-                          <button className="flex items-center space-x-2 text-purple-600 hover:text-purple-700 font-medium">
+                          <button className="flex items-center space-x-2 text-blue-600 hover:text-blue-700 font-medium">
                             <Download className="w-4 h-4" />
                             <span>Download Certificate</span>
                           </button>

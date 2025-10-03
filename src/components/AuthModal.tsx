@@ -101,7 +101,7 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, mode, onModeChan
               onClose();
               resetForm();
             }}
-            className="text-gray-400 hover:text-gray-600"
+            className="text-blue-600 hover:text-blue-700 font-medium hover-scale"
           >
             <X className="w-6 h-6" />
           </button>
@@ -180,7 +180,7 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, mode, onModeChan
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-gradient-to-r from-purple-600 to-blue-600 text-white py-3 rounded-lg font-semibold hover:scale-105 transition-transform disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-full hero-gradient text-white py-3 rounded-lg font-semibold hover:scale-105 transition-transform disabled:opacity-50 disabled:cursor-not-allowed pulse-glow"
           >
             {loading ? 'Please wait...' : (mode === 'signin' ? 'Sign In' : 'Create Account')}
           </button>
