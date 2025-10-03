@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
 import { Menu, X, User, LogOut } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
 import AuthModal from './AuthModal';
@@ -9,7 +8,6 @@ const Header: React.FC = () => {
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
   const [authMode, setAuthMode] = useState<'signin' | 'signup'>('signin');
   const { user, signOut } = useAuth();
-  const navigate = useNavigate();
 
   const handleAuthClick = (mode: 'signin' | 'signup') => {
     setAuthMode(mode);
@@ -18,12 +16,6 @@ const Header: React.FC = () => {
 
   const handleSignOut = async () => {
     await signOut();
-    navigate('/'); // Redirect to home after sign out
-  };
-
-  const handleDashboardClick = () => {
-    navigate('/dashboard');
-    setIsMenuOpen(false); // Close mobile menu if open
   };
 
   return (
@@ -32,7 +24,7 @@ const Header: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-4">
             {/* Logo Section */}
-            <Link to="/" className="flex items-center space-x-3 animate-bounce-in">
+            <div className="flex items-center space-x-3 animate-bounce-in">
               <div className="w-12 h-12 bg-gradient-to-br from-purple-600 to-blue-600 rounded-xl flex items-center justify-center text-white font-bold text-xl hover-scale animate-pulse-glow">
                 IFG
               </div>
@@ -44,7 +36,7 @@ const Header: React.FC = () => {
                   Global Youth Entrepreneurship
                 </p>
               </div>
-            </Link>
+            </div>
 
             {/* Desktop Menu */}
             <div className="hidden md:flex items-center space-x-8 animate-fade-in stagger-2">
@@ -60,12 +52,17 @@ const Header: React.FC = () => {
                     <User className="w-5 h-5 text-gray-600" />
                     <span className="text-sm text-gray-700">{user?.user_metadata?.full_name || user?.email}</span>
                   </div>
-                  <Link
-                    to="/dashboard"
+                  <a
+                    href="/dashboard"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      window.history.pushState({}, '', '/dashboard');
+                      window.location.reload();
+                    }}
                     className="text-gray-700 hover:text-purple-600 font-medium transition-colors hover-scale"
                   >
                     Dashboard
-                  </Link>
+                  </a>
                   <button
                     onClick={handleSignOut}
                     className="flex items-center space-x-2 text-gray-600 hover:text-red-600 transition-colors hover-scale"
@@ -106,21 +103,26 @@ const Header: React.FC = () => {
         {isMenuOpen && (
           <div className="md:hidden">
             <div className="px-2 pt-2 pb-3 space-y-1 bg-white border-t">
-              <a href="#home" className="block px-3 py-2 text-gray-700" onClick={() => setIsMenuOpen(false)}>Home</a>
-              <a href="#about" className="block px-3 py-2 text-gray-700" onClick={() => setIsMenuOpen(false)}>About</a>
-              <a href="#competition" className="block px-3 py-2 text-gray-700" onClick={() => setIsMenuOpen(false)}>Competition</a>
-              <a href="#benefits" className="block px-3 py-2 text-gray-700" onClick={() => setIsMenuOpen(false)}>Benefits</a>
-              <a href="#contact" className="block px-3 py-2 text-gray-700" onClick={() => setIsMenuOpen(false)}>Contact</a>
+              <a href="#home" className="block px-3 py-2 text-gray-700">Home</a>
+              <a href="#about" className="block px-3 py-2 text-gray-700">About</a>
+              <a href="#competition" className="block px-3 py-2 text-gray-700">Competition</a>
+              <a href="#benefits" className="block px-3 py-2 text-gray-700">Benefits</a>
+              <a href="#contact" className="block px-3 py-2 text-gray-700">Contact</a>
               
               {user ? (
                 <div className="px-3 py-2 space-y-2">
                   <div className="text-sm text-gray-700">{user?.user_metadata?.full_name || user?.email}</div>
-                  <button
-                    onClick={handleDashboardClick}
+                  <a
+                    href="/dashboard"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      window.history.pushState({}, '', '/dashboard');
+                      window.location.reload();
+                    }}
                     className="block w-full text-left text-gray-700"
                   >
                     Dashboard
-                  </button>
+                  </a>
                   <button
                     onClick={handleSignOut}
                     className="w-full text-left text-red-600 hover:text-red-700"
