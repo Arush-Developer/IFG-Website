@@ -269,7 +269,6 @@ Which course do you want recommendations for?`;
       }`}>
         {/* Header */}
         <div className="flex items-center justify-between p-3 sm:p-4 border-b bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-t-2xl">
-        <div className="flex items-center justify-between p-3 sm:p-4 border-b hero-gradient text-white rounded-t-2xl">
           <div className="flex items-center space-x-3">
             <div className="w-8 h-8 sm:w-10 sm:h-10 bg-white bg-opacity-20 rounded-full flex items-center justify-center">
               <Bot className="w-4 h-4 sm:w-6 sm:h-6" aria-hidden="true" />
