@@ -147,6 +147,191 @@ export const getUserCourses = async () => {
   return { data, error };
 };
 
+// User tokens functions
+export const getUserTokens = async () => {
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) {
+    return { data: null, error: { message: 'User must be authenticated' } };
+  }
+
+  const { data, error } = await supabase
+    .from('user_tokens')
+    .select('*')
+    .eq('user_id', user.id)
+    .single();
+  return { data, error };
+};
+
+export const updateUserTokens = async (newBalance: number) => {
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) {
+    return { data: null, error: { message: 'User must be authenticated' } };
+  }
+
+  const { data, error } = await supabase
+    .from('user_tokens')
+    .update({ balance: newBalance })
+    .eq('user_id', user.id)
+    .select()
+    .single();
+  return { data, error };
+};
+
+// Marketplace functions
+export const getMarketplaceProducts = async () => {
+  const { data, error } = await supabase
+    .from('marketplace_products')
+    .select(`
+      *,
+      profiles!marketplace_products_user_id_fkey(full_name)
+    `)
+    .eq('status', 'active')
+    .order('created_at', { ascending: false });
+  
+  // Transform data to include seller_name
+  const transformedData = data?.map(product => ({
+    ...product,
+    seller_name: product.profiles?.full_name || 'Unknown Seller'
+  }));
+  
+  return { data: transformedData, error };
+};
+
+export const getUserProducts = async () => {
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) {
+    return { data: null, error: { message: 'User must be authenticated' } };
+  }
+
+  const { data, error } = await supabase
+    .from('marketplace_products')
+    .select('*')
+    .eq('user_id', user.id)
+    .order('created_at', { ascending: false });
+  return { data, error };
+};
+
+export const createProduct = async (productData: {
+  title: string;
+  description: string;
+  price: number;
+  image_url?: string;
+  product_url?: string;
+  category: string;
+}) => {
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) {
+    return { data: null, error: { message: 'User must be authenticated' } };
+  }
+
+  const { data, error } = await supabase
+    .from('marketplace_products')
+    .insert([{ ...productData, user_id: user.id }])
+    .select()
+    .single();
+  return { data, error };
+};
+
+export const updateProduct = async (productId: string, productData: {
+  title?: string;
+  description?: string;
+  price?: number;
+  image_url?: string;
+  product_url?: string;
+  category?: string;
+  status?: string;
+}) => {
+  const { data, error } = await supabase
+    .from('marketplace_products')
+    .update(productData)
+    .eq('id', productId)
+    .select()
+    .single();
+  return { data, error };
+};
+
+export const deleteProduct = async (productId: string) => {
+  const { data, error } = await supabase
+    .from('marketplace_products')
+    .delete()
+    .eq('id', productId);
+  return { data, error };
+};
+
+export const purchaseProduct = async (productId: string, sellerId: string, amount: number) => {
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) {
+    return { data: null, error: { message: 'User must be authenticated' } };
+  }
+
+  // Start a transaction-like operation
+  try {
+    // Get buyer's current balance
+    const { data: buyerTokens, error: buyerError } = await getUserTokens();
+    if (buyerError || !buyerTokens || buyerTokens.balance < amount) {
+      return { data: null, error: { message: 'Insufficient tokens' } };
+    }
+
+    // Get seller's current balance
+    const { data: sellerTokens, error: sellerError } = await supabase
+      .from('user_tokens')
+      .select('*')
+      .eq('user_id', sellerId)
+      .single();
+    
+    if (sellerError || !sellerTokens) {
+      return { data: null, error: { message: 'Seller not found' } };
+    }
+
+    // Update buyer's balance
+    const { error: buyerUpdateError } = await updateUserTokens(buyerTokens.balance - amount);
+    if (buyerUpdateError) {
+      return { data: null, error: buyerUpdateError };
+    }
+
+    // Update seller's balance
+    const { error: sellerUpdateError } = await supabase
+      .from('user_tokens')
+      .update({ balance: sellerTokens.balance + amount })
+      .eq('user_id', sellerId);
+    
+    if (sellerUpdateError) {
+      // Rollback buyer's balance
+      await updateUserTokens(buyerTokens.balance);
+      return { data: null, error: sellerUpdateError };
+    }
+
+    // Mark product as sold
+    const { error: productUpdateError } = await updateProduct(productId, { status: 'sold' });
+    if (productUpdateError) {
+      // Rollback both balances
+      await updateUserTokens(buyerTokens.balance);
+      await supabase
+        .from('user_tokens')
+        .update({ balance: sellerTokens.balance })
+        .eq('user_id', sellerId);
+      return { data: null, error: productUpdateError };
+    }
+
+    // Create transaction record
+    const { data, error } = await supabase
+      .from('marketplace_transactions')
+      .insert([{
+        buyer_id: user.id,
+        seller_id: sellerId,
+        product_id: productId,
+        amount: amount,
+        status: 'completed'
+      }])
+      .select()
+      .single();
+
+    return { data, error };
+  } catch (error) {
+    return { data: null, error: { message: 'Transaction failed' } };
+  }
+};
+
 // Chat functions
 export const createChatConversation = async (title: string = 'New Conversation') => {
   const { data: { user } } = await supabase.auth.getUser();

@@ -5,9 +5,10 @@ import AuthModal from './AuthModal';
 
 interface HeaderProps {
   onNavigateToDashboard: () => void;
+  onNavigateToMarketplace: () => void;
 }
 
-const Header: React.FC<HeaderProps> = ({ onNavigateToDashboard }) => {
+const Header: React.FC<HeaderProps> = ({ onNavigateToDashboard, onNavigateToMarketplace }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
   const [authMode, setAuthMode] = useState<'signin' | 'signup'>('signin');
@@ -19,7 +20,13 @@ const Header: React.FC<HeaderProps> = ({ onNavigateToDashboard }) => {
   };
 
   const handleSignOut = async () => {
-    await signOut();
+    try {
+      await signOut();
+      // Force page reload to clear any cached state
+      window.location.href = '/';
+    } catch (error) {
+      console.error('Error signing out:', error);
+    }
   };
 
   const handleDashboardClick = (e: React.MouseEvent) => {
@@ -54,6 +61,12 @@ const Header: React.FC<HeaderProps> = ({ onNavigateToDashboard }) => {
               <a href="#competition" className="text-gray-700 hover:text-blue-600 font-medium transition-colors hover-scale">Competition</a>
               <a href="#benefits" className="text-gray-700 hover:text-blue-600 font-medium transition-colors hover-scale">Benefits</a>
               <a href="#contact" className="text-gray-700 hover:text-blue-600 font-medium transition-colors hover-scale">Contact</a>
+              <button
+                onClick={onNavigateToMarketplace}
+                className="text-gray-700 hover:text-purple-600 font-medium transition-colors hover-scale"
+              >
+                Marketplace
+              </button>
               
               {user ? (
                 <div className="flex items-center space-x-4">
@@ -112,6 +125,12 @@ const Header: React.FC<HeaderProps> = ({ onNavigateToDashboard }) => {
               <a href="#competition" className="block px-3 py-2 text-gray-700">Competition</a>
               <a href="#benefits" className="block px-3 py-2 text-gray-700">Benefits</a>
               <a href="#contact" className="block px-3 py-2 text-gray-700">Contact</a>
+              <button
+                onClick={onNavigateToMarketplace}
+                className="block w-full text-left px-3 py-2 text-gray-700"
+              >
+                Marketplace
+              </button>
               
               {user ? (
                 <div className="px-3 py-2 space-y-2">

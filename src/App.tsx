@@ -5,6 +5,7 @@ import ContactForm from './components/ContactForm';
 import CompetitionSignup from './components/CompetitionSignup';
 import UserDashboard from './components/UserDashboard';
 import ChatBot from './components/ChatBot';
+import Marketplace from './components/Marketplace';
 import { MessageCircle } from 'lucide-react';
 
 const AppContent: React.FC = () => {
@@ -15,34 +16,46 @@ const AppContent: React.FC = () => {
   // Check URL for dashboard route
   useEffect(() => {
     const path = window.location.pathname;
-    if (path === '/dashboard' && user && !loading) {
+    if (path === '/dashboard') {
       setCurrentPage('dashboard');
-    } else if (path === '/dashboard' && !user && !loading) {
-      // Redirect to home if not authenticated
-      window.history.pushState({}, '', '/');
-      setCurrentPage('home');
+    } else if (path === '/marketplace') {
+      setCurrentPage('marketplace');
     } else {
       setCurrentPage('home');
     }
-  }, [user, loading]);
+  }, []);
 
   // Handle navigation
   const navigateTo = (page: string) => {
     setCurrentPage(page);
     if (page === 'dashboard') {
       window.history.pushState({}, '', '/dashboard');
+    } else if (page === 'marketplace') {
+      window.history.pushState({}, '', '/marketplace');
     } else {
       window.history.pushState({}, '', '/');
     }
   };
 
-  if (currentPage === 'dashboard' && user && !loading) {
+  if (currentPage === 'dashboard') {
+    if (!user && !loading) {
+      // Redirect to home if not authenticated
+      navigateTo('home');
+      return null;
+    }
     return <UserDashboard onNavigateHome={() => navigateTo('home')} />;
+  }
+
+  if (currentPage === 'marketplace') {
+    return <Marketplace onNavigateHome={() => navigateTo('home')} />;
   }
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <Header onNavigateToDashboard={() => navigateTo('dashboard')} />
+      <Header 
+        onNavigateToDashboard={() => navigateTo('dashboard')} 
+        onNavigateToMarketplace={() => navigateTo('marketplace')}
+      />
       
       {/* Hero Section */}
       <section id="home" className="min-h-screen homeone-bg bg-pattern flex items-center relative overflow-hidden">

@@ -92,3 +92,36 @@ export interface AuthState {
   profile: Profile | null;
   loading: boolean;
 }
+
+export interface UserTokens {
+  id: string;
+  user_id: string;
+  balance: number;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface MarketplaceProduct {
+  id: string;
+  user_id: string;
+  title: string;
+  description: string;
+  price: number;
+  image_url?: string;
+  product_url?: string;
+  category: string;
+  status: 'active' | 'sold' | 'inactive';
+  created_at: string;
+  updated_at: string;
+  seller_name?: string;
+}
+
+export interface MarketplaceTransaction {
+  id: string;
+  buyer_id: string;
+  seller_id: string;
+  product_id: string;
+  amount: number;
+  status: 'pending' | 'completed' | 'failed';
+  created_at: string;
+}
