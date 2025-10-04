@@ -22,8 +22,9 @@ const Header: React.FC<HeaderProps> = ({ onNavigateToDashboard, onNavigateToMark
   const handleSignOut = async () => {
     try {
       await signOut();
-      // Force page reload to clear any cached state
-      window.location.href = '/';
+      // Force navigation to home and reload
+      window.history.pushState({}, '', '/');
+      window.location.reload();
     } catch (error) {
       console.error('Error signing out:', error);
     }
@@ -34,6 +35,11 @@ const Header: React.FC<HeaderProps> = ({ onNavigateToDashboard, onNavigateToMark
     onNavigateToDashboard();
   };
 
+  const handleMarketplaceClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    onNavigateToMarketplace();
+  };
+
   return (
     <>
       <nav className="fixed top-0 w-full bg-white/90 backdrop-blur-md shadow-lg z-50 transition-all duration-300 animate-slide-in-left">
@@ -41,9 +47,11 @@ const Header: React.FC<HeaderProps> = ({ onNavigateToDashboard, onNavigateToMark
           <div className="flex justify-between items-center py-4">
             {/* Logo Section */}
             <div className="flex items-center space-x-3 animate-bounce-in">
-              <div className="w-12 h-12 hero-gradient rounded-xl flex items-center justify-center text-white font-bold text-xl hover-scale pulse-glow">
-                IFG
-              </div>
+              <img 
+                src="/user copy.jpg" 
+                alt="IdeaForge Global Logo" 
+                className="w-12 h-12 rounded-xl object-cover pulse-glow hover-scale"
+              />
               <div>
                 <h1 className="text-2xl font-bold gradient-text animate-gradient-shift">
                   IdeaForge Global
@@ -62,7 +70,7 @@ const Header: React.FC<HeaderProps> = ({ onNavigateToDashboard, onNavigateToMark
               <a href="#benefits" className="text-gray-700 hover:text-blue-600 font-medium transition-colors hover-scale">Benefits</a>
               <a href="#contact" className="text-gray-700 hover:text-blue-600 font-medium transition-colors hover-scale">Contact</a>
               <button
-                onClick={onNavigateToMarketplace}
+                onClick={handleMarketplaceClick}
                 className="text-gray-700 hover:text-purple-600 font-medium transition-colors hover-scale"
               >
                 Marketplace
@@ -126,7 +134,7 @@ const Header: React.FC<HeaderProps> = ({ onNavigateToDashboard, onNavigateToMark
               <a href="#benefits" className="block px-3 py-2 text-gray-700">Benefits</a>
               <a href="#contact" className="block px-3 py-2 text-gray-700">Contact</a>
               <button
-                onClick={onNavigateToMarketplace}
+                onClick={handleMarketplaceClick}
                 className="block w-full text-left px-3 py-2 text-gray-700"
               >
                 Marketplace

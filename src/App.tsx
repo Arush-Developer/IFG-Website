@@ -13,7 +13,7 @@ const AppContent: React.FC = () => {
   const [currentPage, setCurrentPage] = useState('home');
   const [showChatBot, setShowChatBot] = useState(false);
 
-  // Check URL for dashboard route
+  // Check URL for routes
   useEffect(() => {
     const path = window.location.pathname;
     if (path === '/dashboard') {
@@ -23,6 +23,21 @@ const AppContent: React.FC = () => {
     } else {
       setCurrentPage('home');
     }
+
+    // Handle browser back/forward buttons
+    const handlePopState = () => {
+      const path = window.location.pathname;
+      if (path === '/dashboard') {
+        setCurrentPage('dashboard');
+      } else if (path === '/marketplace') {
+        setCurrentPage('marketplace');
+      } else {
+        setCurrentPage('home');
+      }
+    };
+
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
   }, []);
 
   // Handle navigation
@@ -37,8 +52,18 @@ const AppContent: React.FC = () => {
     }
   };
 
+  // Show loading while auth is being determined
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-600"></div>
+      </div>
+    );
+  }
+
+  // Dashboard page
   if (currentPage === 'dashboard') {
-    if (!user && !loading) {
+    if (!user) {
       // Redirect to home if not authenticated
       navigateTo('home');
       return null;
@@ -46,10 +71,12 @@ const AppContent: React.FC = () => {
     return <UserDashboard onNavigateHome={() => navigateTo('home')} />;
   }
 
+  // Marketplace page
   if (currentPage === 'marketplace') {
     return <Marketplace onNavigateHome={() => navigateTo('home')} />;
   }
 
+  // Home page
   return (
     <div className="min-h-screen bg-gray-50">
       <Header 
@@ -298,9 +325,11 @@ const AppContent: React.FC = () => {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8">
             <div className="col-span-2 md:col-span-1">
               <div className="flex items-center space-x-3 mb-4">
-                <div className="w-8 sm:w-10 h-8 sm:h-10 hero-gradient rounded-lg flex items-center justify-center text-white font-bold pulse-glow">
-                  IFG
-                </div>
+                <img 
+                  src="/user copy.jpg" 
+                  alt="IdeaForge Global Logo" 
+                  className="w-8 sm:w-10 h-8 sm:h-10 rounded-lg object-cover pulse-glow"
+                />
                 <span className="text-lg sm:text-xl font-bold">IdeaForge Global</span>
               </div>
               <p className="text-gray-400 text-sm sm:text-base">
