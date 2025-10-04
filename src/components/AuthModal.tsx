@@ -28,12 +28,10 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, mode, onModeChan
       const { error } = await supabase.auth.signInWithOAuth({
         provider: 'google',
         options: {
-          redirectTo: `${window.location.origin}/dashboard`
+          redirectTo: `${window.location.origin}/` // Redirect to home page
         }
       });
-      if (error) {
-        setError(error.message);
-      }
+      if (error) setError(error.message);
     } catch (err) {
       setError('Failed to sign in with Google');
     } finally {
@@ -57,6 +55,7 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, mode, onModeChan
           setTimeout(() => {
             onClose();
             resetForm();
+            window.location.href = '/'; // Redirect to home after signup
           }, 2000);
         }
       } else {
@@ -64,11 +63,9 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, mode, onModeChan
         if (error) {
           setError(error.message);
         } else {
-          // Navigate to dashboard after successful sign in
-          window.history.pushState({}, '', '/dashboard');
-          window.location.reload();
           onClose();
           resetForm();
+          window.location.href = '/'; // Redirect to home after login
         }
       }
     } catch (err) {
@@ -97,10 +94,7 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, mode, onModeChan
             {mode === 'signin' ? 'Welcome Back' : 'Join IdeaForge Global'}
           </h2>
           <button
-            onClick={() => {
-              onClose();
-              resetForm();
-            }}
+            onClick={() => { onClose(); resetForm(); }}
             className="text-blue-600 hover:text-blue-700 font-medium hover-scale"
           >
             <X className="w-6 h-6" />
@@ -207,10 +201,7 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, mode, onModeChan
           <div className="text-center">
             <button
               type="button"
-              onClick={() => {
-                onModeChange(mode === 'signin' ? 'signup' : 'signin');
-                resetForm();
-              }}
+              onClick={() => { onModeChange(mode === 'signin' ? 'signup' : 'signin'); resetForm(); }}
               className="text-purple-600 hover:text-purple-700 font-medium"
             >
               {mode === 'signin' 
