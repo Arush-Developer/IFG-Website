@@ -28,7 +28,7 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, mode, onModeChan
       const { error } = await supabase.auth.signInWithOAuth({
         provider: 'google',
         options: {
-          redirectTo: `${window.location.origin}/dashboard`
+          redirectTo: `${window.location.origin}/` // Redirect to home page after Google sign-in
         }
       });
       if (error) {
@@ -64,9 +64,8 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, mode, onModeChan
         if (error) {
           setError(error.message);
         } else {
-          // Navigate to dashboard after successful sign in
-          window.history.pushState({}, '', '/dashboard');
-          window.location.reload();
+          // Navigate to home after successful sign in
+          window.location.href = '/'; // Redirect to home page after login
           onClose();
           resetForm();
         }
