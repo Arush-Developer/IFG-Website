@@ -1,33 +1,40 @@
 import { createClient } from '@supabase/supabase-js';
 
-// **DON’T hardcode these in your production repository** — use environment variables
+/* =======================================================
+   🔗 SUPABASE CONFIGURATION
+======================================================= */
 const supabaseUrl = 'https://wlhfqgfkkfumasutrvct.supabase.co';
-const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndsaGZxZ2Zra2Z1bWFzdXRydmN0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTkyNDc3NDMsImV4cCI6MjA3NDgyMzc0M30.5fwgDmWYND6UuXzJiM05yRZSUFP_g2JL-k3RO2faep4';
+const supabaseAnonKey =
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndsaGZxZ2Zra2Z1bWFzdXRydmN0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTkyNDc3NDMsImV4cCI6MjA3NDgyMzc0M30.5fwgDmWYND6UuXzJiM05yRZSUFP_g2JL-k3RO2faep4';
 
-export const supabase = createClient(supabaseUrl, supabaseAnonKey);
+export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
+  auth: {
+    persistSession: true,
+    autoRefreshToken: true,
+    detectSessionInUrl: true,
+    storage: localStorage,
+  },
+});
 
-// (You can drop the placeholder logic if you're confident env vars always exist)
-const isUsingPlaceholders = false;  // you can remove this logic now
-
-// Auth functions
+/* =======================================================
+   🔐 AUTH FUNCTIONS
+======================================================= */
 export const signUp = async (email: string, password: string, fullName: string) => {
   const { data, error } = await supabase.auth.signUp({
     email,
     password,
-    options: {
-      data: {
-        full_name: fullName,
-      },
-    },
+    options: { data: { full_name: fullName } },
   });
   return { data, error };
 };
 
 export const signIn = async (email: string, password: string) => {
-  const { data, error } = await supabase.auth.signInWithPassword({
-    email,
-    password,
-  });
+  const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+  return { data, error };
+};
+
+export const signInWithGoogle = async () => {
+  const { data, error } = await supabase.auth.signInWithOAuth({ provider: 'google' });
   return { data, error };
 };
 
@@ -41,21 +48,9 @@ export const getCurrentUser = async () => {
   return { user, error };
 };
 
-// Contact form
-export const submitContactForm = async (formData: {
-  name: string;
-  email: string;
-  subject: string;
-  message: string;
-}) => {
-  const { data, error } = await supabase
-    .from('contact_forms')
-    .insert([formData])
-    .select();
-  return { data, error };
-};
-
-// Profile
+/* =======================================================
+   👤 PROFILE FUNCTIONS
+======================================================= */
 export const getProfile = async (userId: string) => {
   const { data, error } = await supabase
     .from('profiles')
@@ -65,12 +60,7 @@ export const getProfile = async (userId: string) => {
   return { data, error };
 };
 
-export const updateProfile = async (userId: string, profileData: {
-  full_name?: string;
-  avatar_url?: string;
-  bio?: string;
-  website?: string;
-}) => {
+export const updateProfile = async (userId: string, profileData: any) => {
   const { data, error } = await supabase
     .from('profiles')
     .update(profileData)
@@ -80,22 +70,26 @@ export const updateProfile = async (userId: string, profileData: {
   return { data, error };
 };
 
-// Competition entries
-export const submitCompetitionEntry = async (entryData: {
-  team_name: string;
-  project_title: string;
-  project_description: string;
-  category: string;
-  team_members: string[];
-  contact_email: string;
+/* =======================================================
+   📬 CONTACT FORM
+======================================================= */
+export const submitContactForm = async (formData: {
+  name: string;
+  email: string;
   phone_number?: string;
-  school_organization?: string;
-  country: string;
+  subject: string;
+  message: string;
 }) => {
+  const { data, error } = await supabase.from('contact_forms').insert([formData]).select();
+  return { data, error };
+};
+
+/* =======================================================
+   🧠 COMPETITION ENTRIES
+======================================================= */
+export const submitCompetitionEntry = async (entryData: any) => {
   const { data: { user } } = await supabase.auth.getUser();
-  if (!user) {
-    return { data: null, error: { message: 'User must be authenticated' } };
-  }
+  if (!user) return { data: null, error: { message: 'User must be authenticated' } };
 
   const { data, error } = await supabase
     .from('competition_entries')
@@ -106,9 +100,7 @@ export const submitCompetitionEntry = async (entryData: {
 
 export const getUserCompetitionEntries = async () => {
   const { data: { user } } = await supabase.auth.getUser();
-  if (!user) {
-    return { data: null, error: { message: 'User must be authenticated' } };
-  }
+  if (!user) return { data: null, error: { message: 'User must be authenticated' } };
 
   const { data, error } = await supabase
     .from('competition_entries')
@@ -118,12 +110,12 @@ export const getUserCompetitionEntries = async () => {
   return { data, error };
 };
 
-// User dashboard functions
+/* =======================================================
+   🏆 USER ACHIEVEMENTS
+======================================================= */
 export const getUserAchievements = async () => {
   const { data: { user } } = await supabase.auth.getUser();
-  if (!user) {
-    return { data: null, error: { message: 'User must be authenticated' } };
-  }
+  if (!user) return { data: null, error: { message: 'User not logged in' } };
 
   const { data, error } = await supabase
     .from('user_achievements')
@@ -133,11 +125,12 @@ export const getUserAchievements = async () => {
   return { data, error };
 };
 
+/* =======================================================
+   🎓 USER COURSES
+======================================================= */
 export const getUserCourses = async () => {
   const { data: { user } } = await supabase.auth.getUser();
-  if (!user) {
-    return { data: null, error: { message: 'User must be authenticated' } };
-  }
+  if (!user) return { data: null, error: { message: 'User not logged in' } };
 
   const { data, error } = await supabase
     .from('user_courses')
@@ -147,12 +140,12 @@ export const getUserCourses = async () => {
   return { data, error };
 };
 
-// User tokens functions
+/* =======================================================
+   💰 USER TOKENS / WALLET
+======================================================= */
 export const getUserTokens = async () => {
   const { data: { user } } = await supabase.auth.getUser();
-  if (!user) {
-    return { data: null, error: { message: 'User must be authenticated' } };
-  }
+  if (!user) return { data: null, error: { message: 'User not logged in' } };
 
   const { data, error } = await supabase
     .from('user_tokens')
@@ -164,9 +157,7 @@ export const getUserTokens = async () => {
 
 export const updateUserTokens = async (newBalance: number) => {
   const { data: { user } } = await supabase.auth.getUser();
-  if (!user) {
-    return { data: null, error: { message: 'User must be authenticated' } };
-  }
+  if (!user) return { data: null, error: { message: 'User not logged in' } };
 
   const { data, error } = await supabase
     .from('user_tokens')
@@ -177,7 +168,9 @@ export const updateUserTokens = async (newBalance: number) => {
   return { data, error };
 };
 
-// Marketplace functions
+/* =======================================================
+   🛒 MARKETPLACE SYSTEM
+======================================================= */
 export const getMarketplaceProducts = async () => {
   const { data, error } = await supabase
     .from('marketplace_products')
@@ -187,42 +180,18 @@ export const getMarketplaceProducts = async () => {
     `)
     .eq('status', 'active')
     .order('created_at', { ascending: false });
-  
-  // Transform data to include seller_name
-  const transformedData = data?.map(product => ({
+
+  const transformedData = data?.map((product: any) => ({
     ...product,
-    seller_name: product.profiles?.full_name || 'Unknown Seller'
+    seller_name: product.profiles?.full_name || 'Unknown Seller',
   }));
-  
+
   return { data: transformedData, error };
 };
 
-export const getUserProducts = async () => {
+export const createProduct = async (productData: any) => {
   const { data: { user } } = await supabase.auth.getUser();
-  if (!user) {
-    return { data: null, error: { message: 'User must be authenticated' } };
-  }
-
-  const { data, error } = await supabase
-    .from('marketplace_products')
-    .select('*')
-    .eq('user_id', user.id)
-    .order('created_at', { ascending: false });
-  return { data, error };
-};
-
-export const createProduct = async (productData: {
-  title: string;
-  description: string;
-  price: number;
-  image_url?: string;
-  product_url?: string;
-  category: string;
-}) => {
-  const { data: { user } } = await supabase.auth.getUser();
-  if (!user) {
-    return { data: null, error: { message: 'User must be authenticated' } };
-  }
+  if (!user) return { data: null, error: { message: 'User not logged in' } };
 
   const { data, error } = await supabase
     .from('marketplace_products')
@@ -232,18 +201,10 @@ export const createProduct = async (productData: {
   return { data, error };
 };
 
-export const updateProduct = async (productId: string, productData: {
-  title?: string;
-  description?: string;
-  price?: number;
-  image_url?: string;
-  product_url?: string;
-  category?: string;
-  status?: string;
-}) => {
+export const updateProduct = async (productId: string, updates: any) => {
   const { data, error } = await supabase
     .from('marketplace_products')
-    .update(productData)
+    .update(updates)
     .eq('id', productId)
     .select()
     .single();
@@ -251,93 +212,16 @@ export const updateProduct = async (productId: string, productData: {
 };
 
 export const deleteProduct = async (productId: string) => {
-  const { data, error } = await supabase
-    .from('marketplace_products')
-    .delete()
-    .eq('id', productId);
+  const { data, error } = await supabase.from('marketplace_products').delete().eq('id', productId);
   return { data, error };
 };
 
-export const purchaseProduct = async (productId: string, sellerId: string, amount: number) => {
-  const { data: { user } } = await supabase.auth.getUser();
-  if (!user) {
-    return { data: null, error: { message: 'User must be authenticated' } };
-  }
-
-  // Start a transaction-like operation
-  try {
-    // Get buyer's current balance
-    const { data: buyerTokens, error: buyerError } = await getUserTokens();
-    if (buyerError || !buyerTokens || buyerTokens.balance < amount) {
-      return { data: null, error: { message: 'Insufficient tokens' } };
-    }
-
-    // Get seller's current balance
-    const { data: sellerTokens, error: sellerError } = await supabase
-      .from('user_tokens')
-      .select('*')
-      .eq('user_id', sellerId)
-      .single();
-    
-    if (sellerError || !sellerTokens) {
-      return { data: null, error: { message: 'Seller not found' } };
-    }
-
-    // Update buyer's balance
-    const { error: buyerUpdateError } = await updateUserTokens(buyerTokens.balance - amount);
-    if (buyerUpdateError) {
-      return { data: null, error: buyerUpdateError };
-    }
-
-    // Update seller's balance
-    const { error: sellerUpdateError } = await supabase
-      .from('user_tokens')
-      .update({ balance: sellerTokens.balance + amount })
-      .eq('user_id', sellerId);
-    
-    if (sellerUpdateError) {
-      // Rollback buyer's balance
-      await updateUserTokens(buyerTokens.balance);
-      return { data: null, error: sellerUpdateError };
-    }
-
-    // Mark product as sold
-    const { error: productUpdateError } = await updateProduct(productId, { status: 'sold' });
-    if (productUpdateError) {
-      // Rollback both balances
-      await updateUserTokens(buyerTokens.balance);
-      await supabase
-        .from('user_tokens')
-        .update({ balance: sellerTokens.balance })
-        .eq('user_id', sellerId);
-      return { data: null, error: productUpdateError };
-    }
-
-    // Create transaction record
-    const { data, error } = await supabase
-      .from('marketplace_transactions')
-      .insert([{
-        buyer_id: user.id,
-        seller_id: sellerId,
-        product_id: productId,
-        amount: amount,
-        status: 'completed'
-      }])
-      .select()
-      .single();
-
-    return { data, error };
-  } catch (error) {
-    return { data: null, error: { message: 'Transaction failed' } };
-  }
-};
-
-// Chat functions
+/* =======================================================
+   💬 CHAT SYSTEM
+======================================================= */
 export const createChatConversation = async (title: string = 'New Conversation') => {
   const { data: { user } } = await supabase.auth.getUser();
-  if (!user) {
-    return { data: null, error: { message: 'User must be authenticated' } };
-  }
+  if (!user) return { data: null, error: { message: 'User must be authenticated' } };
 
   const { data, error } = await supabase
     .from('chat_conversations')
@@ -349,9 +233,7 @@ export const createChatConversation = async (title: string = 'New Conversation')
 
 export const getChatConversations = async () => {
   const { data: { user } } = await supabase.auth.getUser();
-  if (!user) {
-    return { data: null, error: { message: 'User must be authenticated' } };
-  }
+  if (!user) return { data: null, error: { message: 'User must be authenticated' } };
 
   const { data, error } = await supabase
     .from('chat_conversations')
@@ -370,14 +252,14 @@ export const getChatMessages = async (conversationId: string) => {
   return { data, error };
 };
 
-export const sendChatMessage = async (conversationId: string, message: string, senderType: 'user' | 'bot' = 'user') => {
+export const sendChatMessage = async (
+  conversationId: string,
+  message: string,
+  senderType: 'user' | 'bot' = 'user'
+) => {
   const { data, error } = await supabase
     .from('chat_messages')
-    .insert([{
-      conversation_id: conversationId,
-      sender_type: senderType,
-      message
-    }])
+    .insert([{ conversation_id: conversationId, sender_type: senderType, message }])
     .select()
     .single();
   return { data, error };
