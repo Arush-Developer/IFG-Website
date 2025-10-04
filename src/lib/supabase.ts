@@ -61,7 +61,7 @@ export const getProfile = async (userId: string) => {
     .from('profiles')
     .select('*')
     .eq('id', userId)
-    .maybeSingle();
+    .single();
   return { data, error };
 };
 
@@ -76,7 +76,7 @@ export const updateProfile = async (userId: string, profileData: {
     .update(profileData)
     .eq('id', userId)
     .select()
-    .maybeSingle();
+    .single();
   return { data, error };
 };
 
@@ -158,7 +158,7 @@ export const getUserTokens = async () => {
     .from('user_tokens')
     .select('*')
     .eq('user_id', user.id)
-    .maybeSingle();
+    .single();
   return { data, error };
 };
 
@@ -173,7 +173,7 @@ export const updateUserTokens = async (newBalance: number) => {
     .update({ balance: newBalance })
     .eq('user_id', user.id)
     .select()
-    .maybeSingle();
+    .single();
   return { data, error };
 };
 
@@ -228,7 +228,7 @@ export const createProduct = async (productData: {
     .from('marketplace_products')
     .insert([{ ...productData, user_id: user.id }])
     .select()
-    .maybeSingle();
+    .single();
   return { data, error };
 };
 
@@ -246,7 +246,7 @@ export const updateProduct = async (productId: string, productData: {
     .update(productData)
     .eq('id', productId)
     .select()
-    .maybeSingle();
+    .single();
   return { data, error };
 };
 
@@ -277,7 +277,7 @@ export const purchaseProduct = async (productId: string, sellerId: string, amoun
       .from('user_tokens')
       .select('*')
       .eq('user_id', sellerId)
-      .maybeSingle();
+      .single();
     
     if (sellerError || !sellerTokens) {
       return { data: null, error: { message: 'Seller not found' } };
@@ -324,7 +324,7 @@ export const purchaseProduct = async (productId: string, sellerId: string, amoun
         status: 'completed'
       }])
       .select()
-      .maybeSingle();
+      .single();
 
     return { data, error };
   } catch (error) {
@@ -343,7 +343,7 @@ export const createChatConversation = async (title: string = 'New Conversation')
     .from('chat_conversations')
     .insert([{ user_id: user.id, title }])
     .select()
-    .maybeSingle();
+    .single();
   return { data, error };
 };
 
@@ -379,6 +379,6 @@ export const sendChatMessage = async (conversationId: string, message: string, s
       message
     }])
     .select()
-    .maybeSingle();
+    .single();
   return { data, error };
 };
