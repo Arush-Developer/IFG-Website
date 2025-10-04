@@ -63,12 +63,10 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, mode, onModeChan
         if (error) {
           setError(error.message);
         } else {
-          // Navigate to dashboard after successful sign-in
-          window.history.pushState({}, '', '/dashboard');
-          window.location.reload();
+          // Redirect to home page after successful sign-in
+          window.location.href = '/'; // Redirect to home after login
           onClose();
           resetForm();
-          window.location.href = '/'; // Redirect to home after login
         }
       }
     } catch (err) {
