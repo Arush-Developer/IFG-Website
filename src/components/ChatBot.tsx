@@ -268,9 +268,9 @@ Which course do you want recommendations for?`;
         isMinimized ? 'h-16' : 'h-[90vh] sm:h-[600px]'
       }`}>
         {/* Header */}
-        <div className="flex items-center justify-between p-3 sm:p-4 border-b bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-t-2xl">
+        <div className="flex items-center justify-between p-3 sm:p-4 border-b hero-gradient text-white rounded-t-2xl">
           <div className="flex items-center space-x-3">
-            <div className="w-8 h-8 sm:w-10 sm:h-10 bg-white bg-opacity-20 rounded-full flex items-center justify-center">
+            <div className="w-8 h-8 sm:w-10 sm:h-10 bg-white bg-opacity-20 rounded-full flex items-center justify-center pulse-glow">
               <Bot className="w-4 h-4 sm:w-6 sm:h-6" aria-hidden="true" />
             </div>
             <div>
@@ -281,20 +281,20 @@ Which course do you want recommendations for?`;
           <div className="flex items-center space-x-2">
             <button
               onClick={startNewConversation}
-              className="p-1.5 sm:p-2 hover:bg-white hover:bg-opacity-20 rounded-lg transition-colors"
+              className="p-1.5 sm:p-2 hover:bg-white hover:bg-opacity-20 rounded-lg transition-colors hover-scale"
               title="New Conversation"
             >
               <RefreshCw className="w-4 h-4 sm:w-5 sm:h-5" aria-hidden="true" />
             </button>
             <button
               onClick={() => setIsMinimized(!isMinimized)}
-              className="p-1.5 sm:p-2 hover:bg-white hover:bg-opacity-20 rounded-lg transition-colors"
+              className="p-1.5 sm:p-2 hover:bg-white hover:bg-opacity-20 rounded-lg transition-colors hover-scale"
             >
               {isMinimized ? <Maximize2 className="w-4 h-4 sm:w-5 sm:h-5" /> : <Minimize2 className="w-4 h-4 sm:w-5 sm:h-5" />}
             </button>
             <button
               onClick={onClose}
-              className="p-1.5 sm:p-2 hover:bg-white hover:bg-opacity-20 rounded-lg transition-colors"
+              className="p-1.5 sm:p-2 hover:bg-white hover:bg-opacity-20 rounded-lg transition-colors hover-scale"
             >
               <X className="w-4 h-4 sm:w-5 sm:h-5" />
             </button>
@@ -304,7 +304,7 @@ Which course do you want recommendations for?`;
         {!isMinimized && (
           <>
             {/* Messages */}
-            <div className="flex-1 overflow-y-auto p-3 sm:p-4 space-y-3 sm:space-y-4 h-[calc(90vh-140px)] sm:h-96">
+            <div className="flex-1 overflow-y-auto p-3 sm:p-4 space-y-3 sm:space-y-4 h-[calc(90vh-140px)] sm:h-96 bg-gradient-to-b from-blue-50 to-white">
               {messages.map((message) => (
                 <div
                   key={message.id}
@@ -315,8 +315,8 @@ Which course do you want recommendations for?`;
                   }`}>
                     <div className={`w-6 h-6 sm:w-8 sm:h-8 rounded-full flex items-center justify-center flex-shrink-0 ${
                       message.sender_type === 'user' 
-                        ? 'bg-purple-600 text-white' 
-                        : 'bg-gray-200 text-gray-600'
+                        ? 'hero-gradient text-white pulse-glow' 
+                        : 'bg-gradient-to-br from-blue-100 to-cyan-100 text-blue-600'
                     }`}>
                       {message.sender_type === 'user' ? (
                         <User className="w-3 h-3 sm:w-4 sm:h-4" aria-hidden="true" />
@@ -324,10 +324,10 @@ Which course do you want recommendations for?`;
                         <Bot className="w-3 h-3 sm:w-4 sm:h-4" aria-hidden="true" />
                       )}
                     </div>
-                    <div className={`px-3 py-2 sm:px-4 sm:py-2 rounded-2xl ${
+                    <div className={`px-3 py-2 sm:px-4 sm:py-2 rounded-2xl shadow-sm ${
                       message.sender_type === 'user'
-                        ? 'bg-blue-600 text-white'
-                        : 'bg-gray-100 text-gray-900'
+                        ? 'hero-gradient text-white'
+                        : 'bg-white border border-blue-100 text-gray-900'
                     }`}>
                       <p className="text-xs sm:text-sm whitespace-pre-wrap">{message.message}</p>
                     </div>
@@ -338,14 +338,14 @@ Which course do you want recommendations for?`;
               {loading && (
                 <div className="flex justify-start">
                   <div className="flex items-start space-x-2">
-                    <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-gray-200 text-gray-600 flex items-center justify-center">
+                    <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-gradient-to-br from-blue-100 to-cyan-100 text-blue-600 flex items-center justify-center">
                       <Bot className="w-3 h-3 sm:w-4 sm:h-4" aria-hidden="true" />
                     </div>
-                    <div className="bg-gray-100 px-3 py-2 sm:px-4 sm:py-2 rounded-2xl">
+                    <div className="bg-white border border-blue-100 px-3 py-2 sm:px-4 sm:py-2 rounded-2xl shadow-sm">
                       <div className="flex space-x-1">
-                        <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-gray-400 rounded-full animate-bounce"></div>
-                        <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
-                        <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
+                        <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-blue-400 rounded-full animate-bounce"></div>
+                        <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-blue-400 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
+                        <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-blue-400 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
                       </div>
                     </div>
                   </div>
@@ -355,7 +355,7 @@ Which course do you want recommendations for?`;
             </div>
 
             {/* Input */}
-            <div className="p-3 sm:p-4 border-t">
+            <div className="p-3 sm:p-4 border-t bg-gradient-to-r from-blue-50 to-cyan-50">
               <div className="flex space-x-2">
                 <input
                   type="text"
@@ -364,13 +364,13 @@ Which course do you want recommendations for?`;
                   onKeyPress={handleKeyPress}
                   placeholder="Type your message..."
                   aria-label="Chat message input"
-                  className="flex-1 px-3 py-2 sm:px-4 sm:py-2 text-sm sm:text-base border border-gray-300 rounded-full focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="flex-1 px-3 py-2 sm:px-4 sm:py-2 text-sm sm:text-base border border-blue-200 rounded-full focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white shadow-sm"
                   disabled={loading}
                 />
                 <button
                   onClick={handleSendMessage}
                   disabled={!inputMessage.trim() || loading}
-                  className="px-4 py-2 sm:px-6 sm:py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center space-x-2"
+                  className="px-4 py-2 sm:px-6 sm:py-2 hero-gradient text-white rounded-full hover:scale-105 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center space-x-2 pulse-glow shadow-lg"
                 >
                   <Send className="w-3 h-3 sm:w-4 sm:h-4" aria-hidden="true" />
                 </button>
