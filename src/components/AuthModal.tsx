@@ -28,7 +28,7 @@ const AuthModal: React.FC<AuthModalProps> = ({
 
   // ✅ Google sign-in handler
   const handleGoogleSignIn = async () => {
-    setLoading(true);
+    setLoading(false);
     setError('');
     try {
       const { error } = await supabase.auth.signInWithOAuth({
@@ -48,7 +48,7 @@ const AuthModal: React.FC<AuthModalProps> = ({
   // ✅ Email + Password sign-up / sign-in
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setLoading(true);
+    setLoading(false);
     setError('');
     setSuccess('');
 
