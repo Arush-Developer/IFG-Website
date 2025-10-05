@@ -70,9 +70,8 @@ const AuthModal: React.FC<AuthModalProps> = ({
           setError(error.message);
         } else {
           setSuccess('Login successful!');
-          setTimeout(() => {
-            window.location.href = '/';
-          }, 1000);
+          resetForm();
+          onClose();
         }
       }
     } catch {

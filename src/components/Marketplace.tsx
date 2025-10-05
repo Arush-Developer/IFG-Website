@@ -37,7 +37,7 @@ const Marketplace: React.FC<MarketplaceProps> = ({ onNavigateHome }) => {
     description: '',
     price: 0,
     image_url: '',
-    product_url: '',
+    product_link: '',
     category: 'Technology'
   });
 
@@ -79,7 +79,7 @@ const Marketplace: React.FC<MarketplaceProps> = ({ onNavigateHome }) => {
           description: '',
           price: 0,
           image_url: '',
-          product_url: '',
+          product_link: '',
           category: 'Technology'
         });
         fetchData();
@@ -105,7 +105,7 @@ const Marketplace: React.FC<MarketplaceProps> = ({ onNavigateHome }) => {
           description: '',
           price: 0,
           image_url: '',
-          product_url: '',
+          product_link: '',
           category: 'Technology'
         });
         fetchData();
@@ -169,7 +169,7 @@ const Marketplace: React.FC<MarketplaceProps> = ({ onNavigateHome }) => {
       description: product.description,
       price: product.price,
       image_url: product.image_url || '',
-      product_url: product.product_url || '',
+      product_link: product.product_link || '',
       category: product.category
     });
     setShowAddProduct(true);
@@ -308,9 +308,9 @@ const Marketplace: React.FC<MarketplaceProps> = ({ onNavigateHome }) => {
                       </div>
                     </div>
                     <div className="flex space-x-2">
-                      {product.product_url && (
+                      {product.product_link && (
                         <a
-                          href={product.product_url}
+                          href={product.product_link}
                           target="_blank"
                           rel="noopener noreferrer"
                           className="flex-1 flex items-center justify-center space-x-2 px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
@@ -358,7 +358,7 @@ const Marketplace: React.FC<MarketplaceProps> = ({ onNavigateHome }) => {
                     description: '',
                     price: 0,
                     image_url: '',
-                    product_url: '',
+                    product_link: '',
                     category: 'Technology'
                   });
                 }}
@@ -504,8 +504,8 @@ const Marketplace: React.FC<MarketplaceProps> = ({ onNavigateHome }) => {
                   <label className="block text-sm font-medium text-gray-700 mb-1">Product URL (optional)</label>
                   <input
                     type="url"
-                    value={productForm.product_url}
-                    onChange={(e) => setProductForm({ ...productForm, product_url: e.target.value })}
+                    value={productForm.product_link}
+                    onChange={(e) => setProductForm({ ...productForm, product_link: e.target.value })}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                   />
                 </div>

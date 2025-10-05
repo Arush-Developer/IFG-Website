@@ -56,7 +56,7 @@ export const getProfile = async (userId: string) => {
     .from('profiles')
     .select('*')
     .eq('id', userId)
-    .single();
+    .maybeSingle();
   return { data, error };
 };
 
@@ -151,7 +151,7 @@ export const getUserTokens = async () => {
     .from('user_tokens')
     .select('*')
     .eq('user_id', user.id)
-    .single();
+    .maybeSingle();
   return { data, error };
 };
 
@@ -263,4 +263,105 @@ export const sendChatMessage = async (
     .select()
     .single();
   return { data, error };
+};
+
+/* =======================================================
+   🛒 GET USER'S OWN PRODUCTS
+======================================================= */
+export const getUserProducts = async () => {
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) return { data: null, error: { message: 'User not logged in' } };
+
+  const { data, error } = await supabase
+    .from('marketplace_products')
+    .select('*')
+    .eq('user_id', user.id)
+    .order('created_at', { ascending: false });
+
+  return { data, error };
+};
+
+/* =======================================================
+   💳 PURCHASE PRODUCT
+======================================================= */
+export const purchaseProduct = async (productId: string, sellerId: string, amount: number) => {
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) return { data: null, error: { message: 'User not logged in' } };
+
+  try {
+    // Get buyer's current tokens
+    const { data: buyerTokens, error: buyerError } = await getUserTokens();
+    if (buyerError || !buyerTokens) {
+      return { data: null, error: { message: 'Failed to fetch buyer tokens' } };
+    }
+
+    // Check if buyer has enough tokens
+    if (buyerTokens.balance < amount) {
+      return { data: null, error: { message: 'Insufficient tokens' } };
+    }
+
+    // Get seller's current tokens
+    const { data: sellerTokens, error: sellerError } = await supabase
+      .from('user_tokens')
+      .select('*')
+      .eq('user_id', sellerId)
+      .maybeSingle();
+
+    if (sellerError) {
+      return { data: null, error: { message: 'Failed to fetch seller tokens' } };
+    }
+
+    // Deduct from buyer
+    const { error: buyerUpdateError } = await supabase
+      .from('user_tokens')
+      .update({ balance: buyerTokens.balance - amount })
+      .eq('user_id', user.id);
+
+    if (buyerUpdateError) {
+      return { data: null, error: { message: 'Failed to deduct tokens from buyer' } };
+    }
+
+    // Add to seller
+    const newSellerBalance = (sellerTokens?.balance || 10000) + amount;
+    const { error: sellerUpdateError } = await supabase
+      .from('user_tokens')
+      .update({ balance: newSellerBalance })
+      .eq('user_id', sellerId);
+
+    if (sellerUpdateError) {
+      // Rollback buyer transaction
+      await supabase
+        .from('user_tokens')
+        .update({ balance: buyerTokens.balance })
+        .eq('user_id', user.id);
+      return { data: null, error: { message: 'Failed to add tokens to seller' } };
+    }
+
+    // Create transaction record
+    const { data: transaction, error: transactionError } = await supabase
+      .from('marketplace_transactions')
+      .insert([{
+        buyer_id: user.id,
+        seller_id: sellerId,
+        product_id: productId,
+        amount: amount,
+        status: 'completed'
+      }])
+      .select()
+      .single();
+
+    if (transactionError) {
+      return { data: null, error: { message: 'Transaction recorded but failed to log' } };
+    }
+
+    // Update product status to sold
+    await supabase
+      .from('marketplace_products')
+      .update({ status: 'sold' })
+      .eq('id', productId);
+
+    return { data: transaction, error: null };
+  } catch (err: any) {
+    return { data: null, error: { message: err.message || 'Purchase failed' } };
+  }
 };

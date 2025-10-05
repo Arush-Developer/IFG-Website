@@ -74,21 +74,22 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
     // subscribe to future auth changes
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
-      async (_event, session) => {
-        try {
-          setUser(session?.user ?? null);
-          if (session?.user) {
-            await fetchUserProfile(session.user.id);
-          } else {
+      (_event, session) => {
+        (async () => {
+          try {
+            setUser(session?.user ?? null);
+            if (session?.user) {
+              await fetchUserProfile(session.user.id);
+            } else {
+              setProfile(null);
+            }
+          } catch (err) {
+            console.error('Auth state change handler error:', err);
             setProfile(null);
+          } finally {
+            if (mounted) setLoading(false);
           }
-        } catch (err) {
-          console.error('Auth state change handler error:', err);
-          setProfile(null);
-        } finally {
-          // ensure loading is false after state change processed
-          if (mounted) setLoading(false);
-        }
+        })();
       }
     );
 
