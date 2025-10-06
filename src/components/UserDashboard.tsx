@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { User, Trophy, BookOpen, Award, Calendar, Download, MessageCircle, Settings, LogOut, ChevronRight, Star, Clock, CircleCheck as CheckCircle, Target, ArrowLeft, CreditCard as Edit3, Save, X, ShoppingCart, Coins } from 'lucide-react';
+import { User, Trophy, BookOpen, Award, Calendar, Download, MessageCircle, Settings, LogOut, ChevronRight, Star, Clock, CheckCircle, Target, ArrowLeft, CreditCard as Edit3, Save, X, ShoppingCart, Coins } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import { getUserAchievements, getUserCourses, getUserCompetitionEntries, updateProfile, getUserProducts, getUserTokens } from '../lib/supabase';
