@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { ArrowLeft, Plus, ShoppingCart, Coins, Search, Filter, CreditCard as Edit, Trash2, ExternalLink, User } from 'lucide-react';
+import { ArrowLeft, Plus, ShoppingCart, Coins, Search, ListFilter as Filter, CreditCard as Edit, Trash2, ExternalLink, User } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import { 
   getMarketplaceProducts, 
@@ -12,11 +13,7 @@ import {
 } from '../lib/supabase';
 import { MarketplaceProduct, UserTokens } from '../types';
 
-interface MarketplaceProps {
-  onNavigateHome: () => void;
-}
-
-const Marketplace: React.FC<MarketplaceProps> = ({ onNavigateHome }) => {
+const Marketplace: React.FC = () => {
   const { user } = useAuth();
   const [activeTab, setActiveTab] = useState('browse');
   const [products, setProducts] = useState<MarketplaceProduct[]>([]);
@@ -193,16 +190,16 @@ const Marketplace: React.FC<MarketplaceProps> = ({ onNavigateHome }) => {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
-      <div className="bg-white shadow-sm border-b px-4 py-3">
+      <div className="bg-white shadow-sm border-b px-4 py-3 mt-20">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <div className="flex items-center space-x-4">
-            <button
-              onClick={onNavigateHome}
+            <Link
+              to="/"
               className="flex items-center space-x-2 text-purple-600 hover:text-purple-700 font-medium transition-colors hover-scale"
             >
               <ArrowLeft className="w-5 h-5" />
               <span>Back to Home</span>
-            </button>
+            </Link>
             <div className="hidden sm:block w-px h-6 bg-gray-300"></div>
             <div className="flex items-center space-x-3">
               <ShoppingCart className="w-8 h-8 text-purple-600" />
