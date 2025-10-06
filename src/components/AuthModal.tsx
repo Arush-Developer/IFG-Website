@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, Eye, EyeOff, Chromium as Chrome } from 'lucide-react';
+import { X, Eye, EyeOff, Chrome } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
 import { supabase } from '../lib/supabase';
 
@@ -34,7 +34,7 @@ const AuthModal: React.FC<AuthModalProps> = ({
       const { error } = await supabase.auth.signInWithOAuth({
         provider: 'google',
         options: {
-          redirectTo: `${window.location.origin}/`, // Redirect home after success
+          redirectTo: `${window.location.origin}`, // safer, works locally & on Netlify
         },
       });
       if (error) throw error;
@@ -52,9 +52,12 @@ const AuthModal: React.FC<AuthModalProps> = ({
     setError('');
     setSuccess('');
 
+    const trimmedEmail = email.trim();
+    const trimmedName = fullName.trim();
+
     try {
       if (mode === 'signup') {
-        const { error } = await signUp(email, password, fullName);
+        const { error } = await signUp(trimmedEmail, password, trimmedName);
         if (error) {
           setError(error.message);
         } else {
@@ -65,7 +68,7 @@ const AuthModal: React.FC<AuthModalProps> = ({
           }, 2000);
         }
       } else {
-        const { error } = await signIn(email, password);
+        const { error } = await signIn(trimmedEmail, password);
         if (error) {
           setError(error.message);
         } else {
@@ -106,6 +109,7 @@ const AuthModal: React.FC<AuthModalProps> = ({
               onClose();
               resetForm();
             }}
+            aria-label="Close"
             className="text-blue-600 hover:text-blue-700 font-medium"
           >
             <X className="w-6 h-6" />
