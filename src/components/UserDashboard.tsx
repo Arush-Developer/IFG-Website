@@ -1,16 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { User, Trophy, BookOpen, Award, Calendar, Download, MessageCircle, Settings, LogOut, ChevronRight, Star, Clock, CheckCircle, Target, ArrowLeft, CreditCard as Edit3, Save, X, ShoppingCart, Coins } from 'lucide-react';
+import { User, Trophy, BookOpen, Award, Calendar, Download, MessageCircle, Settings, LogOut, ChevronRight, Star, Clock, CircleCheck as CheckCircle, Target, ArrowLeft, CreditCard as Edit3, Save, X, ShoppingCart, Coins } from 'lucide-react';
+import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import { getUserAchievements, getUserCourses, getUserCompetitionEntries, updateProfile, getUserProducts, getUserTokens } from '../lib/supabase';
 import { UserAchievement, UserCourse, CompetitionEntry, MarketplaceProduct, UserTokens } from '../types';
 import ChatBot from './ChatBot';
 
-interface UserDashboardProps {
-  onNavigateHome: () => void;
-}
-
-const UserDashboard: React.FC<UserDashboardProps> = ({ onNavigateHome }) => {
+const UserDashboard: React.FC = () => {
   const { user, profile, signOut, refreshProfile } = useAuth();
+  const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState('overview');
   const [achievements, setAchievements] = useState<UserAchievement[]>([]);
   const [courses, setCourses] = useState<UserCourse[]>([]);
@@ -124,16 +122,16 @@ const UserDashboard: React.FC<UserDashboardProps> = ({ onNavigateHome }) => {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header with Back Button */}
-      <div className="bg-white shadow-sm border-b px-4 py-3">
+      <div className="bg-white shadow-sm border-b px-4 py-3 mt-20">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <div className="flex items-center space-x-4">
-            <button
-              onClick={onNavigateHome}
+            <Link
+              to="/"
               className="flex items-center space-x-2 text-blue-600 hover:text-blue-700 font-medium transition-colors hover-scale"
             >
               <ArrowLeft className="w-5 h-5" />
               <span>Back to Home</span>
-            </button>
+            </Link>
             <div className="hidden sm:block w-px h-6 bg-gray-300"></div>
             <div className="flex items-center space-x-3">
               <div className="w-10 h-10 hero-gradient rounded-full flex items-center justify-center text-white font-bold pulse-glow">
