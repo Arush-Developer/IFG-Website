@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Outlet } from 'react-router-dom';
-import { MessageCircle } from 'lucide-react';
+import { Outlet, Link } from 'react-router-dom';
+import { MessageCircle, ShoppingBag, LayoutDashboard } from 'lucide-react';
 import Header from './Header';
 import ChatBot from './ChatBot';
 
@@ -28,8 +28,12 @@ const Layout: React.FC = () => {
                 <span className="text-lg sm:text-xl font-bold">IdeaForge Global</span>
               </div>
               <p className="text-gray-400 text-sm sm:text-base">
-                Where Bold Ideas Meet Global Impact - Forge Your Future, One Innovation at a Time
+                Empowering the Next Generation of Global Innovators
               </p>
+              <div className="mt-4 space-y-1 text-xs text-gray-400">
+                <p>Email: ideaforgeglobal@gmail.com</p>
+                <p>Website: www.ideaforgeglobal.com</p>
+              </div>
             </div>
 
             <div>
@@ -55,10 +59,10 @@ const Layout: React.FC = () => {
             <div>
               <h4 className="font-bold mb-4 text-sm sm:text-base">Connect</h4>
               <div className="space-y-2">
-                <a href="#" className="block text-gray-400 hover:text-white transition-colors text-sm hover-scale">LinkedIn</a>
-                <a href="#" className="block text-gray-400 hover:text-white transition-colors text-sm hover-scale">Instagram</a>
-                <a href="#" className="block text-gray-400 hover:text-white transition-colors text-sm hover-scale">Twitter</a>
-                <a href="#" className="block text-gray-400 hover:text-white transition-colors text-sm hover-scale">YouTube</a>
+                <a href="https://www.linkedin.com/company/ideaforge-global" target="_blank" rel="noopener noreferrer" className="block text-gray-400 hover:text-white transition-colors text-sm hover-scale">LinkedIn</a>
+                <a href="https://instagram.com/ideaforgeglobal" target="_blank" rel="noopener noreferrer" className="block text-gray-400 hover:text-white transition-colors text-sm hover-scale">Instagram</a>
+                <a href="mailto:ideaforgeglobal@gmail.com" className="block text-gray-400 hover:text-white transition-colors text-sm hover-scale">Email</a>
+                <a href="http://www.ideaforgeglobal.com" target="_blank" rel="noopener noreferrer" className="block text-gray-400 hover:text-white transition-colors text-sm hover-scale">Website</a>
               </div>
             </div>
           </div>
@@ -69,6 +73,25 @@ const Layout: React.FC = () => {
         </div>
       </footer>
 
+      {/* Floating Sidebar */}
+      <div className="fixed right-4 sm:right-6 top-1/2 -translate-y-1/2 flex flex-col gap-3 z-40">
+        <Link
+          to="/marketplace"
+          className="w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-br from-purple-500 to-pink-500 text-white rounded-full shadow-lg hover:scale-110 transition-all duration-300 flex items-center justify-center hover-lift"
+          title="Marketplace"
+        >
+          <ShoppingBag className="w-5 h-5 sm:w-6 sm:h-6" />
+        </Link>
+        <Link
+          to="/dashboard"
+          className="w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-br from-blue-500 to-cyan-500 text-white rounded-full shadow-lg hover:scale-110 transition-all duration-300 flex items-center justify-center hover-lift"
+          title="Dashboard"
+        >
+          <LayoutDashboard className="w-5 h-5 sm:w-6 sm:h-6" />
+        </Link>
+      </div>
+
+      {/* Chatbot Button */}
       <button
         onClick={() => setShowChatBot(true)}
         className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 w-12 h-12 sm:w-16 sm:h-16 hero-gradient text-white rounded-full shadow-2xl hover:scale-110 transition-all duration-300 flex items-center justify-center z-40 pulse-glow hover-lift"
