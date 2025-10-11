@@ -49,11 +49,11 @@ const ChatBot: React.FC<ChatBotProps> = ({ onClose }) => {
         id: 'guest-welcome',
         conversation_id: 'guest',
         sender_type: 'bot',
-        message: `Hello! 👋 I'm your IdeaForge Global assistant. 
+        message: `👋 Hi! I'm the IFG Assistant — here to help you explore competitions, register, or learn more about IdeaForge Global.
 
-You're in guest mode. I can answer general questions, but for full personalized support, please log in.
+You're in guest mode. For personalized support, please sign in.
 
-How can I help you today?`,
+How can I assist you today?`,
         metadata: {},
         created_at: new Date().toISOString()
       };
@@ -82,12 +82,13 @@ How can I help you today?`,
             id: 'welcome',
             conversation_id: conversation.id,
             sender_type: 'bot',
-            message: `Hello! 👋 I'm your IdeaForge Global assistant. I can help with:
+            message: `👋 Hi! I'm the IFG Assistant — here to help you explore competitions, register, or learn more about IdeaForge Global.
 
-• Competition guidelines  
-• Technical issues  
-• Account & profile support  
-• Courses and resources  
+I can assist with:
+• Competition guidelines and registration
+• Technical support
+• Account and profile help
+• General inquiries about IFG
 
 What would you like to know today?`,
             metadata: {},
@@ -105,15 +106,16 @@ What would you like to know today?`,
   const generateBotResponse = (userMessage: string): string => {
     const message = userMessage.toLowerCase();
 
-    if (message.includes('competition') || message.includes('contest') || message.includes('challenge')) {
-      return `Great question about our Global Youth Entrepreneurship Challenge! 🏆
+    if (message.includes('competition') || message.includes('contest') || message.includes('challenge') || message.includes('gyec')) {
+      return `Great question about our Global Youth Entrepreneurship Challenge (GYEC)! 🏆
 
-• Open to ages 13–25 worldwide  
-• Categories: Tech, Social Impact, Environment, Healthcare  
-• Prizes: certificates, awards, mentorship  
-• Submit before the deadline via the Competition section  
+• Open to ages 15–22 worldwide
+• Individual or team participation (up to 4 members)
+• Categories: Business, Sustainability, Innovation, Social Impact
+• Prizes: Certificates, gift cards, LORs, and more
+• Registration deadline: To be updated
 
-Want help refining your project idea?`;
+Visit the About page to register or learn more!`;
     }
 
     if (message.includes('technical') || message.includes('bug') || message.includes('error')) {
@@ -127,40 +129,55 @@ Upload issue? Verify file type & size.`;
     }
 
     if (message.includes('account') || message.includes('profile') || message.includes('login') || message.includes('password')) {
-      return `Account Help 👤:  
-• Forgot password → reset link  
-• Email not verified → check spam  
-• Profile edit → Dashboard  
-• Use Google Sign-In for easier access.`;
+      return `Account Help 👤:
+• Forgot password → Use password reset
+• Email not verified → Check spam folder
+• Edit profile → Go to Dashboard
+• Sign-up issues → Try refreshing the page
+
+Need more help? Contact us at ideaforgeglobal@gmail.com`;
     }
 
-    if (message.includes('course') || message.includes('learning') || message.includes('certificate')) {
-      return `Learning 📚:  
-• Entrepreneurship, leadership, tech trends  
-• Certificates for completed courses  
-• Badges for competitions  
-Which course do you want recommendations for?`;
+    if (message.includes('benefit') || message.includes('reward') || message.includes('prize') || message.includes('certificate')) {
+      return `Benefits & Rewards 🏆:
+• Certificates of Excellence
+• Gift cards (Amazon/Flipkart)
+• Mystery Entrepreneur Box
+• Personalized Letters of Recommendation
+• Social media feature
+• Collaboration opportunities
+
+Check out the Benefits page for more details!`;
     }
 
-    if (message.includes('platform') || message.includes('ideaforge') || message.includes('about')) {
-      return `IdeaForge 🌍 connects student innovators:  
-• Competitions  
-• Courses & mentorship  
-• Networking & certificates`;
+    if (message.includes('platform') || message.includes('ideaforge') || message.includes('about') || message.includes('ifg')) {
+      return `IdeaForge Global (IFG) 🌍:
+
+We're a youth-led platform empowering students worldwide to transform ideas into reality.
+
+• Host global innovation challenges
+• Connect students with mentors
+• Provide recognition and opportunities
+• Build a community of changemakers
+
+Visit our About page to learn more!`;
     }
 
     if (message.includes('hello') || message.includes('hi') || message.includes('hey')) {
-      return `Hello 👋! I'm here to assist with competitions, technical support, and learning.`;
+      return `Hello 👋! I'm the IFG Assistant. I can help with competitions, registration, account support, and general questions about IdeaForge Global.`;
     }
 
     if (message.includes('thank')) {
       return `You're welcome! 😊 Always here to help.`;
     }
 
-    return `Thanks for your message! 🤖 Could you be more specific? Example:  
-• "How do I submit an entry?"  
-• "Login not working"  
-• "Available courses?"`;
+    return `Thanks for your message! 🤖 I'd be happy to help. Could you be more specific?
+
+Examples:
+• "How do I register for GYEC?"
+• "What are the competition benefits?"
+• "Tell me about IdeaForge Global"
+• "I need help with my account"`;
   };
 
   const showBotError = (msg: string) => {
@@ -251,7 +268,7 @@ Which course do you want recommendations for?`;
           id: 'welcome-new',
           conversation_id: newConversation.id,
           sender_type: 'bot',
-          message: `Hello again! 👋 New conversation started. What would you like help with?`,
+          message: `👋 Hi! I'm the IFG Assistant. New conversation started. How can I help you today?`,
           metadata: {},
           created_at: new Date().toISOString()
         }]);
