@@ -49,7 +49,7 @@ const ContactForm: React.FC = () => {
         <CheckCircle className="w-16 h-16 text-green-500 mx-auto mb-4" />
         <h3 className="text-2xl font-bold text-gray-900 mb-2">Message Sent!</h3>
         <p className="text-gray-600">
-          Thank you for reaching out. We'll get back to you within 24 hours.
+          Thank you for contacting IdeaForge Global. We'll respond to your message within 24-48 hours.
         </p>
       </div>
     );
@@ -59,9 +59,15 @@ const ContactForm: React.FC = () => {
     <div className="bg-white p-8 rounded-2xl shadow-xl hover-lift animate-fade-in">
       <div className="text-center mb-8 animate-bounce-in">
         <h3 className="text-3xl font-bold text-gray-900 mb-4 gradient-text animate-gradient-shift">Get in Touch</h3>
-        <p className="text-gray-600 animate-fade-in stagger-2">
-          Have questions about the competition or need support? We're here to help!
+        <p className="text-gray-600 animate-fade-in stagger-2 mb-6">
+          Have questions about competitions, partnerships, or want to join our team? We're here to help!
         </p>
+        <div className="space-y-2 text-left max-w-2xl mx-auto">
+          <p className="text-gray-700"><span className="font-semibold">Email:</span> ideaforgeglobal@gmail.com</p>
+          <p className="text-gray-700"><span className="font-semibold">Website:</span> www.ideaforgeglobal.com</p>
+          <p className="text-gray-700"><span className="font-semibold">LinkedIn:</span> <a href="https://www.linkedin.com/company/ideaforge-global" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">linkedin.com/company/ideaforge-global</a></p>
+          <p className="text-gray-700"><span className="font-semibold">Instagram:</span> <a href="https://instagram.com/ideaforgeglobal" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">@ideaforgeglobal</a></p>
+        </div>
       </div>
 
       <form onSubmit={handleSubmit} className="space-y-6 animate-fade-in stagger-3">
