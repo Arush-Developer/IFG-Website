@@ -32,13 +32,13 @@ const CompetitionSignup: React.FC = () => {
     }
   }, [user, formData.contact_email]);
   const categories = [
-    'Technology & Innovation',
+    'Business',
+    'Sustainability',
+    'Innovation',
     'Social Impact',
-    'Environmental Sustainability',
-    'Healthcare & Wellness',
+    'Technology',
+    'Healthcare',
     'Education',
-    'Finance & Business',
-    'Arts & Creative',
     'Other'
   ];
 
@@ -127,7 +127,7 @@ const CompetitionSignup: React.FC = () => {
         </div>
         <h3 className="text-2xl font-bold text-gray-900 mb-2">Registration Successful!</h3>
         <p className="text-gray-600 mb-4">
-          Your competition entry has been submitted successfully. We'll review your application and get back to you within 5-7 business days.
+          Your GYEC entry has been submitted successfully. Our team will review your submission and contact you with next steps. Good luck!
         </p>
         <button
           onClick={() => setSuccess(false)}
@@ -144,10 +144,22 @@ const CompetitionSignup: React.FC = () => {
       <div className="bg-white p-8 rounded-2xl shadow-xl">
         <div className="text-center mb-8">
           <Trophy className="w-12 h-12 text-yellow-500 mx-auto mb-4" />
-          <h3 className="text-3xl font-bold text-gray-900 mb-4">Join the Competition</h3>
-          <p className="text-gray-600">
-            Ready to showcase your innovative idea? Fill out the form below to register for the Global Youth Entrepreneurship Challenge.
+          <h3 className="text-3xl font-bold text-gray-900 mb-4">Join the Global Youth Entrepreneurship Challenge</h3>
+          <p className="text-gray-600 mb-4">
+            Ready to showcase your innovative idea? Fill out the form below to register for GYEC.
           </p>
+          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 text-left">
+            <h4 className="font-bold text-gray-900 mb-2">How to Participate:</h4>
+            <ol className="list-decimal list-inside space-y-1 text-sm text-gray-700">
+              <li>Register via this form</li>
+              <li>Prepare a short concept (150–250 words) or a 2-minute video pitch</li>
+              <li>Submit before deadline</li>
+              <li>Evaluation by our judging panel</li>
+              <li>Shortlisting announcement</li>
+              <li>Presentation (if selected)</li>
+              <li>Results announcement</li>
+            </ol>
+          </div>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-6">
@@ -222,7 +234,7 @@ const CompetitionSignup: React.FC = () => {
 
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
-              Team Members *
+              Team Members * (Individual or up to 4 members)
             </label>
             {formData.team_members.map((member, index) => (
               <div key={index} className="flex items-center space-x-2 mb-2">
