@@ -18,13 +18,13 @@ const HomePage: React.FC = () => {
 
             <div className="flex flex-col sm:flex-row gap-4 animate-slide-in-right stagger-3">
               <a
-                href="/about"
+                href="/about#competition"
                 className="bg-gradient-to-r from-yellow-100 via-yellow-200 to-yellow-300 text-gray-900 px-6 sm:px-8 py-4 rounded-full font-bold text-lg hover:scale-105 transition-transform shadow-2xl text-center hover-lift animate-pulse-glow"
               >
                 Join the Challenge
               </a>
               <a
-                href="/about"
+                href="/about#competition"
                 className="border-2 border-white text-white px-6 sm:px-8 py-4 rounded-full font-bold text-lg hover:bg-white hover:text-purple-600 transition-all hover-scale text-center"
               >
                 Submit Your Idea
