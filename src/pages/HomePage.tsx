@@ -37,36 +37,10 @@ const HomePage: React.FC = () => {
                 Submit Your Idea
               </a>
             </div>
-
-            {/* WELCOME BOX (expanded width to match GYEC) */}
-            <div className="flex flex-wrap items-center gap-6 sm:gap-8 pt-8 animate-fade-in stagger-4">
-              <div className="bg-white/10 backdrop-blur-md rounded-2xl p-8 w-full max-w-7xl">
-                <h2 className="text-2xl sm:text-3xl font-bold mb-4 text-yellow-300">
-                  Welcome to IdeaForge Global (IFG)
-                </h2>
-                <p className="text-white text-base sm:text-lg leading-relaxed mb-4">
-                  Every big change begins with a small idea — and every idea
-                  deserves a stage.
-                </p>
-                <p className="text-white text-base sm:text-lg leading-relaxed mb-4">
-                  At IdeaForge Global (IFG), we are redefining how young people
-                  bring innovation to life. We are a youth-led, student-driven
-                  platform built for one purpose — to empower you to turn
-                  imagination into impact.
-                </p>
-                <p className="text-white text-base sm:text-lg leading-relaxed">
-                  IFG connects students worldwide through idea challenges,
-                  mentorship, and opportunities that extend beyond the
-                  classroom. Whether you dream of launching a startup, solving a
-                  community problem, or changing the world through innovation —
-                  this is where it starts.
-                </p>
-              </div>
-            </div>
           </div>
 
-          {/* RIGHT IMAGE (moved 5–10px down) */}
-          <div className="relative animate-slide-in-right stagger-2 -translate-y-14 md:-translate-y-18">
+          {/* RIGHT IMAGE (moved 8px down) */}
+          <div className="relative animate-slide-in-right stagger-2 translate-y-2">
             <div className="floating-element">
               <img
                 src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=800&q=80"
@@ -80,6 +54,31 @@ const HomePage: React.FC = () => {
               style={{ animationDelay: "-2s" }}
             ></div>
           </div>
+        </div>
+      </div>
+
+      {/* WELCOME BOX (now full width like GYEC) */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12 animate-fade-in">
+        <div className="bg-white/10 backdrop-blur-md rounded-2xl p-8 w-full">
+          <h2 className="text-2xl sm:text-3xl font-bold mb-4 text-yellow-300">
+            Welcome to IdeaForge Global (IFG)
+          </h2>
+          <p className="text-white text-base sm:text-lg leading-relaxed mb-4">
+            Every big change begins with a small idea — and every idea deserves
+            a stage.
+          </p>
+          <p className="text-white text-base sm:text-lg leading-relaxed mb-4">
+            At IdeaForge Global (IFG), we are redefining how young people bring
+            innovation to life. We are a youth-led, student-driven platform
+            built for one purpose — to empower you to turn imagination into
+            impact.
+          </p>
+          <p className="text-white text-base sm:text-lg leading-relaxed">
+            IFG connects students worldwide through idea challenges, mentorship,
+            and opportunities that extend beyond the classroom. Whether you
+            dream of launching a startup, solving a community problem, or
+            changing the world through innovation — this is where it starts.
+          </p>
         </div>
       </div>
 
