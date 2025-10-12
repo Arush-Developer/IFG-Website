@@ -5,32 +5,20 @@ const HomePage: React.FC = () => {
     <section id="home" className="homeone-bg bg-pattern flex flex-col relative overflow-hidden">
       {/* HERO SECTION */}
       <div className="flex-grow min-h-screen flex items-center">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-12 items-center py-20">
-          {/* LEFT TEXT */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-2 gap-12 items-center py-20">
+          {/* LEFT CONTENT */}
           <div className="text-white space-y-8 animate-slide-in-left">
-            <div className="flex flex-col lg:flex-row items-center lg:items-start gap-8">
-              {/* IMAGE placed beside the main heading */}
-              <div className="lg:w-1/2 w-full order-2 lg:order-1 flex justify-center lg:justify-end">
-                <img
-                  src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=800&q=80"
-                  alt="Young entrepreneurs collaborating"
-                  className="rounded-2xl shadow-2xl w-80 h-auto object-cover hover-lift"
-                />
-              </div>
-
-              {/* TEXT beside image */}
-              <div className="space-y-4 order-1 lg:order-2 lg:w-1/2">
-                <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold leading-tight text-blue-100">
-                  Empowering the Next Generation of Global Innovators
-                </h1>
-                <p className="text-lg sm:text-xl md:text-2xl text-white max-w-xl animate-slide-in-left stagger-2">
-                  A youth-led international initiative helping students transform ideas into real opportunities through creativity, entrepreneurship, and collaboration.
-                </p>
-              </div>
+            <div className="space-y-4">
+              <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold leading-tight text-blue-100">
+                Empowering the Next Generation of Global Innovators
+              </h1>
+              <p className="text-lg sm:text-xl md:text-2xl text-white max-w-2xl animate-slide-in-left stagger-2">
+                A youth-led international initiative helping students transform ideas into real opportunities through creativity, entrepreneurship, and collaboration.
+              </p>
             </div>
 
             {/* BUTTONS */}
-            <div className="flex flex-col sm:flex-row gap-4 animate-slide-in-right stagger-3 pt-4">
+            <div className="flex flex-col sm:flex-row gap-4 animate-slide-in-right stagger-3">
               <a
                 href="/about#competition"
                 className="bg-gradient-to-r from-yellow-100 via-yellow-200 to-yellow-300 text-gray-900 px-6 sm:px-8 py-4 rounded-full font-bold text-lg hover:scale-105 transition-transform shadow-2xl text-center hover-lift animate-pulse-glow"
@@ -47,7 +35,7 @@ const HomePage: React.FC = () => {
 
             {/* WELCOME BOX */}
             <div className="flex flex-wrap items-center gap-6 sm:gap-8 pt-8 animate-fade-in stagger-4">
-              <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 w-full lg:w-[90%] mx-auto">
+              <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 w-full">
                 <h2 className="text-2xl sm:text-3xl font-bold mb-4 text-yellow-300">
                   Welcome to IdeaForge Global (IFG)
                 </h2>
@@ -62,6 +50,22 @@ const HomePage: React.FC = () => {
                 </p>
               </div>
             </div>
+          </div>
+
+          {/* RIGHT IMAGE (shifted upward slightly) */}
+          <div className="relative animate-slide-in-right stagger-2 -mt-16">
+            <div className="floating-element">
+              <img
+                src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=800&q=80"
+                alt="Young entrepreneurs collaborating"
+                className="rounded-2xl shadow-2xl w-full h-auto object-cover hover-lift"
+              />
+            </div>
+            <div className="absolute -top-10 -right-10 w-24 sm:w-32 h-24 sm:h-32 bg-yellow-300 rounded-full opacity-20 floating-element"></div>
+            <div
+              className="absolute -bottom-10 -left-10 w-16 sm:w-24 h-16 sm:h-24 bg-pink-300 rounded-full opacity-20 floating-element"
+              style={{ animationDelay: '-2s' }}
+            ></div>
           </div>
         </div>
       </div>
