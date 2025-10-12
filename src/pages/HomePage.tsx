@@ -39,7 +39,7 @@ const HomePage: React.FC = () => {
             </div>
           </div>
 
-          {/* RIGHT IMAGE (moved 8px down) */}
+          {/* RIGHT IMAGE */}
           <div className="relative animate-slide-in-right stagger-2 translate-y-2">
             <div className="floating-element">
               <img
@@ -48,11 +48,6 @@ const HomePage: React.FC = () => {
                 className="rounded-2xl shadow-2xl w-full h-auto object-cover hover-lift"
               />
             </div>
-            <div className="absolute -top-10 -right-10 w-24 sm:w-32 h-24 sm:h-32 bg-yellow-300 rounded-full opacity-20 floating-element"></div>
-            <div
-              className="absolute -bottom-10 -left-10 w-16 sm:w-24 h-16 sm:h-24 bg-pink-300 rounded-full opacity-20 floating-element"
-              style={{ animationDelay: "-2s" }}
-            ></div>
           </div>
         </div>
       </div>
@@ -103,30 +98,31 @@ const HomePage: React.FC = () => {
               make a difference.
             </p>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-4 text-white text-sm sm:text-base">
-              <div className="flex items-start space-x-2">
-                <span className="text-yellow-300">✓</span>
+              {/* Checkmarked items with translucent background */}
+              <div className="flex items-start space-x-2 p-4 bg-white/30 backdrop-blur-md rounded-xl">
+                <span className="text-yellow-300 text-lg font-semibold">✓</span>
                 <span>Open to students worldwide (ages 15–22)</span>
               </div>
-              <div className="flex items-start space-x-2">
-                <span className="text-yellow-300">✓</span>
+              <div className="flex items-start space-x-2 p-4 bg-white/30 backdrop-blur-md rounded-xl">
+                <span className="text-yellow-300 text-lg font-semibold">✓</span>
                 <span>Individual or team participation (up to 4 members)</span>
               </div>
-              <div className="flex items-start space-x-2">
-                <span className="text-yellow-300">✓</span>
+              <div className="flex items-start space-x-2 p-4 bg-white/30 backdrop-blur-md rounded-xl">
+                <span className="text-yellow-300 text-lg font-semibold">✓</span>
                 <span>Submit your innovative idea or video pitch</span>
               </div>
-              <div className="flex items-start space-x-2">
-                <span className="text-yellow-300">✓</span>
+              <div className="flex items-start space-x-2 p-4 bg-white/30 backdrop-blur-md rounded-xl">
+                <span className="text-yellow-300 text-lg font-semibold">✓</span>
                 <span>Global judging panel from leading institutions</span>
               </div>
-              <div className="flex items-start space-x-2">
-                <span className="text-yellow-300">✓</span>
+              <div className="flex items-start space-x-2 p-4 bg-white/30 backdrop-blur-md rounded-xl">
+                <span className="text-yellow-300 text-lg font-semibold">✓</span>
                 <span>
                   Winners receive certificates, rewards, and global exposure
                 </span>
               </div>
-              <div className="flex items-start space-x-2">
-                <span className="text-yellow-300">📅</span>
+              <div className="flex items-start space-x-2 p-4 bg-white/30 backdrop-blur-md rounded-xl">
+                <span className="text-yellow-300 text-lg font-semibold">📅</span>
                 <span>Registration Deadline: To be updated</span>
               </div>
             </div>
