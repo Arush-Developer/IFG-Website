@@ -5,9 +5,9 @@ const HomePage: React.FC = () => {
     <section id="home" className="homeone-bg bg-pattern flex flex-col relative overflow-hidden">
       {/* HERO SECTION */}
       <div className="flex-grow min-h-screen flex items-center">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-2 gap-12 items-center py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex md:flex-row flex-col-reverse gap-12 items-center py-20">
           {/* TEXT SECTION */}
-          <div className="text-white space-y-8 animate-slide-in-left">
+          <div className="text-white space-y-8 animate-slide-in-left flex-1">
             <div className="space-y-4">
               <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold leading-tight text-blue-100">
                 Empowering the Next Generation of Global Innovators
@@ -49,8 +49,8 @@ const HomePage: React.FC = () => {
             </div>
           </div>
 
-          {/* IMAGE SECTION (Move image upwards) */}
-          <div className="relative animate-slide-in-right stagger-2">
+          {/* IMAGE SECTION */}
+          <div className="relative animate-slide-in-right stagger-2 flex-1">
             <div className="floating-element">
               <img
                 src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=800&q=80"
