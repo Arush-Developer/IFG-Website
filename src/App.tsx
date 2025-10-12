@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { AuthProvider, useAuth } from './contexts/AuthContext';
 import Layout from './components/Layout';
 import HomePage from './pages/HomePage';
@@ -9,6 +9,18 @@ import ContactPage from './pages/ContactPage';
 import UserDashboard from './components/UserDashboard';
 import Marketplace from './components/Marketplace';
 
+// ✅ ScrollToTop Component
+const ScrollToTop: React.FC = () => {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' }); // smooth scroll to top
+  }, [pathname]);
+
+  return null;
+};
+
+// ✅ ProtectedRoute Wrapper
 const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const { user, loading } = useAuth();
 
@@ -31,18 +43,18 @@ function App() {
   useEffect(() => {
     const observerOptions = {
       threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
+      rootMargin: '0px 0px -50px 0px',
     };
 
     const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
+      entries.forEach((entry) => {
         if (entry.isIntersecting) {
           entry.target.classList.add('animate-fade-in');
         }
       });
     }, observerOptions);
 
-    document.querySelectorAll('[data-aos]').forEach(el => {
+    document.querySelectorAll('[data-aos]').forEach((el) => {
       observer.observe(el);
     });
 
@@ -52,6 +64,9 @@ function App() {
   return (
     <BrowserRouter>
       <AuthProvider>
+        {/* ✅ Add ScrollToTop here */}
+        <ScrollToTop />
+
         <Routes>
           <Route element={<Layout />}>
             <Route path="/" element={<HomePage />} />
