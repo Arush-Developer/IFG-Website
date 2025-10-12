@@ -38,9 +38,9 @@ const HomePage: React.FC = () => {
               </a>
             </div>
 
-            {/* WELCOME BOX (expanded to full width) */}
+            {/* WELCOME BOX (expanded width to match GYEC) */}
             <div className="flex flex-wrap items-center gap-6 sm:gap-8 pt-8 animate-fade-in stagger-4">
-              <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 w-full">
+              <div className="bg-white/10 backdrop-blur-md rounded-2xl p-8 w-full max-w-7xl">
                 <h2 className="text-2xl sm:text-3xl font-bold mb-4 text-yellow-300">
                   Welcome to IdeaForge Global (IFG)
                 </h2>
@@ -65,8 +65,8 @@ const HomePage: React.FC = () => {
             </div>
           </div>
 
-          {/* RIGHT IMAGE (slightly moved up) */}
-          <div className="relative animate-slide-in-right stagger-2 -translate-y-16 md:-translate-y-20">
+          {/* RIGHT IMAGE (moved 5–10px down) */}
+          <div className="relative animate-slide-in-right stagger-2 -translate-y-14 md:-translate-y-18">
             <div className="floating-element">
               <img
                 src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=800&q=80"
