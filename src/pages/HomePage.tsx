@@ -5,7 +5,7 @@ const HomePage: React.FC = () => {
     <section id="home" className="homeone-bg bg-pattern flex flex-col relative overflow-hidden">
       {/* HERO SECTION */}
       <div className="flex-grow min-h-screen flex items-center">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex md:flex-row flex-col gap-12 items-center py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col-reverse md:flex-row gap-12 items-center py-20">
           {/* TEXT SECTION */}
           <div className="text-white space-y-8 animate-slide-in-left flex-1">
             <div className="space-y-4">
