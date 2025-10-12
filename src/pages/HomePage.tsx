@@ -48,6 +48,11 @@ const HomePage: React.FC = () => {
                 className="rounded-2xl shadow-2xl w-full h-auto object-cover hover-lift"
               />
             </div>
+            <div className="absolute -top-10 -right-10 w-24 sm:w-32 h-24 sm:h-32 bg-yellow-300 rounded-full opacity-20 floating-element"></div>
+            <div
+              className="absolute -bottom-10 -left-10 w-16 sm:w-24 h-16 sm:h-24 bg-pink-300 rounded-full opacity-20 floating-element"
+              style={{ animationDelay: "-2s" }}
+            ></div>
           </div>
         </div>
       </div>
