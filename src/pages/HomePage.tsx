@@ -6,6 +6,7 @@ const HomePage: React.FC = () => {
       {/* HERO SECTION */}
       <div className="flex-grow min-h-screen flex items-center">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-2 gap-12 items-center py-20">
+          {/* TEXT SECTION */}
           <div className="text-white space-y-8 animate-slide-in-left">
             <div className="space-y-4">
               <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold leading-tight text-blue-100">
@@ -31,6 +32,7 @@ const HomePage: React.FC = () => {
               </a>
             </div>
 
+            {/* WELCOME TO IFG MESSAGE */}
             <div className="flex flex-wrap items-center gap-6 sm:gap-8 pt-8 animate-fade-in stagger-4">
               <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 max-w-3xl">
                 <h2 className="text-2xl sm:text-3xl font-bold mb-4 text-yellow-300">Welcome to IdeaForge Global (IFG)</h2>
@@ -47,6 +49,7 @@ const HomePage: React.FC = () => {
             </div>
           </div>
 
+          {/* IMAGE SECTION (Move image upwards) */}
           <div className="relative animate-slide-in-right stagger-2">
             <div className="floating-element">
               <img
