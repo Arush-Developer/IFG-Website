@@ -102,31 +102,29 @@ const HomePage: React.FC = () => {
               a culture of fearless creativity — where no idea is too small to
               make a difference.
             </p>
-            <div className="grid grid-cols-3 md:grid-cols-2 gap-4 text-white text-sm sm:text-base">
-              {/* Checkmarked items with translucent background */}
-              <div className="flex items-start space-x-2 p-4 bg-white/30 backdrop-blur-md rounded-xl">
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 text-white text-sm sm:text-base">
+              <div className="flex items-start space-x-2 p-4 bg-white/30 backdrop-blur-md rounded-xl break-words">
                 <span className="text-yellow-300 text-lg font-semibold">✓</span>
                 <span>Open to students worldwide (ages 15–22)</span>
               </div>
-              <div className="flex items-start space-x-2 p-4 bg-white/30 backdrop-blur-md rounded-xl">
+              <div className="flex items-start space-x-2 p-4 bg-white/30 backdrop-blur-md rounded-xl break-words">
                 <span className="text-yellow-300 text-lg font-semibold">✓</span>
                 <span>Individual or team participation (up to 4 members)</span>
               </div>
-              <div className="flex items-start space-x-2 p-4 bg-white/30 backdrop-blur-md rounded-xl">
+              <div className="flex items-start space-x-2 p-4 bg-white/30 backdrop-blur-md rounded-xl break-words">
                 <span className="text-yellow-300 text-lg font-semibold">✓</span>
                 <span>Submit your innovative idea or video pitch</span>
               </div>
-              <div className="flex items-start space-x-2 p-4 bg-white/30 backdrop-blur-md rounded-xl">
+              <div className="flex items-start space-x-2 p-4 bg-white/30 backdrop-blur-md rounded-xl break-words">
                 <span className="text-yellow-300 text-lg font-semibold">✓</span>
                 <span>Global judging panel from leading institutions</span>
               </div>
-              <div className="flex items-start space-x-2 p-4 bg-white/30 backdrop-blur-md rounded-xl">
+              <div className="flex items-start space-x-2 p-4 bg-white/30 backdrop-blur-md rounded-xl break-words">
                 <span className="text-yellow-300 text-lg font-semibold">✓</span>
-                <span>
-                  Winners receive certificates, rewards, and global exposure
-                </span>
+                <span>Winners receive certificates, rewards, and global exposure</span>
               </div>
-              <div className="flex items-start space-x-2 p-4 bg-white/30 backdrop-blur-md rounded-xl">
+              <div className="flex items-start space-x-2 p-4 bg-white/30 backdrop-blur-md rounded-xl break-words">
                 <span className="text-yellow-300 text-lg font-semibold">📅</span>
                 <span>Registration Deadline: To be updated</span>
               </div>
