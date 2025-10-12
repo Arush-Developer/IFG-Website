@@ -102,7 +102,7 @@ const HomePage: React.FC = () => {
               a culture of fearless creativity — where no idea is too small to
               make a difference.
             </p>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-4 text-white text-sm sm:text-base">
+            <div className="grid grid-cols-3 md:grid-cols-2 gap-4 text-white text-sm sm:text-base">
               {/* Checkmarked items with translucent background */}
               <div className="flex items-start space-x-2 p-4 bg-white/30 backdrop-blur-md rounded-xl">
                 <span className="text-yellow-300 text-lg font-semibold">✓</span>
