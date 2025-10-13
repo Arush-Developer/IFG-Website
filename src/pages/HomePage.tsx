@@ -4,18 +4,18 @@ const HomePage: React.FC = () => {
   return (
     <section
       id="home"
-      className="homeone-bg bg-pattern flex flex-col relative overflow-hidden"
+      className="min-h-screen flex flex-col relative overflow-hidden bg-gradient-to-b from-[#0A0A2E] via-[#151542] to-[#1E1E55] text-white"
     >
       {/* HERO SECTION */}
-      <div className="flex-grow min-h-screen flex items-center">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-2 gap-12 items-start py-20">
+      <div className="flex-grow flex items-center">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-2 gap-12 items-center py-24">
           {/* LEFT CONTENT */}
-          <div className="text-white space-y-8 animate-slide-in-left">
+          <div className="space-y-8 animate-slide-in-left">
             <div className="space-y-4">
-              <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold leading-tight text-blue-100">
+              <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold leading-tight bg-gradient-to-r from-cyan-300 via-blue-400 to-purple-500 bg-clip-text text-transparent drop-shadow-lg">
                 Empowering the Next Generation of Global Innovators
               </h1>
-              <p className="text-lg sm:text-xl md:text-2xl text-white max-w-2xl animate-slide-in-left stagger-2">
+              <p className="text-lg sm:text-xl md:text-2xl text-blue-100 max-w-2xl animate-fade-in stagger-2">
                 A youth-led international initiative helping students transform
                 ideas into real opportunities through creativity,
                 entrepreneurship, and collaboration.
@@ -26,13 +26,13 @@ const HomePage: React.FC = () => {
             <div className="flex flex-col sm:flex-row gap-4 animate-slide-in-right stagger-3">
               <a
                 href="/about#competition"
-                className="bg-gradient-to-r from-yellow-100 via-yellow-200 to-yellow-300 text-gray-900 px-6 sm:px-8 py-4 rounded-full font-bold text-lg hover:scale-105 transition-transform shadow-2xl text-center hover-lift animate-pulse-glow"
+                className="px-8 py-4 rounded-full font-semibold text-lg bg-gradient-to-r from-blue-400 via-cyan-300 to-purple-500 text-gray-900 shadow-xl hover:scale-105 transition-all hover:shadow-cyan-400/50 text-center"
               >
                 Join the Challenge
               </a>
               <a
                 href="/about#competition"
-                className="border-2 border-white text-white px-6 sm:px-8 py-4 rounded-full font-bold text-lg hover:bg-white hover:text-purple-600 transition-all hover-scale text-center"
+                className="px-8 py-4 rounded-full font-semibold text-lg border-2 border-cyan-300 text-cyan-300 hover:bg-cyan-300 hover:text-gray-900 transition-all hover:shadow-cyan-400/40 text-center"
               >
                 Submit Your Idea
               </a>
@@ -45,35 +45,35 @@ const HomePage: React.FC = () => {
               <img
                 src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=800&q=80"
                 alt="Young entrepreneurs collaborating"
-                className="rounded-2xl shadow-2xl w-full h-auto object-cover hover-lift"
+                className="rounded-2xl shadow-[0_0_25px_rgba(0,255,255,0.2)] w-full h-auto object-cover hover:scale-105 hover:shadow-[0_0_40px_rgba(0,255,255,0.4)] transition-all duration-500"
               />
             </div>
-            <div className="absolute -top-10 -right-10 w-24 sm:w-32 h-24 sm:h-32 bg-yellow-300 rounded-full opacity-20 floating-element"></div>
+            <div className="absolute -top-10 -right-10 w-28 sm:w-36 h-28 sm:h-36 bg-cyan-400/30 rounded-full blur-2xl animate-pulse" />
             <div
-              className="absolute -bottom-10 -left-10 w-16 sm:w-24 h-16 sm:h-24 bg-pink-300 rounded-full opacity-20 floating-element"
+              className="absolute -bottom-10 -left-10 w-20 sm:w-28 h-20 sm:h-28 bg-purple-500/30 rounded-full blur-2xl animate-pulse"
               style={{ animationDelay: "-2s" }}
             ></div>
           </div>
         </div>
       </div>
 
-      {/* WELCOME BOX (now full width like GYEC) */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12 animate-fade-in">
-        <div className="bg-white/10 backdrop-blur-md rounded-2xl p-8 w-full">
-          <h2 className="text-2xl sm:text-3xl font-bold mb-4 text-yellow-300">
+      {/* WELCOME BOX */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20 animate-fade-in">
+        <div className="bg-white/10 backdrop-blur-xl border border-white/10 rounded-2xl p-10 shadow-[0_0_30px_rgba(0,255,255,0.1)] hover:shadow-[0_0_50px_rgba(0,255,255,0.2)] transition-all">
+          <h2 className="text-3xl sm:text-4xl font-bold mb-6 text-cyan-300">
             Welcome to IdeaForge Global (IFG)
           </h2>
-          <p className="text-white text-base sm:text-lg leading-relaxed mb-4">
+          <p className="text-blue-100 text-base sm:text-lg leading-relaxed mb-4">
             Every big change begins with a small idea — and every idea deserves
             a stage.
           </p>
-          <p className="text-white text-base sm:text-lg leading-relaxed mb-4">
+          <p className="text-blue-100 text-base sm:text-lg leading-relaxed mb-4">
             At IdeaForge Global (IFG), we are redefining how young people bring
             innovation to life. We are a youth-led, student-driven platform
             built for one purpose — to empower you to turn imagination into
             impact.
           </p>
-          <p className="text-white text-base sm:text-lg leading-relaxed">
+          <p className="text-blue-100 text-base sm:text-lg leading-relaxed">
             IFG connects students worldwide through idea challenges, mentorship,
             and opportunities that extend beyond the classroom. Whether you
             dream of launching a startup, solving a community problem, or
@@ -83,51 +83,43 @@ const HomePage: React.FC = () => {
       </div>
 
       {/* GYEC SECTION */}
-      <section className="bg-gradient-to-t from-black/50 to-transparent py-12">
+      <section className="bg-gradient-to-t from-[#0A0A2E]/90 to-transparent py-16 border-t border-cyan-400/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 sm:p-8">
-            <h2 className="text-2xl sm:text-3xl font-bold text-yellow-300 mb-4">
+          <div className="bg-white/10 backdrop-blur-xl border border-white/10 rounded-2xl p-10 shadow-[0_0_25px_rgba(0,255,255,0.1)] hover:shadow-[0_0_40px_rgba(0,255,255,0.2)] transition-all">
+            <h2 className="text-3xl sm:text-4xl font-bold text-cyan-300 mb-6">
               The Global Youth Entrepreneurship Challenge (GYEC)
             </h2>
-            <p className="text-white text-base sm:text-lg leading-relaxed mb-4">
+            <p className="text-blue-100 text-base sm:text-lg leading-relaxed mb-4">
               The Global Youth Entrepreneurship Challenge (GYEC) is IFG's
               flagship international competition. It gives students from across
               the globe a chance to submit unique, creative ideas that solve
               real-world challenges — from sustainability to social innovation
               to new business concepts.
             </p>
-            <p className="text-white text-base sm:text-lg leading-relaxed mb-6">
+            <p className="text-blue-100 text-base sm:text-lg leading-relaxed mb-8">
               Each participant competes not only to win but to learn,
               collaborate, and grow. Through this competition, we aim to create
               a culture of fearless creativity — where no idea is too small to
               make a difference.
             </p>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 text-white text-sm sm:text-base">
-              <div className="flex items-start space-x-2 p-4 bg-white/30 backdrop-blur-md rounded-xl break-words">
-                <span className="text-yellow-300 text-lg font-semibold">✓</span>
-                <span>Open to students worldwide (ages 15–22)</span>
-              </div>
-              <div className="flex items-start space-x-2 p-4 bg-white/30 backdrop-blur-md rounded-xl break-words">
-                <span className="text-yellow-300 text-lg font-semibold">✓</span>
-                <span>Individual or team participation (up to 4 members)</span>
-              </div>
-              <div className="flex items-start space-x-2 p-4 bg-white/30 backdrop-blur-md rounded-xl break-words">
-                <span className="text-yellow-300 text-lg font-semibold">✓</span>
-                <span>Submit your innovative idea or video pitch</span>
-              </div>
-              <div className="flex items-start space-x-2 p-4 bg-white/30 backdrop-blur-md rounded-xl break-words">
-                <span className="text-yellow-300 text-lg font-semibold">✓</span>
-                <span>Global judging panel from leading institutions</span>
-              </div>
-              <div className="flex items-start space-x-2 p-4 bg-white/30 backdrop-blur-md rounded-xl break-words">
-                <span className="text-yellow-300 text-lg font-semibold">✓</span>
-                <span>Winners receive certificates, rewards, and global exposure</span>
-              </div>
-              <div className="flex items-start space-x-2 p-4 bg-white/30 backdrop-blur-md rounded-xl break-words">
-                <span className="text-yellow-300 text-lg font-semibold">📅</span>
-                <span>Registration Deadline: To be updated</span>
-              </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 text-blue-100 text-sm sm:text-base">
+              {[
+                "Open to students worldwide (ages 15–22)",
+                "Individual or team participation (up to 4 members)",
+                "Submit your innovative idea or video pitch",
+                "Global judging panel from leading institutions",
+                "Winners receive certificates, rewards, and global exposure",
+                "📅 Registration Deadline: To be updated",
+              ].map((item, index) => (
+                <div
+                  key={index}
+                  className="flex items-start space-x-2 p-4 bg-gradient-to-r from-[#1E1E55]/70 to-[#2D2D77]/70 rounded-xl border border-cyan-400/20 hover:scale-[1.02] transition-all"
+                >
+                  <span className="text-cyan-300 text-lg font-semibold">✓</span>
+                  <span>{item}</span>
+                </div>
+              ))}
             </div>
           </div>
         </div>
