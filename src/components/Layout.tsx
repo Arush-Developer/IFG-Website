@@ -31,8 +31,16 @@ const Layout: React.FC = () => {
                 Empowering the Next Generation of Global Innovators
               </p>
               <div className="mt-4 space-y-1 text-xs text-gray-400">
-                <p>Email: ideaforgeglobal@gmail.com</p>
-                <p>Website: www.ideaforgeglobal.com</p>
+                <p>
+                  <a href="mailto:ideaforgeglobal.official@gmail.com" className="hover:text-white">
+                    Email: ideaforgeglobal.official@gmail.com
+                  </a>
+                </p>
+                <p>
+                  <a href="http://www.ideaforgeglobal.com" target="_blank" rel="noopener noreferrer" className="hover:text-white">
+                    Website: www.ideaforgeglobal.com
+                  </a>
+                </p>
               </div>
             </div>
 
@@ -61,7 +69,7 @@ const Layout: React.FC = () => {
               <div className="space-y-2">
                 <a href="https://www.linkedin.com/company/ideaforge-global" target="_blank" rel="noopener noreferrer" className="block text-gray-400 hover:text-white transition-colors text-sm hover-scale">LinkedIn</a>
                 <a href="https://instagram.com/ideaforgeglobal" target="_blank" rel="noopener noreferrer" className="block text-gray-400 hover:text-white transition-colors text-sm hover-scale">Instagram</a>
-                <a href="mailto:ideaforgeglobal@gmail.com" className="block text-gray-400 hover:text-white transition-colors text-sm hover-scale">Email</a>
+                <a href="mailto:ideaforgeglobal.official@gmail.com" className="block text-gray-400 hover:text-white transition-colors text-sm hover-scale">Email</a>
                 <a href="http://www.ideaforgeglobal.com" target="_blank" rel="noopener noreferrer" className="block text-gray-400 hover:text-white transition-colors text-sm hover-scale">Website</a>
               </div>
             </div>
@@ -74,20 +82,20 @@ const Layout: React.FC = () => {
       </footer>
 
       {/* Floating Sidebar */}
-      <div className="fixed right-4 sm:right-6 top-1/2 -translate-y-1/2 flex flex-col gap-3 z-40">
+      <div className="fixed right-4 sm:right-6 top-1/2 -translate-y-1/2 flex flex-col gap-3 z-40 bg-opacity-40 bg-black rounded-md py-4 px-3 shadow-xl">
         <Link
           to="/marketplace"
-          className="w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-br from-purple-500 to-pink-500 text-white rounded-full shadow-lg hover:scale-110 transition-all duration-300 flex items-center justify-center hover-lift"
+          className="w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-br from-yellow-500 to-white text-white rounded-full shadow-lg hover:scale-110 transition-all duration-300 flex items-center justify-center hover-lift"
           title="Marketplace"
         >
-          <ShoppingBag className="w-5 h-5 sm:w-6 sm:h-6" />
+          <ShoppingBag className="w-5 h-5 sm:w-6 sm:h-6 text-golden" />
         </Link>
         <Link
           to="/dashboard"
-          className="w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-br from-blue-500 to-cyan-500 text-white rounded-full shadow-lg hover:scale-110 transition-all duration-300 flex items-center justify-center hover-lift"
+          className="w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-br from-yellow-500 to-white text-white rounded-full shadow-lg hover:scale-110 transition-all duration-300 flex items-center justify-center hover-lift"
           title="Dashboard"
         >
-          <LayoutDashboard className="w-5 h-5 sm:w-6 sm:h-6" />
+          <LayoutDashboard className="w-5 h-5 sm:w-6 sm:h-6 text-golden" />
         </Link>
       </div>
 
@@ -97,7 +105,7 @@ const Layout: React.FC = () => {
         className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 w-12 h-12 sm:w-16 sm:h-16 hero-gradient text-white rounded-full shadow-2xl hover:scale-110 transition-all duration-300 flex items-center justify-center z-40 pulse-glow hover-lift"
         title="Need Help? Chat with our AI Assistant"
       >
-        <MessageCircle className="w-6 h-6 sm:w-8 sm:h-8" />
+        <MessageCircle className="w-6 h-6 sm:w-8 sm:h-8 text-golden" />
       </button>
 
       {showChatBot && (
