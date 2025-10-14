@@ -320,7 +320,7 @@ footer a:hover {
 .bg-gradient-flow {
   background: linear-gradient(90deg, #ffffff, #fff8c5, #ffd700, #fff8c5, #ffffff);
   background-size: 400% 400%;
-  animation: gradient-flow 3s linear infinite;
+  animation: gradient-flow 6s linear infinite;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
