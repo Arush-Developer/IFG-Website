@@ -431,4 +431,55 @@ footer a:hover {
   box-shadow: 0 0 20px rgba(212, 175, 55, 0.7),
               0 0 40px rgba(212, 175, 55, 0.5);
 }
+/* ===== Gold Outline & Glow Enhancements ===== */
+.shadow-gold {
+  box-shadow: 0 0 25px rgba(212, 175, 55, 0.2);
+}
+
+.border-gold {
+  border-color: #d4af37;
+}
+
+.border-gold\/20 {
+  border-color: rgba(212, 175, 55, 0.2);
+}
+
+.text-gold-gradient {
+  background: linear-gradient(90deg, #fff, #d4af37, #fff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 200% auto;
+  animation: goldFlow 4s linear infinite;
+}
+
+/* Smooth Gold Flow Animation */
+@keyframes goldFlow {
+  0% {
+    background-position: 0% center;
+  }
+  50% {
+    background-position: 100% center;
+  }
+  100% {
+    background-position: 0% center;
+  }
+}
+/* 🌌 Floating gradient effects */
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+}
+
+.animate-float-slow {
+  animation: float-slow 10s ease-in-out infinite;
+}
+
+/* ✨ Section Glow Divider */
+.section-divider {
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(212,175,55,0.6), transparent);
+  border-radius: 50%;
+  opacity: 0.6;
+  margin: 80px 0;
+}
 
