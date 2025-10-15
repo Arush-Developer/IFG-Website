@@ -1,6 +1,14 @@
 import React from "react";
 
 const HomePage: React.FC = () => {
+  // Function to scroll to the competition section
+  const scrollToCompetition = () => {
+    const element = document.getElementById("competition");
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <section
       id="home"
@@ -25,13 +33,15 @@ const HomePage: React.FC = () => {
             {/* BUTTONS */}
             <div className="flex flex-col sm:flex-row gap-4">
               <a
-                href="/about#competition"
+                href="#competition" // Only anchor tag for smooth scroll
+                onClick={scrollToCompetition}
                 className="px-8 py-4 rounded-full font-semibold text-lg text-gray-900 bg-gradient-flow shadow-lg hover:shadow-[0_0_25px_rgba(255,255,200,0.4)] hover:scale-105 transition-all text-center"
               >
                 Join the Challenge
               </a>
               <a
-                href="/about#competition"
+                href="#competition" // Only anchor tag for smooth scroll
+                onClick={scrollToCompetition}
                 className="px-8 py-4 rounded-full font-semibold text-lg border-2 border-yellow-300 text-transparent bg-clip-text bg-gradient-flow hover:bg-yellow-200/10 hover:text-gray-900 transition-all hover:shadow-[0_0_25px_rgba(255,255,200,0.3)] text-center"
               >
                 Submit Your Idea
@@ -83,7 +93,10 @@ const HomePage: React.FC = () => {
       </div>
 
       {/* GYEC SECTION */}
-      <section className="bg-gradient-to-t from-[#0A1833]/90 to-transparent py-16 border-t border-yellow-400/10">
+      <section
+        id="competition"
+        className="bg-gradient-to-t from-[#0A1833]/90 to-transparent py-16 border-t border-yellow-400/10"
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="bg-white/10 backdrop-blur-xl border border-yellow-400/20 rounded-2xl p-10 shadow-[0_0_25px_rgba(255,215,0,0.1)] hover:shadow-[0_0_40px_rgba(255,215,0,0.2)] transition-all">
             <h2 className="text-3xl sm:text-4xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-flow">
