@@ -1,134 +1,130 @@
-import React from 'react';
+import React from "react";
 
 const BenefitsPage: React.FC = () => {
   return (
-    <div className="min-h-screen bg-gray-50 pt-24">
-      <section className="py-12 sm:py-20 bg-white shadow-lg">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12 sm:mb-16 animate-fade-in">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold gradient-text mb-6 animate-gradient-shift">
-              Why Participate in IFG
-            </h2>
-            <p className="text-lg sm:text-xl text-gray-600 max-w-4xl mx-auto">
-              Every participant becomes part of a global community that believes in ideas. Whether you win or not, the experience is transformative.
-            </p>
-          </div>
+    <section
+      id="benefits"
+      className="min-h-screen bg-gradient-to-b from-[#020617] to-[#000] text-white overflow-hidden relative"
+    >
+      {/* Floating glows */}
+      <div className="absolute top-20 left-20 w-64 h-64 bg-gold-gradient rounded-full blur-[140px] opacity-20 animate-float-slow"></div>
+      <div className="absolute bottom-10 right-10 w-72 h-72 bg-gold-gradient rounded-full blur-[160px] opacity-15 animate-float"></div>
 
-          {/* For Students */}
-          <div className="mb-16">
-            <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-8 text-center">For Students</h3>
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-              {[
-                { icon: '🌍', title: 'Showcase Innovation Globally', description: 'Present your ideas on an international platform' },
-                { icon: '📜', title: 'Certificates and LORs', description: 'Receive official recognition for your participation' },
-                { icon: '🤝', title: 'Build Leadership Skills', description: 'Develop teamwork and leadership capabilities' },
-                { icon: '👨‍🏫', title: 'Connect with Mentors', description: 'Get guidance from industry experts' }
-              ].map((item, index) => (
-                <div key={index} className="bg-gradient-to-br from-blue-100 to-blue-300 p-6 rounded-xl shadow-xl hover:scale-105 transform transition-all">
-                  <div className="text-4xl mb-4">{item.icon}</div>
-                  <h4 className="text-lg font-bold mb-2 text-blue-800">{item.title}</h4>
-                  <p className="text-gray-600 text-sm">{item.description}</p>
-                </div>
-              ))}
-            </div>
-          </div>
+      {/* Hero */}
+      <div className="max-w-6xl mx-auto text-center pt-28 pb-20 px-6">
+        <h1 className="text-5xl md:text-6xl font-bold animate-gold-flow">
+          Why Participate in IFG Challenges?
+        </h1>
+        <p className="mt-6 text-lg text-gray-300 max-w-2xl mx-auto leading-relaxed animate-fade-in">
+          Every challenge is an opportunity — to learn, showcase, and become
+          part of a global innovation movement. IFG empowers you to grow beyond
+          limits.
+        </p>
+      </div>
 
-          {/* For Winners */}
-          <div className="mb-16">
-            <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-8 text-center">For Winners</h3>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {[
-                { icon: '🏆', title: 'Certificates of Excellence', description: 'Official recognition of your achievement' },
-                { icon: '🎁', title: 'Gift Cards', description: 'Amazon/Flipkart gift cards as rewards' },
-                { icon: '📦', title: 'Mystery Entrepreneur Box', description: 'Exclusive surprise package for top performers' },
-                { icon: '✍️', title: 'Personalized LOR', description: 'Letter of recommendation for your achievements' },
-                { icon: '📱', title: 'Social Media Feature', description: 'Showcased on our website and social platforms' },
-                { icon: '🚀', title: 'Collaboration Opportunities', description: 'Work with IFG on future initiatives' }
-              ].map((item, index) => (
-                <div key={index} className="bg-gradient-to-br from-green-100 to-green-300 p-6 rounded-xl shadow-xl hover:scale-105 transform transition-all">
-                  <div className="text-4xl mb-4">{item.icon}</div>
-                  <h4 className="text-lg font-bold mb-2 text-green-800">{item.title}</h4>
-                  <p className="text-gray-600 text-sm">{item.description}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* For Active Members */}
-          <div className="mb-16">
-            <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-8 text-center">For Active Members</h3>
-            <div className="grid md:grid-cols-3 gap-8">
-              {[
-                { icon: '💼', title: 'Leadership Experience', description: 'Real-world leadership opportunities' },
-                { icon: '⭐', title: 'Performance Certificates', description: 'Recognition for your contributions' },
-                { icon: '🎯', title: 'Priority Access', description: 'First access to mentorship opportunities' }
-              ].map((item, index) => (
-                <div key={index} className="bg-gradient-to-br from-purple-100 to-purple-300 p-6 rounded-xl shadow-xl hover:scale-105 transform transition-all">
-                  <div className="text-4xl mb-4">{item.icon}</div>
-                  <h4 className="text-lg font-bold mb-2 text-purple-800">{item.title}</h4>
-                  <p className="text-gray-600 text-sm">{item.description}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* For Schools & Universities */}
-          <div className="mb-16">
-            <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-8 text-center">For Schools & Universities</h3>
-            <div className="grid md:grid-cols-3 gap-8">
-              {[
-                { icon: '🎓', title: 'Youth Innovation Partner', description: 'Recognition as a partner institution' },
-                { icon: '🤝', title: 'Collaboration Access', description: 'Direct collaboration opportunities with IFG' },
-                { icon: '📚', title: 'Workshop & Mentorship', description: 'Access to exclusive programs for students' }
-              ].map((item, index) => (
-                <div key={index} className="bg-gradient-to-br from-yellow-100 to-yellow-300 p-6 rounded-xl shadow-xl hover:scale-105 transform transition-all">
-                  <div className="text-4xl mb-4">{item.icon}</div>
-                  <h4 className="text-lg font-bold mb-2 text-yellow-800">{item.title}</h4>
-                  <p className="text-gray-600 text-sm">{item.description}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Final Section with Image */}
-          <div className="text-center">
-            <img
-              src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=1200&q=80"
-              alt="Startup competition winners celebration"
-              className="rounded-2xl shadow-2xl mx-auto w-full max-w-4xl hover:scale-105 transition-all mb-8"
-            />
+      {/* For Students */}
+      <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center px-8 py-20">
+        <div className="space-y-6">
+          <h2 className="text-4xl font-semibold animate-gold-flow">
+            For Students
+          </h2>
+          <p className="text-gray-300 animate-fade-in-delay">
+            Discover your potential through competitions that challenge your
+            creativity and technical skills. Collaborate, build, and grow with a
+            community that shares your passion for innovation.
+          </p>
+          <ul className="list-disc list-inside text-gray-400">
+            <li>Hands-on experience through real-world tasks</li>
+            <li>Networking with global participants</li>
+            <li>Exclusive mentorship and guidance</li>
+          </ul>
+        </div>
+        <div className="relative flex justify-center">
+          <div className="w-72 h-72 bg-glass rounded-2xl flex items-center justify-center text-center animate-float-fast">
+            <span className="text-xl font-medium text-gold-gradient">
+              “Learn. Build. Excel.”
+            </span>
           </div>
         </div>
-      </section>
+      </div>
 
-      {/* Call to Action Section */}
-      <section className="py-12 sm:py-20 hero-gradient text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="animate-bounce-in">
-            <h2 className="text-3xl sm:text-4xl md:text-6xl font-bold mb-6 animate-gradient-shift bg-gradient-to-r from-white via-yellow-300 to-white bg-clip-text text-transparent">
-              Your Time is Now
-            </h2>
-            <p className="text-lg sm:text-xl md:text-2xl mb-8 max-w-3xl mx-auto animate-fade-in stagger-2">
-              Join thousands of passionate young entrepreneurs changing the world. Imagine your idea featured on Google, celebrated by mentors, peers, and global leaders — opening doors to your bright future.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a
-                href="/about#competition"
-                className="bg-white text-blue-600 px-8 py-4 rounded-full font-bold text-lg hover:scale-105 transition-transform shadow-xl"
-              >
-                Join the Challenge
-              </a>
-              <a
-                href="/contact"
-                className="border-2 border-white text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-white hover:text-blue-600 transition-all"
-              >
-                Partner With Us
-              </a>
-            </div>
+      {/* For Winners */}
+      <div className="relative py-24 bg-gradient-to-b from-transparent to-[#050505]">
+        <div className="max-w-6xl mx-auto text-center px-6">
+          <h2 className="text-4xl font-semibold animate-gold-flow mb-10">
+            For Winners
+          </h2>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            {["Recognition", "Internships", "Global Exposure"].map(
+              (title, i) => (
+                <div
+                  key={i}
+                  className="p-8 bg-glass rounded-3xl hover:scale-105 transition-transform duration-500 hover:shadow-gold animate-fade-in-delay"
+                >
+                  <h3 className="text-2xl font-semibold text-gold-gradient">
+                    {title}
+                  </h3>
+                  <p className="text-gray-400 mt-4">
+                    Achieve the spotlight through IFG’s unique recognition
+                    program. Gain mentorship, work with leading professionals,
+                    and represent your innovations on a global stage.
+                  </p>
+                </div>
+              )
+            )}
           </div>
         </div>
-      </section>
-    </div>
+      </div>
+
+      {/* For Active Members */}
+      <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-10 items-center py-28 px-8">
+        <div className="relative flex justify-center">
+          <div className="absolute w-60 h-60 bg-gold-gradient blur-[130px] opacity-20 animate-float"></div>
+          <div className="w-72 h-72 bg-glass rounded-full flex items-center justify-center text-center animate-float-fast">
+            <span className="text-xl font-semibold text-gold-gradient">
+              “Consistency brings excellence.”
+            </span>
+          </div>
+        </div>
+        <div>
+          <h2 className="text-4xl font-semibold animate-gold-flow">
+            For Active Members
+          </h2>
+          <p className="text-gray-300 mt-4">
+            Stay engaged with IFG’s dynamic ecosystem and unlock long-term
+            growth opportunities — leadership roles, exclusive projects, and
+            continuous learning.
+          </p>
+        </div>
+      </div>
+
+      {/* For Schools & Universities */}
+      <div className="py-24 bg-gradient-to-b from-[#050505] to-black">
+        <div className="max-w-6xl mx-auto text-center px-6">
+          <h2 className="text-4xl font-semibold animate-gold-flow mb-10">
+            For Schools & Universities
+          </h2>
+          <p className="text-gray-300 max-w-3xl mx-auto">
+            Collaborate with IFG to foster innovation-driven culture within your
+            institutions. Empower students to participate, learn, and make an
+            impact that extends beyond classrooms.
+          </p>
+        </div>
+      </div>
+
+      {/* CTA */}
+      <div className="text-center py-28 relative">
+        <h2 className="text-5xl font-bold animate-gold-flow">
+          Your Time Is Now
+        </h2>
+        <p className="text-gray-400 mt-4">
+          Join the movement that’s redefining innovation.
+        </p>
+        <button className="mt-8 px-10 py-4 text-lg rounded-full bg-glass text-gold-gradient border border-gold hover:bg-gold hover:text-black transition-all duration-700 animate-glow-btn">
+          Join the Challenge
+        </button>
+      </div>
+    </section>
   );
 };
 
