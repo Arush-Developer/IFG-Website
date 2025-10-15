@@ -123,33 +123,65 @@ const AboutPage: React.FC = () => {
               GYEC is not just a competition — it's a journey of exploration, innovation, and growth.
             </p>
 
-            <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 items-start mb-12">
-              <div className="space-y-6 sm:space-y-8">
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 text-gray-200 text-sm sm:text-base">
-                  {[
-                    "Open to students worldwide (ages 15–22)",
-                    "Individual or team participation (up to 4 members)",
-                    "Submit your innovative idea or video pitch",
-                    "Global judging panel from leading institutions",
-                    "Winners receive certificates, rewards, and global exposure",
-                    "📅 Registration Deadline: To be updated",
-                  ].map((item, index) => (
-                    <div
-                      key={index}
-                      className="flex items-start space-x-2 p-4 bg-gradient-to-r from-[#0A1833]/70 to-[#132A4F]/70 rounded-xl border border-yellow-400/20 hover:scale-[1.02] hover:shadow-[0_0_20px_rgba(255,255,200,0.15)] transition-all"
-                    >
-                      <span className="text-transparent bg-clip-text bg-gradient-flow text-lg font-semibold">
-                        ✓
-                      </span>
-                      <span>{item}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
+            {/* Clarity & Presentation */}
+            <div className="mb-6">
+              <h3 className="text-2xl font-bold mb-2 text-transparent bg-clip-text bg-gradient-flow">
+                Clarity and Presentation
+              </h3>
+              <p className="text-gray-200">Participants are evaluated on the clarity, organization, and presentation of their ideas.</p>
+            </div>
 
-              <div className="animate-slide-in-right">
-                <CompetitionSignup />
+            {/* Rewards & Recognition */}
+            <div className="mb-6">
+              <h3 className="text-2xl font-bold mb-2 text-transparent bg-clip-text bg-gradient-flow">
+                🎁 Rewards & Recognition
+              </h3>
+              <p className="text-gray-200 mb-2">Every participant receives recognition for their contribution. Top winners earn:</p>
+              <ul className="list-disc list-inside text-gray-200 space-y-1">
+                <li>Certificates of Excellence</li>
+                <li>Amazon / Flipkart Gift Cards</li>
+                <li>Mystery Entrepreneur Box</li>
+                <li>Personalized LOR from IFG</li>
+                <li>Opportunity to collaborate with partner universities</li>
+              </ul>
+            </div>
+
+            {/* Timeline */}
+            <div>
+              <h3 className="text-2xl font-bold mb-2 text-transparent bg-clip-text bg-gradient-flow">
+                🕐 Timeline
+              </h3>
+              <div className="overflow-x-auto">
+                <table className="w-full text-gray-200 border-collapse border border-yellow-400/20">
+                  <thead>
+                    <tr className="border-b border-yellow-400/20">
+                      <th className="p-2 text-left">Phase</th>
+                      <th className="p-2 text-left">Description</th>
+                      <th className="p-2 text-left">Date</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {[
+                      { phase: "Registration Opens", desc: "Students begin to register", date: "To be updated" },
+                      { phase: "Submission Deadline", desc: "Last date for idea submission", date: "To be updated" },
+                      { phase: "Shortlisting", desc: "Evaluation and finalist selection", date: "To be updated" },
+                      { phase: "Final Round", desc: "Virtual presentations", date: "To be updated" },
+                      { phase: "Results Announcement", desc: "Winners revealed", date: "To be updated" },
+                    ].map((item, idx) => (
+                      <tr key={idx} className="border-b border-yellow-400/20">
+                        <td className="p-2">{item.phase}</td>
+                        <td className="p-2">{item.desc}</td>
+                        <td className="p-2">{item.date}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
               </div>
+            </div>
+
+            {/* Signup Component */}
+            <div className="mt-8">
+              <CompetitionSignup />
             </div>
           </div>
         </div>
