@@ -116,27 +116,58 @@ const AboutPage: React.FC = () => {
       <section className="py-16 border-t border-yellow-400/10" style={{ backgroundColor: '#0A1833' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="bg-white/10 backdrop-blur-xl border border-yellow-400/20 rounded-2xl p-10 shadow-[0_0_25px_rgba(255,215,0,0.1)] hover:shadow-[0_0_40px_rgba(255,215,0,0.2)] transition-all">
+            
             <h2 className="text-3xl sm:text-4xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-flow text-center">
-              Global Youth Entrepreneurship Challenge (GYEC)
+              🏆 Global Youth Entrepreneurship Challenge (GYEC)
             </h2>
+            
+            <p className="text-gray-200 text-lg mb-4">
+              GYEC is not just a competition — it’s a journey of exploration, innovation, and growth.
+            </p>
             <p className="text-gray-200 text-lg mb-6">
-              GYEC is not just a competition — it's a journey of exploration, innovation, and growth.
+              We invite students to submit ideas that can improve lives, communities, or industries. The challenge is designed to be inclusive and easy to join — because what matters most is your creativity, not your background.
             </p>
 
-            {/* Clarity & Presentation */}
+            {/* How to Participate */}
             <div className="mb-6">
-              <h3 className="text-2xl font-bold mb-2 text-transparent bg-clip-text bg-gradient-flow">
-                Clarity and Presentation
-              </h3>
-              <p className="text-gray-200">Participants are evaluated on the clarity, organization, and presentation of their ideas.</p>
+              <h3 className="text-2xl font-bold mb-2 text-transparent bg-clip-text bg-gradient-flow">📋 How to Participate</h3>
+              <ol className="list-decimal list-inside text-gray-200 space-y-1">
+                <li>Register: Fill the official IFG registration form.</li>
+                <li>Prepare Your Idea: Write a short concept (150–250 words) or a 2-minute video pitch.</li>
+                <li>Submit: Send it via our submission form before the deadline.</li>
+                <li>Evaluation: Our team and judges review all submissions fairly.</li>
+                <li>Shortlisting: Best ideas are shortlisted for the final round.</li>
+                <li>Presentation: Finalists present their ideas live online.</li>
+                <li>Results: Winners are announced and featured globally.</li>
+              </ol>
             </div>
 
-            {/* Rewards & Recognition */}
+            {/* Guidelines for Submission */}
             <div className="mb-6">
-              <h3 className="text-2xl font-bold mb-2 text-transparent bg-clip-text bg-gradient-flow">
-                🎁 Rewards & Recognition
-              </h3>
-              <p className="text-gray-200 mb-2">Every participant receives recognition for their contribution. Top winners earn:</p>
+              <h3 className="text-2xl font-bold mb-2 text-transparent bg-clip-text bg-gradient-flow">🧾 Guidelines for Submission</h3>
+              <ul className="list-disc list-inside text-gray-200 space-y-1">
+                <li>Original ideas only (no copied work).</li>
+                <li>You may submit as an individual or a team.</li>
+                <li>Choose a category: Business, Sustainability, Innovation, or Social Impact.</li>
+                <li>Submissions must clearly state the problem and your proposed solution.</li>
+                <li>Optional visuals or sketches are welcome.</li>
+              </ul>
+            </div>
+
+            {/* Judging Criteria */}
+            <div className="mb-6">
+              <h3 className="text-2xl font-bold mb-2 text-transparent bg-clip-text bg-gradient-flow">⚙️ Judging Criteria</h3>
+              <ul className="list-disc list-inside text-gray-200 space-y-1">
+                <li>Creativity and uniqueness</li>
+                <li>Practicality and feasibility</li>
+                <li>Impact and relevance</li>
+                <li>Clarity and presentation</li>
+              </ul>
+            </div>
+
+            {/* Rewards & Timeline */}
+            <div className="mb-6">
+              <h3 className="text-2xl font-bold mb-2 text-transparent bg-clip-text bg-gradient-flow">🎁 Rewards & Recognition</h3>
               <ul className="list-disc list-inside text-gray-200 space-y-1">
                 <li>Certificates of Excellence</li>
                 <li>Amazon / Flipkart Gift Cards</li>
@@ -146,11 +177,8 @@ const AboutPage: React.FC = () => {
               </ul>
             </div>
 
-            {/* Timeline */}
-            <div>
-              <h3 className="text-2xl font-bold mb-2 text-transparent bg-clip-text bg-gradient-flow">
-                🕐 Timeline
-              </h3>
+            <div className="mb-6">
+              <h3 className="text-2xl font-bold mb-2 text-transparent bg-clip-text bg-gradient-flow">🕐 Timeline</h3>
               <div className="overflow-x-auto">
                 <table className="w-full text-gray-200 border-collapse border border-yellow-400/20">
                   <thead>
