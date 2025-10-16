@@ -6,6 +6,11 @@ import ChatBot from './ChatBot';
 
 const Layout: React.FC = () => {
   const [showChatBot, setShowChatBot] = useState(false);
+  const [isSidebarMinimized, setIsSidebarMinimized] = useState(false);
+
+  const toggleSidebar = () => {
+    setIsSidebarMinimized((prev) => !prev);
+  };
 
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-b from-[#000814] via-[#020617] to-[#000] text-white">
@@ -120,31 +125,32 @@ const Layout: React.FC = () => {
       </footer>
 
       {/* Floating Sidebar (non-overlapping) */}
-      <div className="fixed right-4 bottom-24 flex flex-col items-center gap-3 z-50">
+      <div className={`fixed right-4 bottom-24 flex flex-col items-center gap-3 z-50 ${isSidebarMinimized ? 'w-12' : 'w-16'}`}>
         <Link
           to="/"
-          className="w-12 h-12 rounded-full bg-gradient-to-br from-yellow-400 to-white text-black shadow-lg flex items-center justify-center hover:scale-110 transition-transform"
+          className={`w-12 h-12 rounded-full bg-gradient-to-br from-yellow-400 to-white text-black shadow-lg flex items-center justify-center hover:scale-110 transition-transform ${isSidebarMinimized ? 'p-1' : ''}`}
           title="Home"
+          onClick={toggleSidebar} // Toggle sidebar on Home button click
         >
           <Home className="w-6 h-6" />
         </Link>
         <Link
           to="/marketplace"
-          className="w-12 h-12 rounded-full bg-gradient-to-br from-yellow-400 to-white text-black shadow-lg flex items-center justify-center hover:scale-110 transition-transform"
+          className={`w-12 h-12 rounded-full bg-gradient-to-br from-yellow-400 to-white text-black shadow-lg flex items-center justify-center hover:scale-110 transition-transform ${isSidebarMinimized ? 'p-1' : ''}`}
           title="Marketplace"
         >
           <ShoppingBag className="w-6 h-6" />
         </Link>
         <Link
           to="/dashboard"
-          className="w-12 h-12 rounded-full bg-gradient-to-br from-yellow-400 to-white text-black shadow-lg flex items-center justify-center hover:scale-110 transition-transform"
+          className={`w-12 h-12 rounded-full bg-gradient-to-br from-yellow-400 to-white text-black shadow-lg flex items-center justify-center hover:scale-110 transition-transform ${isSidebarMinimized ? 'p-1' : ''}`}
           title="Dashboard"
         >
           <LayoutDashboard className="w-6 h-6" />
         </Link>
         <Link
           to="/contact"
-          className="w-12 h-12 rounded-full bg-gradient-to-br from-yellow-400 to-white text-black shadow-lg flex items-center justify-center hover:scale-110 transition-transform"
+          className={`w-12 h-12 rounded-full bg-gradient-to-br from-yellow-400 to-white text-black shadow-lg flex items-center justify-center hover:scale-110 transition-transform ${isSidebarMinimized ? 'p-1' : ''}`}
           title="Contact"
         >
           <Mail className="w-6 h-6" />
@@ -154,7 +160,7 @@ const Layout: React.FC = () => {
       {/* Chatbot Button */}
       <button
         onClick={() => setShowChatBot(true)}
-        className="fixed bottom-4 right-4 w-14 h-14 bg-gradient-to-br from-yellow-500 to-white text-black rounded-full shadow-2xl hover:scale-110 transition-transform z-50 flex items-center justify-center"
+        className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 w-12 h-12 sm:w-16 sm:h-16 hero-gradient text-white rounded-full shadow-2xl hover:scale-110 transition-all duration-300 flex items-center justify-center z-40 pulse-glow hover-lift"
         title="Need Help? Chat with our AI Assistant"
       >
         <MessageCircle className="w-6 h-6" />
