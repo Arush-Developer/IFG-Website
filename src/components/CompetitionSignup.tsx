@@ -31,6 +31,7 @@ const CompetitionSignup: React.FC = () => {
       }));
     }
   }, [user, formData.contact_email]);
+
   const categories = [
     'Business',
     'Sustainability',
