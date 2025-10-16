@@ -5,7 +5,7 @@ const AboutPage: React.FC = () => {
   return (
     <div className="min-h-screen w-full overflow-x-hidden bg-gradient-to-b from-[#020617] via-[#08122B] to-[#0A1833] text-white">
       {/* Outer container with safe padding to prevent content hiding under fixed header */}
-      <section className="pt-[calc(theme('spacing.24')+4rem)] sm:pt-[calc(theme('spacing.32')+4rem)] pb-10 sm:pb-20 md:pb-24 px-4 sm:px-6 lg:px-8">
+      <section className="pt-[calc(theme('spacing.24')+6rem)] sm:pt-[calc(theme('spacing.32')+6rem)] pb-10 sm:pb-20 md:pb-24 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto w-full">
 
           {/* OUR STORY */}
@@ -119,7 +119,7 @@ const AboutPage: React.FC = () => {
       </section>
 
       {/* COMPETITION SECTION */}
-      <section className="py-12 sm:py-16 border-t border-yellow-400/10 bg-[#0A1833] px-4 sm:px-6 lg:px-8 overflow-x-hidden">
+      <section id="competition" className="py-12 sm:py-16 border-t border-yellow-400/10 bg-[#0A1833] px-4 sm:px-6 lg:px-8 overflow-x-hidden">
         <div className="max-w-7xl mx-auto w-full">
           <div className="bg-white/10 backdrop-blur-xl border border-yellow-400/20 rounded-2xl p-5 sm:p-8 shadow-[0_0_25px_rgba(255,215,0,0.1)] overflow-hidden">
             <h2 className="text-3xl sm:text-4xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-flow text-center leading-tight">
