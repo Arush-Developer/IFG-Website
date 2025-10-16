@@ -34,7 +34,11 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         console.error('Error fetching profile:', error);
         setProfile(null);
       } else {
-        setProfile(data as Profile);
+        // Ensure phone_number is included
+        setProfile({
+          ...(data as Profile),
+          phone_number: (data as any)?.phone_number || user?.user_metadata?.phone_number || null
+        });
       }
     } catch (err) {
       console.error('Error fetching profile:', err);
@@ -97,7 +101,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     };
   }, []);
 
-  // signUp using supabase (email + password + optional fullName + phone)
+  // signUp using supabase (email + password + fullName + phone)
   const signUp = async (email: string, password: string, fullName?: string, phone?: string) => {
     try {
       const { data, error } = await supabase.auth.signUp({
@@ -106,10 +110,14 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         options: { 
           data: { 
             full_name: fullName,
-            phone_number: phone // <-- added phone number
+            phone_number: phone // added phone
           } 
         }
       });
+
+      // Immediately fetch profile to include phone
+      if (data?.user) await fetchUserProfile(data.user.id);
+
       return { data, error };
     } catch (err) {
       console.error('Sign up error:', err);
@@ -121,6 +129,10 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const signIn = async (email: string, password: string) => {
     try {
       const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+
+      // Fetch profile after sign in
+      if (data?.user) await fetchUserProfile(data.user.id);
+
       return { data, error };
     } catch (err) {
       console.error('Sign in error:', err);
