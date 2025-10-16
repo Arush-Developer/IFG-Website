@@ -23,7 +23,7 @@ const Layout: React.FC = () => {
       </main>
 
       {/* FOOTER */}
-      <footer className="bg-gray-900 text-white py-8 sm:py-12 mt-0"> {/* Remove margin-top here */}
+      <footer className="bg-gray-900 text-white py-8 sm:py-12 mt-0">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8">
             <div className="col-span-2 md:col-span-1">
@@ -129,7 +129,7 @@ const Layout: React.FC = () => {
       </footer>
 
       {/* FLOATING ICONS (Expandable) */}
-      <div className="fixed bottom-20 right-4 sm:right-6 flex flex-col items-end gap-3 z-40">
+      <div className="fixed bottom-20 right-4 sm:right-6 md:right-8 flex flex-col items-end gap-3 z-40">
         {/* Toggle button */}
         <button
           onClick={toggleSidebar} // Toggles the sidebar
@@ -179,7 +179,7 @@ const Layout: React.FC = () => {
       {/* CHATBOT BUTTON */}
       <button
         onClick={() => setShowChatBot(true)}
-        className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 w-12 h-12 sm:w-16 sm:h-16 hero-gradient text-white rounded-full shadow-2xl hover:scale-110 transition-all flex items-center justify-center z-40 pulse-glow hover-lift"
+        className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 md:right-8 w-12 h-12 sm:w-16 sm:h-16 hero-gradient text-white rounded-full shadow-2xl hover:scale-110 transition-all flex items-center justify-center z-40 pulse-glow hover-lift"
         title="Need Help? Chat with our AI Assistant"
       >
         <MessageCircle className="w-6 h-6 sm:w-8 sm:h-8 text-golden" />
