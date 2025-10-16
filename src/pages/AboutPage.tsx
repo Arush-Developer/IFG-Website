@@ -37,20 +37,16 @@ const AboutPage: React.FC = () => {
             </div>
 
             <div className="space-y-8 animate-slide-in-right px-2 sm:px-0">
-              {[
-                {
-                  title: 'Our Vision',
-                  desc: 'To empower students globally by giving them the courage, confidence, and connections to transform ideas into reality.',
-                },
-                {
-                  title: 'Our Mission',
-                  desc: 'To create a global ecosystem of innovation by organizing international idea challenges, mentorship programs, and student-led collaborations that inspire creativity and problem-solving.',
-                },
-                {
-                  title: 'Our Core Values',
-                  desc: 'Inclusivity • Integrity • Innovation • Collaboration • Impact',
-                },
-              ].map((item, i) => (
+              {[{
+                title: 'Our Vision',
+                desc: 'To empower students globally by giving them the courage, confidence, and connections to transform ideas into reality.',
+              }, {
+                title: 'Our Mission',
+                desc: 'To create a global ecosystem of innovation by organizing international idea challenges, mentorship programs, and student-led collaborations that inspire creativity and problem-solving.',
+              }, {
+                title: 'Our Core Values',
+                desc: 'Inclusivity • Integrity • Innovation • Collaboration • Impact',
+              }].map((item, i) => (
                 <div key={i}>
                   <h3 className="text-2xl sm:text-3xl font-bold text-transparent bg-clip-text bg-gradient-flow mb-3">
                     {item.title}
@@ -67,14 +63,25 @@ const AboutPage: React.FC = () => {
               What Makes IFG Unique
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
-              {[
-                { title: 'Completely Student-Led', desc: 'Built by students, for students' },
-                { title: 'Global Reach', desc: 'Connecting innovators worldwide' },
-                { title: 'Accessible to All', desc: 'Free participation for everyone' },
-                { title: 'Recognition That Matters', desc: 'Certificates, LORs, and awards' },
-                { title: 'Partnerships with Institutions', desc: 'Collaborating with leading organizations' },
-                { title: 'Mentorship & Support', desc: 'Guidance from industry experts' },
-              ].map((item, index) => (
+              {[{
+                title: 'Completely Student-Led',
+                desc: 'Built by students, for students',
+              }, {
+                title: 'Global Reach',
+                desc: 'Connecting innovators worldwide',
+              }, {
+                title: 'Accessible to All',
+                desc: 'Free participation for everyone',
+              }, {
+                title: 'Recognition That Matters',
+                desc: 'Certificates, LORs, and awards',
+              }, {
+                title: 'Partnerships with Institutions',
+                desc: 'Collaborating with leading organizations',
+              }, {
+                title: 'Mentorship & Support',
+                desc: 'Guidance from industry experts',
+              }].map((item, index) => (
                 <div
                   key={index}
                   className="bg-white/10 backdrop-blur-xl border border-yellow-400/20 p-5 sm:p-6 rounded-xl shadow-[0_0_20px_rgba(255,215,0,0.1)] hover:shadow-[0_0_35px_rgba(255,215,0,0.2)] hover:scale-[1.02] transition-all"
@@ -127,53 +134,48 @@ const AboutPage: React.FC = () => {
             </div>
 
             <div className="space-y-8 mt-8 text-gray-200 text-sm sm:text-base">
-              {[
-                {
-                  title: '📋 How to Participate',
-                  type: 'ol',
-                  items: [
-                    'Register: Fill the official IFG registration form.',
-                    'Prepare Your Idea: Write a short concept (150–250 words) or a 2-minute video pitch.',
-                    'Submit: Send it via our submission form before the deadline.',
-                    'Evaluation: Our team and judges review all submissions fairly.',
-                    'Shortlisting: Best ideas are shortlisted for the final round.',
-                    'Presentation: Finalists present their ideas live online.',
-                    'Results: Winners are announced and featured globally.',
-                  ],
-                },
-                {
-                  title: '🧾 Guidelines for Submission',
-                  type: 'ul',
-                  items: [
-                    'Original ideas only (no copied work).',
-                    'You may submit as an individual or a team.',
-                    'Choose a category: Business, Sustainability, Innovation, or Social Impact.',
-                    'Submissions must clearly state the problem and your proposed solution.',
-                    'Optional visuals or sketches are welcome.',
-                  ],
-                },
-                {
-                  title: '⚙️ Judging Criteria',
-                  type: 'ul',
-                  items: [
-                    'Creativity and uniqueness',
-                    'Practicality and feasibility',
-                    'Impact and relevance',
-                    'Clarity and presentation',
-                  ],
-                },
-                {
-                  title: '🎁 Rewards & Recognition',
-                  type: 'ul',
-                  items: [
-                    'Certificates of Excellence',
-                    'Amazon / Flipkart Gift Cards',
-                    'Mystery Entrepreneur Box',
-                    'Personalized LOR from IFG',
-                    'Opportunity to collaborate with partner universities',
-                  ],
-                },
-              ].map((section, idx) => (
+              {[{
+                title: '📋 How to Participate',
+                type: 'ol',
+                items: [
+                  'Register: Fill the official IFG registration form.',
+                  'Prepare Your Idea: Write a short concept (150–250 words) or a 2-minute video pitch.',
+                  'Submit: Send it via our submission form before the deadline.',
+                  'Evaluation: Our team and judges review all submissions fairly.',
+                  'Shortlisting: Best ideas are shortlisted for the final round.',
+                  'Presentation: Finalists present their ideas live online.',
+                  'Results: Winners are announced and featured globally.',
+                ],
+              }, {
+                title: '🧾 Guidelines for Submission',
+                type: 'ul',
+                items: [
+                  'Original ideas only (no copied work).',
+                  'You may submit as an individual or a team.',
+                  'Choose a category: Business, Sustainability, Innovation, or Social Impact.',
+                  'Submissions must clearly state the problem and your proposed solution.',
+                  'Optional visuals or sketches are welcome.',
+                ],
+              }, {
+                title: '⚙️ Judging Criteria',
+                type: 'ul',
+                items: [
+                  'Creativity and uniqueness',
+                  'Practicality and feasibility',
+                  'Impact and relevance',
+                  'Clarity and presentation',
+                ],
+              }, {
+                title: '🎁 Rewards & Recognition',
+                type: 'ul',
+                items: [
+                  'Certificates of Excellence',
+                  'Amazon / Flipkart Gift Cards',
+                  'Mystery Entrepreneur Box',
+                  'Personalized LOR from IFG',
+                  'Opportunity to collaborate with partner universities',
+                ],
+              }].map((section, idx) => (
                 <div key={idx}>
                   <h3 className="text-2xl font-bold mb-2 text-transparent bg-clip-text bg-gradient-flow">
                     {section.title}
@@ -200,13 +202,27 @@ const AboutPage: React.FC = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    {[
-                      { phase: 'Registration Opens', desc: 'Students begin to register', date: 'To be updated' },
-                      { phase: 'Submission Deadline', desc: 'Last date for idea submission', date: 'To be updated' },
-                      { phase: 'Shortlisting', desc: 'Evaluation and finalist selection', date: 'To be updated' },
-                      { phase: 'Final Round', desc: 'Virtual presentations', date: 'To be updated' },
-                      { phase: 'Results Announcement', desc: 'Winners revealed', date: 'To be updated' },
-                    ].map((item, idx) => (
+                    {[{
+                      phase: 'Registration Opens',
+                      desc: 'Students begin to register',
+                      date: 'To be updated',
+                    }, {
+                      phase: 'Submission Deadline',
+                      desc: 'Last date for idea submission',
+                      date: 'To be updated',
+                    }, {
+                      phase: 'Shortlisting',
+                      desc: 'Evaluation and finalist selection',
+                      date: 'To be updated',
+                    }, {
+                      phase: 'Final Round',
+                      desc: 'Virtual presentations',
+                      date: 'To be updated',
+                    }, {
+                      phase: 'Results Announcement',
+                      desc: 'Winners revealed',
+                      date: 'To be updated',
+                    }].map((item, idx) => (
                       <tr key={idx} className="border-b border-yellow-400/20">
                         <td className="p-2">{item.phase}</td>
                         <td className="p-2">{item.desc}</td>
