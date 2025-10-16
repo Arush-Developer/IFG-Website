@@ -129,10 +129,10 @@ const Layout: React.FC = () => {
       </footer>
 
       {/* FLOATING ICONS (Expandable) */}
-      <div className="fixed bottom-20 right-4 sm:right-6 md:right-8 flex flex-col items-end gap-3 z-40">
+      <div className="fixed bottom-32 sm:bottom-32 md:bottom-36 right-4 sm:right-6 md:right-8 flex flex-col items-end gap-3 z-40">
         {/* Toggle button */}
         <button
-          onClick={toggleSidebar} // Toggles the sidebar
+          onClick={toggleSidebar}
           className="w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-br from-yellow-500 to-white text-white rounded-full shadow-lg hover:scale-110 transition-all flex items-center justify-center hover-lift"
           title="Menu"
         >
