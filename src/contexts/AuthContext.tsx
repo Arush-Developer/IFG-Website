@@ -8,7 +8,7 @@ interface AuthContextType {
   user: User | null;
   profile: Profile | null;
   loading: boolean;
-  signUp: (email: string, password: string, fullName?: string) => Promise<any>;
+  signUp: (email: string, password: string, fullName?: string, phone?: string) => Promise<any>;
   signIn: (email: string, password: string) => Promise<any>;
   signOut: () => Promise<void>;
   refreshProfile: () => Promise<void>;
@@ -49,7 +49,6 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   useEffect(() => {
     let mounted = true;
 
-    // Initialize: wait for supabase to restore any session
     const initialize = async () => {
       try {
         const { data: { session }, error } = await supabase.auth.getSession();
@@ -72,7 +71,6 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
     initialize();
 
-    // subscribe to future auth changes
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
       (_event, session) => {
         (async () => {
@@ -99,13 +97,18 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     };
   }, []);
 
-  // signUp using supabase (email+password)
-  const signUp = async (email: string, password: string, fullName?: string) => {
+  // signUp using supabase (email + password + optional fullName + phone)
+  const signUp = async (email: string, password: string, fullName?: string, phone?: string) => {
     try {
       const { data, error } = await supabase.auth.signUp({
         email,
         password,
-        options: { data: { full_name: fullName } }
+        options: { 
+          data: { 
+            full_name: fullName,
+            phone_number: phone // <-- added phone number
+          } 
+        }
       });
       return { data, error };
     } catch (err) {
