@@ -140,7 +140,7 @@ const UserDashboard: React.FC = () => {
               </div>
               <div>
                 <h1 className="font-semibold text-white">{profile?.full_name || 'User'}</h1>
-                <p className="text-sm text-gray-500">Dashboard</p>
+                <p className="text-sm text-yellow-400">Dashboard</p>
               </div>
             </div>
           </div>
@@ -293,7 +293,7 @@ const UserDashboard: React.FC = () => {
               <div className="flex items-center justify-between">
                 <div>
                   <h2 className="text-2xl font-bold text-gray-900 mb-2">Profile Settings</h2>
-                  <p className="text-gray-600">Manage your personal information</p>
+                  <p className="text-yellow-600">Manage your personal information</p>
                 </div>
                 {!isEditingProfile && (
                   <button
@@ -313,7 +313,7 @@ const UserDashboard: React.FC = () => {
                   </div>
                   <div>
                     <h3 className="text-xl font-semibold text-gray-900">{profile?.full_name || 'User'}</h3>
-                    <p className="text-gray-600">{user?.email}</p>
+                    <p className="text-yellow-500">{user?.email}</p>
                     <p className="text-sm text-gray-500">Member since {new Date(user?.created_at || '').toLocaleDateString()}</p>
                   </div>
                 </div>
@@ -385,11 +385,11 @@ const UserDashboard: React.FC = () => {
                 ) : (
                   <div className="space-y-4">
                     <div>
-                      <h4 className="text-sm font-medium text-gray-700 mb-1">Bio</h4>
-                      <p className="text-gray-900">{profile?.bio || 'No bio added yet.'}</p>
+                      <h4 className="text-sm font-medium text-yellow-400 mb-1">Bio</h4>
+                      <p className="text-yellow-400">{profile?.bio || 'No bio added yet.'}</p>
                     </div>
                     <div>
-                      <h4 className="text-sm font-medium text-gray-700 mb-1">Website</h4>
+                      <h4 className="text-sm font-medium text-yellow-400 mb-1">Website</h4>
                       {profile?.website ? (
                         <a href={profile.website} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-700">
                           {profile.website}
@@ -408,7 +408,7 @@ const UserDashboard: React.FC = () => {
             <div className="space-y-6">
               <div>
                 <h2 className="text-2xl font-bold text-gray-900 mb-2">My Competitions</h2>
-                <p className="text-gray-600">Track your competition entries and results</p>
+                <p className="text-gray-400">Track your competition entries and results</p>
               </div>
 
               <div className="grid gap-6">
@@ -417,7 +417,7 @@ const UserDashboard: React.FC = () => {
                     <div className="flex flex-col lg:flex-row lg:items-center justify-between mb-4">
                       <div>
                         <h3 className="text-lg font-semibold text-gray-900">{competition.project_title}</h3>
-                        <p className="text-gray-600">{competition.team_name}</p>
+                        <p className="text-yellow-400">{competition.team_name}</p>
                       </div>
                       <span className={`px-3 py-1 rounded-full text-sm font-medium ${getStatusColor(competition.status)} mt-2 lg:mt-0 self-start`}>
                         {competition.status}
