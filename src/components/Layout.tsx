@@ -1,42 +1,43 @@
 import React, { useState } from 'react';
 import { Outlet, Link } from 'react-router-dom';
-import { MessageCircle, ShoppingBag, LayoutDashboard, Home, Info, Mail } from 'lucide-react';
+import { MessageCircle, ShoppingBag, LayoutDashboard, Home, Mail } from 'lucide-react';
 import Header from './Header';
 import ChatBot from './ChatBot';
-import { useAuth } from '../contexts/AuthContext'; // <-- to check if logged in
 
 const Layout: React.FC = () => {
   const [showChatBot, setShowChatBot] = useState(false);
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const { user } = useAuth(); // <-- get user state
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen flex flex-col bg-gradient-to-b from-[#000814] via-[#020617] to-[#000] text-white">
       <Header />
 
-      <main>
+      {/* Main content */}
+      <main className="flex-grow relative z-10">
         <Outlet />
       </main>
 
-      {/* FOOTER */}
-      <footer className="bg-gray-900 text-white py-8 sm:py-12 mt-10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8">
+      {/* Footer */}
+      <footer className="bg-[#020617] text-white pt-12 pb-8 mt-0 border-t border-white/10">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-10">
+            {/* Logo + Description */}
             <div className="col-span-2 md:col-span-1">
-              <div className="flex items-center space-x-3 mb-4">
+              <div className="flex items-center gap-3 mb-4">
                 <img
                   src="/user copy.jpg"
                   alt="IdeaForge Global Logo"
-                  className="w-8 sm:w-10 h-8 sm:h-10 rounded-lg object-cover pulse-glow"
+                  className="w-10 h-10 rounded-lg object-cover animate-pulse-glow"
                 />
-                <span className="text-lg sm:text-xl font-bold">IdeaForge Global</span>
+                <span className="text-2xl font-bold bg-gradient-to-r from-white via-yellow-400 to-yellow-600 bg-clip-text text-transparent">
+                  IdeaForge Global
+                </span>
               </div>
-              <p className="text-gray-400 text-sm sm:text-base">
-                Empowering the Next Generation of Global Innovators
+              <p className="text-gray-400 text-sm leading-relaxed">
+                Empowering the Next Generation of Global Innovators.
               </p>
-              <div className="mt-4 space-y-1 text-xs text-gray-400">
+              <div className="mt-4 space-y-1 text-sm text-gray-400">
                 <p>
-                  <a href="mailto:ideaforgeglobal.official@gmail.com" className="hover:text-white">
+                  <a href="mailto:ideaforgeglobal.official@gmail.com" className="hover:text-yellow-400 transition">
                     Email: ideaforgeglobal.official@gmail.com
                   </a>
                 </p>
@@ -45,7 +46,7 @@ const Layout: React.FC = () => {
                     href="http://www.ideaforgeglobal.com"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="hover:text-white"
+                    className="hover:text-yellow-400 transition"
                   >
                     Website: www.ideaforgeglobal.com
                   </a>
@@ -53,50 +54,37 @@ const Layout: React.FC = () => {
               </div>
             </div>
 
+            {/* Quick Links */}
             <div>
-              <h4 className="font-bold mb-4 text-sm sm:text-base">Quick Links</h4>
+              <h4 className="font-semibold mb-4 text-lg text-yellow-400">Quick Links</h4>
               <div className="space-y-2">
-                <a href="/about" className="block text-gray-400 hover:text-white transition text-sm hover-scale">
-                  About Us
-                </a>
-                <a href="/about#competition" className="block text-gray-400 hover:text-white transition text-sm hover-scale">
-                  Competition
-                </a>
-                <a href="/benefits" className="block text-gray-400 hover:text-white transition text-sm hover-scale">
-                  Benefits
-                </a>
-                <a href="/contact" className="block text-gray-400 hover:text-white transition text-sm hover-scale">
-                  Contact
-                </a>
+                <Link to="/about" className="block text-gray-300 hover:text-white">About Us</Link>
+                <Link to="/about#competition" className="block text-gray-300 hover:text-white">Competition</Link>
+                <Link to="/benefits" className="block text-gray-300 hover:text-white">Benefits</Link>
+                <Link to="/contact" className="block text-gray-300 hover:text-white">Contact</Link>
               </div>
             </div>
 
+            {/* Support */}
             <div>
-              <h4 className="font-bold mb-4 text-sm sm:text-base">Support</h4>
+              <h4 className="font-semibold mb-4 text-lg text-yellow-400">Support</h4>
               <div className="space-y-2">
-                <a href="/contact" className="block text-gray-400 hover:text-white transition text-sm hover-scale">
-                  Help Center
-                </a>
-                <a href="/contact" className="block text-gray-400 hover:text-white transition text-sm hover-scale">
-                  Contact Us
-                </a>
-                <a href="#" className="block text-gray-400 hover:text-white transition text-sm hover-scale">
-                  Community
-                </a>
-                <a href="#" className="block text-gray-400 hover:text-white transition text-sm hover-scale">
-                  Resources
-                </a>
+                <Link to="/contact" className="block text-gray-300 hover:text-white">Help Center</Link>
+                <Link to="/contact" className="block text-gray-300 hover:text-white">Contact Us</Link>
+                <a href="#" className="block text-gray-300 hover:text-white">Community</a>
+                <a href="#" className="block text-gray-300 hover:text-white">Resources</a>
               </div>
             </div>
 
+            {/* Connect */}
             <div>
-              <h4 className="font-bold mb-4 text-sm sm:text-base">Connect</h4>
+              <h4 className="font-semibold mb-4 text-lg text-yellow-400">Connect</h4>
               <div className="space-y-2">
                 <a
                   href="https://www.linkedin.com/company/ideaforge-global"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block text-gray-400 hover:text-white transition text-sm hover-scale"
+                  className="block text-gray-300 hover:text-white"
                 >
                   LinkedIn
                 </a>
@@ -104,81 +92,72 @@ const Layout: React.FC = () => {
                   href="https://instagram.com/ideaforgeglobal"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block text-gray-400 hover:text-white transition text-sm hover-scale"
+                  className="block text-gray-300 hover:text-white"
                 >
                   Instagram
                 </a>
-                <a
-                  href="mailto:ideaforgeglobal.official@gmail.com"
-                  className="block text-gray-400 hover:text-white transition text-sm hover-scale"
-                >
+                <a href="mailto:ideaforgeglobal.official@gmail.com" className="block text-gray-300 hover:text-white">
                   Email
+                </a>
+                <a
+                  href="http://www.ideaforgeglobal.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block text-gray-300 hover:text-white"
+                >
+                  Website
                 </a>
               </div>
             </div>
           </div>
 
-          <div className="border-t border-gray-800 mt-6 sm:mt-8 pt-6 text-center text-gray-400 text-xs sm:text-sm">
-            &copy; 2025 IdeaForge Global. All rights reserved. Built with ❤ for young innovators.
+          <div className="border-t border-gray-700 mt-8 pt-6 text-center text-gray-400">
+            <p className="text-sm">
+              © 2025 IdeaForge Global. Built with <span className="text-yellow-400">❤</span> for young innovators.
+            </p>
           </div>
         </div>
       </footer>
 
-      {/* FLOATING ICONS (Expandable) */}
-      <div className="fixed bottom-20 right-4 sm:right-6 flex flex-col items-end gap-3 z-40">
-        {/* Toggle button */}
-        <button
-          onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-          className="w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-br from-yellow-500 to-white text-white rounded-full shadow-lg hover:scale-110 transition-all flex items-center justify-center hover-lift"
-          title="Menu"
+      {/* Floating Sidebar (non-overlapping) */}
+      <div className="fixed right-4 bottom-24 flex flex-col items-center gap-3 z-50">
+        <Link
+          to="/"
+          className="w-12 h-12 rounded-full bg-gradient-to-br from-yellow-400 to-white text-black shadow-lg flex items-center justify-center hover:scale-110 transition-transform"
+          title="Home"
         >
-          <Home className="w-5 h-5 sm:w-6 sm:h-6 text-black" />
-        </button>
-
-        {/* Icons (visible only when expanded) */}
-        {isSidebarOpen && (
-          <div className="flex flex-col gap-3 animate-fade-in-up">
-            <Link
-              to="/marketplace"
-              className="w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-br from-yellow-500 to-white text-white rounded-full shadow-lg hover:scale-110 transition-all flex items-center justify-center hover-lift"
-              title="Marketplace"
-            >
-              <ShoppingBag className="w-5 h-5 sm:w-6 sm:h-6 text-black" />
-            </Link>
-            {user && (
-              <Link
-                to="/dashboard"
-                className="w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-br from-yellow-500 to-white text-white rounded-full shadow-lg hover:scale-110 transition-all flex items-center justify-center hover-lift"
-                title="Dashboard"
-              >
-                <LayoutDashboard className="w-5 h-5 sm:w-6 sm:h-6 text-black" />
-              </Link>
-            )}
-            <Link
-              to="/about"
-              className="w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-br from-yellow-500 to-white text-white rounded-full shadow-lg hover:scale-110 transition-all flex items-center justify-center hover-lift"
-              title="About"
-            >
-              <Info className="w-5 h-5 sm:w-6 sm:h-6 text-black" />
-            </Link>
-            <Link
-              to="/contact"
-              className="w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-br from-yellow-500 to-white text-white rounded-full shadow-lg hover:scale-110 transition-all flex items-center justify-center hover-lift"
-              title="Contact"
-            >
-              <Mail className="w-5 h-5 sm:w-6 sm:h-6 text-black" />
-            </Link>
-          </div>
-        )}
+          <Home className="w-6 h-6" />
+        </Link>
+        <Link
+          to="/marketplace"
+          className="w-12 h-12 rounded-full bg-gradient-to-br from-yellow-400 to-white text-black shadow-lg flex items-center justify-center hover:scale-110 transition-transform"
+          title="Marketplace"
+        >
+          <ShoppingBag className="w-6 h-6" />
+        </Link>
+        <Link
+          to="/dashboard"
+          className="w-12 h-12 rounded-full bg-gradient-to-br from-yellow-400 to-white text-black shadow-lg flex items-center justify-center hover:scale-110 transition-transform"
+          title="Dashboard"
+        >
+          <LayoutDashboard className="w-6 h-6" />
+        </Link>
+        <Link
+          to="/contact"
+          className="w-12 h-12 rounded-full bg-gradient-to-br from-yellow-400 to-white text-black shadow-lg flex items-center justify-center hover:scale-110 transition-transform"
+          title="Contact"
+        >
+          <Mail className="w-6 h-6" />
+        </Link>
       </div>
 
-      {/* CHATBOT BUTTON */}
+      {/* Chatbot Button */}
       <button
         onClick={() => setShowChatBot(true)}
-        className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 w-12 h-12 sm:w-16 sm:h-16 hero-gradient text-white rounded-full shadow-2xl hover:scale-110 transition-all flex items-center justify-center z-40 pulse-glow hover-lift"
+        className="fixed bottom-4 right-4 w-14 h-14 bg-gradient-to-br from-yellow-500 to-white text-black rounded-full shadow-2xl hover:scale-110 transition-transform z-50 flex items-center justify-center"
         title="Need Help? Chat with our AI Assistant"
       >
-        <MessageCircle className="w-6 h-6 sm:w-8 sm:h-8 text-golden" />
+        <MessageCircle className="w-6 h-6" />
       </button>
 
       {showChatBot && <ChatBot onClose={() => setShowChatBot(false)} />}
