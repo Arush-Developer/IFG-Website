@@ -163,13 +163,7 @@ const UserDashboard: React.FC = () => {
 
       <div className="flex flex-col lg:flex-row">
         {/* Sidebar */}
-     <div
-  className={`flex items-center space-x-3 px-4 py-3 rounded-lg transition-colors whitespace-nowrap ${
-    activeTab === tab.id
-      ? 'bg-yellow-500 text-white'
-      : 'text-gray-300 hover:bg-yellow-500 hover:text-white'
-  }`}
->
+     <div className=flex flex-col lg:w-64 px-4 py-3 space-y-2 rounded-lg transition-colors whitespace-nowrap bg-gray-900 text-gray-300=>
   {/* Navigation */}
   <nav className="px-4 lg:px-6 py-6">
     <div className="flex lg:flex-col space-x-2 lg:space-x-0 lg:space-y-2 overflow-x-auto lg:overflow-x-visible">
@@ -196,6 +190,7 @@ const UserDashboard: React.FC = () => {
       ))}
     </div>
 
+    {/* Help & Sign Out */}
     <div className="hidden lg:block mt-8 pt-8 border-t">
       <button
         onClick={() => setShowChatBot(true)}
@@ -213,8 +208,7 @@ const UserDashboard: React.FC = () => {
       </button>
     </div>
   </nav>
-</div>
-        
+</div>        
         {/* Main Content */}
         <div className="flex-1 p-4 lg:p-8">
           {activeTab === 'overview' && (
