@@ -162,53 +162,50 @@ const UserDashboard: React.FC = () => {
       </div>
 
       <div className="flex flex-col lg:flex-row">
-        {/* Sidebar */}
-     <div className=flex flex-col lg:w-64 px-4 py-3 space-y-2 rounded-lg transition-colors whitespace-nowrap bg-gray-900 text-gray-300=>
-  {/* Navigation */}
-  <nav className="px-4 lg:px-6 py-6">
-    <div className="flex lg:flex-col space-x-2 lg:space-x-0 lg:space-y-2 overflow-x-auto lg:overflow-x-visible">
-      {[
-        { id: 'overview', label: 'Overview', icon: User },
-        { id: 'profile', label: 'Profile', icon: Settings },
-        { id: 'competitions', label: 'Competitions', icon: Trophy },
-        { id: 'courses', label: 'Courses', icon: BookOpen },
-        { id: 'achievements', label: 'Achievements', icon: Award },
-        { id: 'marketplace', label: 'My Products', icon: ShoppingCart },
-      ].map((tab) => (
-        <button
-          key={tab.id}
-          onClick={() => setActiveTab(tab.id)}
-          className={`flex items-center space-x-3 px-4 py-3 rounded-lg transition-colors whitespace-nowrap ${
-            activeTab === tab.id
-              ? 'bg-yellow-500 text-white'
-              : 'text-gray-300 hover:bg-yellow-500 hover:text-white'
-          }`}
-        >
-          <tab.icon className="w-5 h-5" />
-          <span className="font-medium">{tab.label}</span>
-        </button>
-      ))}
-    </div>
+{/* Sidebar */}
+<nav className="px-4 lg:px-6 py-6">
+  <div className="flex lg:flex-col space-x-2 lg:space-x-0 lg:space-y-2 overflow-x-auto lg:overflow-x-visible">
+    {[
+      { id: 'overview', label: 'Overview', icon: User },
+      { id: 'profile', label: 'Profile', icon: Settings },
+      { id: 'competitions', label: 'Competitions', icon: Trophy },
+      { id: 'courses', label: 'Courses', icon: BookOpen },
+      { id: 'achievements', label: 'Achievements', icon: Award },
+      { id: 'marketplace', label: 'My Products', icon: ShoppingCart },
+    ].map((tab) => (
+      <button
+        key={tab.id}
+        onClick={() => setActiveTab(tab.id)}
+        className={`flex items-center space-x-3 px-4 py-3 rounded-lg transition-colors whitespace-nowrap ${
+          activeTab === tab.id
+            ? 'bg-yellow-500 text-white'
+            : 'text-gray-300 hover:bg-yellow-500 hover:text-white'
+        }`}
+      >
+        <tab.icon className="w-5 h-5" />
+        <span className="font-medium">{tab.label}</span>
+      </button>
+    ))}
+  </div>
 
-    {/* Help & Sign Out */}
-    <div className="hidden lg:block mt-8 pt-8 border-t">
-      <button
-        onClick={() => setShowChatBot(true)}
-        className="flex items-center space-x-3 px-4 py-3 rounded-lg text-gray-600 hover:bg-gray-100 transition-colors w-full"
-      >
-        <MessageCircle className="w-5 h-5" />
-        <span className="font-medium">Help Desk</span>
-      </button>
-      <button
-        onClick={signOut}
-        className="flex items-center space-x-3 px-4 py-3 rounded-lg text-red-600 hover:bg-red-50 transition-colors w-full mt-2"
-      >
-        <LogOut className="w-5 h-5" />
-        <span className="font-medium">Sign Out</span>
-      </button>
-    </div>
-  </nav>
-</div>        
+  <div className="hidden lg:block mt-8 pt-8 border-t">
+    <button
+      onClick={() => setShowChatBot(true)}
+      className="flex items-center space-x-3 px-4 py-3 rounded-lg text-gray-600 hover:bg-gray-100 transition-colors w-full"
+    >
+      <MessageCircle className="w-5 h-5" />
+      <span className="font-medium">Help Desk</span>
+    </button>
+    <button
+      onClick={signOut}
+      className="flex items-center space-x-3 px-4 py-3 rounded-lg text-red-600 hover:bg-red-50 transition-colors w-full mt-2"
+    >
+      <LogOut className="w-5 h-5" />
+      <span className="font-medium">Sign Out</span>
+    </button>
+  </div>
+</nav>
+        
         {/* Main Content */}
         <div className="flex-1 p-4 lg:p-8">
           {activeTab === 'overview' && (
