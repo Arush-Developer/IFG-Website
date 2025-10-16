@@ -1,6 +1,19 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const HomePage: React.FC = () => {
+  const navigate = useNavigate();
+
+  const scrollToCompetition = () => {
+    navigate("/about", { replace: false });
+    setTimeout(() => {
+      const element = document.getElementById("competition");
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    }, 100); // short delay to allow About page to render
+  };
+
   return (
     <section
       id="home"
@@ -24,18 +37,18 @@ const HomePage: React.FC = () => {
 
             {/* BUTTONS */}
             <div className="flex flex-col sm:flex-row gap-4">
-              <a
-                href="/about#competition"
+              <button
                 className="px-8 py-4 rounded-full font-semibold text-lg text-gray-900 bg-gradient-to-r from-yellow-400 to-white bg-[length:200%_200%] animate-gradient-x shadow-lg hover:shadow-[0_0_25px_rgba(255,255,200,0.4)] hover:scale-105 transition-all text-center"
+                onClick={scrollToCompetition}
               >
                 Join the Challenge
-              </a>
-              <a
-                href="/about#competition"
-                className="px-8 py-4 rounded-full font-semibold text-lg border-2 border-yellow-300 text-transparent bg-clip-text bg-gradient-to-r from-white to-yellow-400 bg-[length:200%_200%] animate-gradient-x hover:bg-yellow-200/10 hover:text-gray-900 transition-all hover:shadow-[0_0_25px_rgba(255,255,200,0.3)] text-center"
+              </button>
+              <button
+                className="px-8 py-4 rounded-full font-semibold text-lg text-gray-900 bg-gradient-to-r from-white to-yellow-400 bg-[length:200%_200%] animate-gradient-x shadow-lg hover:shadow-[0_0_25px_rgba(255,255,200,0.4)] hover:scale-105 transition-all text-center"
+                onClick={scrollToCompetition}
               >
                 Submit Your Idea
-              </a>
+              </button>
             </div>
           </div>
 
