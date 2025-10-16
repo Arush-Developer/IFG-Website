@@ -3,12 +3,13 @@ import CompetitionSignup from '../components/CompetitionSignup';
 
 const AboutPage: React.FC = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#020617] via-[#08122B] to-[#0A1833] text-white overflow-x-hidden">
-      <section className="py-10 sm:py-20 md:py-24 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
+    <div className="min-h-screen bg-gradient-to-b from-[#020617] via-[#08122B] to-[#0A1833] text-white overflow-x-hidden overflow-y-visible w-full">
+      {/* Outer container ensures horizontal overflow never occurs */}
+      <section className="py-10 sm:py-20 md:py-24 px-4 sm:px-6 lg:px-8 overflow-x-hidden">
+        <div className="max-w-7xl mx-auto w-full">
 
           {/* OUR STORY */}
-          <div className="text-center mb-12 sm:mb-16 animate-fade-in">
+          <div className="text-center mb-12 sm:mb-16 animate-fade-in px-2">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-flow leading-tight">
               Our Story
             </h2>
@@ -26,8 +27,8 @@ const AboutPage: React.FC = () => {
           </div>
 
           {/* VISION, MISSION, CORE VALUES */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 sm:gap-12 mb-12 sm:mb-16 items-center">
-            <div className="animate-slide-in-left flex justify-center">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 sm:gap-12 mb-12 sm:mb-16 items-center overflow-x-hidden">
+            <div className="animate-slide-in-left flex justify-center px-2 sm:px-0">
               <img
                 src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80"
                 alt="Global networking illustration"
@@ -61,7 +62,7 @@ const AboutPage: React.FC = () => {
           </div>
 
           {/* WHAT MAKES IFG UNIQUE */}
-          <div className="bg-white/10 backdrop-blur-xl border border-yellow-400/20 rounded-2xl p-5 sm:p-8 mb-12 sm:mb-16 shadow-[0_0_25px_rgba(255,215,0,0.1)]">
+          <div className="bg-white/10 backdrop-blur-xl border border-yellow-400/20 rounded-2xl p-5 sm:p-8 mb-12 sm:mb-16 shadow-[0_0_25px_rgba(255,215,0,0.1)] overflow-hidden">
             <h3 className="text-2xl sm:text-3xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-flow text-center">
               What Makes IFG Unique
             </h3>
@@ -86,7 +87,7 @@ const AboutPage: React.FC = () => {
           </div>
 
           {/* OUR TEAM */}
-          <div className="text-center mb-12 sm:mb-16 px-2">
+          <div className="text-center mb-12 sm:mb-16 px-2 overflow-x-hidden">
             <h3 className="text-2xl sm:text-3xl font-bold text-transparent bg-clip-text bg-gradient-flow mb-4">
               Our Team
             </h3>
@@ -96,7 +97,7 @@ const AboutPage: React.FC = () => {
           </div>
 
           {/* WHY WE EXIST */}
-          <div className="bg-white/10 backdrop-blur-xl border border-yellow-400/20 rounded-2xl p-5 sm:p-8 text-center mb-12 sm:mb-16 shadow-[0_0_25px_rgba(255,215,0,0.1)] hover:shadow-[0_0_40px_rgba(255,215,0,0.2)] transition-all">
+          <div className="bg-white/10 backdrop-blur-xl border border-yellow-400/20 rounded-2xl p-5 sm:p-8 text-center mb-12 sm:mb-16 shadow-[0_0_25px_rgba(255,215,0,0.1)] hover:shadow-[0_0_40px_rgba(255,215,0,0.2)] transition-all overflow-hidden">
             <h3 className="text-2xl sm:text-3xl font-bold text-transparent bg-clip-text bg-gradient-flow mb-4">
               Why We Exist
             </h3>
@@ -111,8 +112,8 @@ const AboutPage: React.FC = () => {
       </section>
 
       {/* COMPETITION SECTION */}
-      <section className="py-12 sm:py-16 border-t border-yellow-400/10 bg-[#0A1833] px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
+      <section className="py-12 sm:py-16 border-t border-yellow-400/10 bg-[#0A1833] px-4 sm:px-6 lg:px-8 overflow-x-hidden">
+        <div className="max-w-7xl mx-auto w-full">
           <div className="bg-white/10 backdrop-blur-xl border border-yellow-400/20 rounded-2xl p-5 sm:p-8 shadow-[0_0_25px_rgba(255,215,0,0.1)]">
             <h2 className="text-3xl sm:text-4xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-flow text-center leading-tight">
               🏆 Global Youth Entrepreneurship Challenge (GYEC)
@@ -125,8 +126,8 @@ const AboutPage: React.FC = () => {
               </p>
             </div>
 
-            <div className="space-y-8 mt-8 text-gray-200 text-sm sm:text-base">
-              {[/* Steps and Guidelines */]
+            <div className="space-y-8 mt-8 text-gray-200 text-sm sm:text-base overflow-x-hidden">
+              {[
                 {
                   title: '📋 How to Participate',
                   type: 'ol',
@@ -174,7 +175,9 @@ const AboutPage: React.FC = () => {
                 },
               ].map((section, idx) => (
                 <div key={idx}>
-                  <h3 className="text-2xl font-bold mb-2 text-transparent bg-clip-text bg-gradient-flow">{section.title}</h3>
+                  <h3 className="text-2xl font-bold mb-2 text-transparent bg-clip-text bg-gradient-flow">
+                    {section.title}
+                  </h3>
                   {section.type === 'ol' ? (
                     <ol className="list-decimal list-inside space-y-1">{section.items.map((i, x) => <li key={x}>{i}</li>)}</ol>
                   ) : (
@@ -185,7 +188,9 @@ const AboutPage: React.FC = () => {
 
               {/* TIMELINE TABLE */}
               <div className="overflow-x-auto">
-                <h3 className="text-2xl font-bold mb-2 text-transparent bg-clip-text bg-gradient-flow">🕐 Timeline</h3>
+                <h3 className="text-2xl font-bold mb-2 text-transparent bg-clip-text bg-gradient-flow">
+                  🕐 Timeline
+                </h3>
                 <table className="w-full text-gray-200 border-collapse border border-yellow-400/20 min-w-[500px]">
                   <thead>
                     <tr className="border-b border-yellow-400/20 bg-white/5">
