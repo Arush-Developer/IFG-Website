@@ -19,6 +19,7 @@ const AuthModal: React.FC<AuthModalProps> = ({
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [fullName, setFullName] = useState('');
+  const [phone, setPhone] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
@@ -26,16 +27,14 @@ const AuthModal: React.FC<AuthModalProps> = ({
 
   const { signIn, signUp } = useAuth();
 
-  // ✅ Google sign-in handler
+  // Google sign-in handler
   const handleGoogleSignIn = async () => {
     setLoading(true);
     setError('');
     try {
       const { error } = await supabase.auth.signInWithOAuth({
         provider: 'google',
-        options: {
-          redirectTo: `${window.location.origin}`, // safer, works locally & on Netlify
-        },
+        options: { redirectTo: `${window.location.origin}` },
       });
       if (error) throw error;
     } catch (err: any) {
@@ -45,7 +44,7 @@ const AuthModal: React.FC<AuthModalProps> = ({
     }
   };
 
-  // ✅ Email + Password sign-up / sign-in
+  // Email + Password sign-up / sign-in
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
@@ -54,10 +53,11 @@ const AuthModal: React.FC<AuthModalProps> = ({
 
     const trimmedEmail = email.trim();
     const trimmedName = fullName.trim();
+    const trimmedPhone = phone.trim();
 
     try {
       if (mode === 'signup') {
-        const { error } = await signUp(trimmedEmail, password, trimmedName);
+        const { error } = await signUp(trimmedEmail, password, trimmedName, trimmedPhone);
         if (error) {
           setError(error.message);
         } else {
@@ -84,11 +84,12 @@ const AuthModal: React.FC<AuthModalProps> = ({
     }
   };
 
-  // ✅ Reset form fields
+  // Reset form fields
   const resetForm = () => {
     setEmail('');
     setPassword('');
     setFullName('');
+    setPhone('');
     setError('');
     setSuccess('');
     setShowPassword(false);
@@ -119,19 +120,34 @@ const AuthModal: React.FC<AuthModalProps> = ({
         {/* Form */}
         <form onSubmit={handleSubmit} className="p-6 space-y-4">
           {mode === 'signup' && (
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                Full Name
-              </label>
-              <input
-                type="text"
-                value={fullName}
-                onChange={(e) => setFullName(e.target.value)}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-                placeholder="Enter your full name"
-                required
-              />
-            </div>
+            <>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Full Name
+                </label>
+                <input
+                  type="text"
+                  value={fullName}
+                  onChange={(e) => setFullName(e.target.value)}
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                  placeholder="Enter your full name"
+                  required
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Phone Number
+                </label>
+                <input
+                  type="tel"
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                  placeholder="Enter your phone number"
+                />
+              </div>
+            </>
           )}
 
           <div>
