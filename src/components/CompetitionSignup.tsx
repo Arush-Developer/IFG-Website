@@ -164,6 +164,7 @@ const CompetitionSignup: React.FC = () => {
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-6">
+          {/* FORM FIELD LAYOUT FIXED FOR MOBILE AND DESKTOP */}
           <div className="grid md:grid-cols-2 gap-6">
             <div>
               <label htmlFor="team_name" className="block text-sm font-medium text-gray-700 mb-2">
