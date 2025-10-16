@@ -168,7 +168,6 @@ const UserDashboard: React.FC = () => {
               ? 'bg-yellow-500 text-white'
               : 'text-gray-300 hover:bg-yellow-500 hover:text-white'
            }`}
-
           {/* Navigation */}
           <nav className="px-4 lg:px-6 py-6">
             <div className="flex lg:flex-col space-x-2 lg:space-x-0 lg:space-y-2 overflow-x-auto lg:overflow-x-visible">
