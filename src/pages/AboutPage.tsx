@@ -4,14 +4,15 @@ import CompetitionSignup from '../components/CompetitionSignup';
 const AboutPage: React.FC = () => {
   return (
     <div className="min-h-screen bg-gradient-to-b from-[#020617] via-[#08122B] to-[#0A1833] text-white overflow-x-hidden">
-      <section className="py-12 sm:py-20 md:py-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-10 sm:py-20 md:py-24 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+
           {/* OUR STORY */}
           <div className="text-center mb-12 sm:mb-16 animate-fade-in">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-flow leading-tight">
               Our Story
             </h2>
-            <div className="space-y-4 text-gray-200 text-base sm:text-lg max-w-3xl mx-auto px-2">
+            <div className="space-y-4 text-gray-200 text-base sm:text-lg max-w-3xl mx-auto">
               <p>
                 IdeaForge Global (IFG) began with a simple observation: thousands of students have brilliant ideas, but few get the chance to bring them to life.
               </p>
@@ -25,16 +26,16 @@ const AboutPage: React.FC = () => {
           </div>
 
           {/* VISION, MISSION, CORE VALUES */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-12 mb-12 sm:mb-16 items-center">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 sm:gap-12 mb-12 sm:mb-16 items-center">
             <div className="animate-slide-in-left flex justify-center">
               <img
                 src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80"
                 alt="Global networking illustration"
-                className="rounded-2xl shadow-[0_0_25px_rgba(255,215,0,0.2)] w-full max-w-md md:max-w-none object-cover hover:scale-105 transition-transform duration-500"
+                className="rounded-2xl shadow-[0_0_25px_rgba(255,215,0,0.2)] w-full max-w-sm sm:max-w-md md:max-w-none object-cover hover:scale-105 transition-transform duration-500"
               />
             </div>
 
-            <div className="space-y-8 animate-slide-in-right">
+            <div className="space-y-8 animate-slide-in-right px-2 sm:px-0">
               {[
                 {
                   title: 'Our Vision',
@@ -60,11 +61,11 @@ const AboutPage: React.FC = () => {
           </div>
 
           {/* WHAT MAKES IFG UNIQUE */}
-          <div className="bg-white/10 backdrop-blur-xl border border-yellow-400/20 rounded-2xl p-6 sm:p-8 mb-12 sm:mb-16 shadow-[0_0_25px_rgba(255,215,0,0.1)]">
+          <div className="bg-white/10 backdrop-blur-xl border border-yellow-400/20 rounded-2xl p-5 sm:p-8 mb-12 sm:mb-16 shadow-[0_0_25px_rgba(255,215,0,0.1)]">
             <h3 className="text-2xl sm:text-3xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-flow text-center">
               What Makes IFG Unique
             </h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
               {[
                 { title: 'Completely Student-Led', desc: 'Built by students, for students' },
                 { title: 'Global Reach', desc: 'Connecting innovators worldwide' },
@@ -75,7 +76,7 @@ const AboutPage: React.FC = () => {
               ].map((item, index) => (
                 <div
                   key={index}
-                  className="bg-white/10 backdrop-blur-xl border border-yellow-400/20 p-6 rounded-xl shadow-[0_0_20px_rgba(255,215,0,0.1)] hover:shadow-[0_0_35px_rgba(255,215,0,0.2)] hover:scale-[1.02] transition-all"
+                  className="bg-white/10 backdrop-blur-xl border border-yellow-400/20 p-5 sm:p-6 rounded-xl shadow-[0_0_20px_rgba(255,215,0,0.1)] hover:shadow-[0_0_35px_rgba(255,215,0,0.2)] hover:scale-[1.02] transition-all"
                 >
                   <h4 className="font-bold text-lg mb-2">{item.title}</h4>
                   <p className="text-sm sm:text-base text-gray-300">{item.desc}</p>
@@ -95,7 +96,7 @@ const AboutPage: React.FC = () => {
           </div>
 
           {/* WHY WE EXIST */}
-          <div className="bg-white/10 backdrop-blur-xl border border-yellow-400/20 rounded-2xl p-6 sm:p-8 text-center mb-12 sm:mb-16 shadow-[0_0_25px_rgba(255,215,0,0.1)] hover:shadow-[0_0_40px_rgba(255,215,0,0.2)] transition-all">
+          <div className="bg-white/10 backdrop-blur-xl border border-yellow-400/20 rounded-2xl p-5 sm:p-8 text-center mb-12 sm:mb-16 shadow-[0_0_25px_rgba(255,215,0,0.1)] hover:shadow-[0_0_40px_rgba(255,215,0,0.2)] transition-all">
             <h3 className="text-2xl sm:text-3xl font-bold text-transparent bg-clip-text bg-gradient-flow mb-4">
               Why We Exist
             </h3>
@@ -110,9 +111,9 @@ const AboutPage: React.FC = () => {
       </section>
 
       {/* COMPETITION SECTION */}
-      <section className="py-12 sm:py-16 border-t border-yellow-400/10 bg-[#0A1833]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-white/10 backdrop-blur-xl border border-yellow-400/20 rounded-2xl p-6 sm:p-8 shadow-[0_0_25px_rgba(255,215,0,0.1)] hover:shadow-[0_0_40px_rgba(255,215,0,0.2)] transition-all">
+      <section className="py-12 sm:py-16 border-t border-yellow-400/10 bg-[#0A1833] px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          <div className="bg-white/10 backdrop-blur-xl border border-yellow-400/20 rounded-2xl p-5 sm:p-8 shadow-[0_0_25px_rgba(255,215,0,0.1)]">
             <h2 className="text-3xl sm:text-4xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-flow text-center leading-tight">
               🏆 Global Youth Entrepreneurship Challenge (GYEC)
             </h2>
@@ -124,9 +125,8 @@ const AboutPage: React.FC = () => {
               </p>
             </div>
 
-            {/* TABLES + LISTS */}
             <div className="space-y-8 mt-8 text-gray-200 text-sm sm:text-base">
-              {[
+              {[/* Steps and Guidelines */]
                 {
                   title: '📋 How to Participate',
                   type: 'ol',
@@ -184,38 +184,36 @@ const AboutPage: React.FC = () => {
               ))}
 
               {/* TIMELINE TABLE */}
-              <div>
+              <div className="overflow-x-auto">
                 <h3 className="text-2xl font-bold mb-2 text-transparent bg-clip-text bg-gradient-flow">🕐 Timeline</h3>
-                <div className="overflow-x-auto">
-                  <table className="w-full text-gray-200 border-collapse border border-yellow-400/20 min-w-[500px]">
-                    <thead>
-                      <tr className="border-b border-yellow-400/20 bg-white/5">
-                        <th className="p-2 text-left">Phase</th>
-                        <th className="p-2 text-left">Description</th>
-                        <th className="p-2 text-left">Date</th>
+                <table className="w-full text-gray-200 border-collapse border border-yellow-400/20 min-w-[500px]">
+                  <thead>
+                    <tr className="border-b border-yellow-400/20 bg-white/5">
+                      <th className="p-2 text-left">Phase</th>
+                      <th className="p-2 text-left">Description</th>
+                      <th className="p-2 text-left">Date</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {[
+                      { phase: 'Registration Opens', desc: 'Students begin to register', date: 'To be updated' },
+                      { phase: 'Submission Deadline', desc: 'Last date for idea submission', date: 'To be updated' },
+                      { phase: 'Shortlisting', desc: 'Evaluation and finalist selection', date: 'To be updated' },
+                      { phase: 'Final Round', desc: 'Virtual presentations', date: 'To be updated' },
+                      { phase: 'Results Announcement', desc: 'Winners revealed', date: 'To be updated' },
+                    ].map((item, idx) => (
+                      <tr key={idx} className="border-b border-yellow-400/20">
+                        <td className="p-2">{item.phase}</td>
+                        <td className="p-2">{item.desc}</td>
+                        <td className="p-2">{item.date}</td>
                       </tr>
-                    </thead>
-                    <tbody>
-                      {[
-                        { phase: 'Registration Opens', desc: 'Students begin to register', date: 'To be updated' },
-                        { phase: 'Submission Deadline', desc: 'Last date for idea submission', date: 'To be updated' },
-                        { phase: 'Shortlisting', desc: 'Evaluation and finalist selection', date: 'To be updated' },
-                        { phase: 'Final Round', desc: 'Virtual presentations', date: 'To be updated' },
-                        { phase: 'Results Announcement', desc: 'Winners revealed', date: 'To be updated' },
-                      ].map((item, idx) => (
-                        <tr key={idx} className="border-b border-yellow-400/20">
-                          <td className="p-2">{item.phase}</td>
-                          <td className="p-2">{item.desc}</td>
-                          <td className="p-2">{item.date}</td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
+                    ))}
+                  </tbody>
+                </table>
               </div>
             </div>
 
-            <div className="mt-10">
+            <div className="mt-10 w-full max-w-2xl mx-auto">
               <CompetitionSignup />
             </div>
           </div>
