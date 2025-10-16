@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Trophy, Users, Plus, X } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
 import { submitCompetitionEntry } from '../lib/supabase';
@@ -22,65 +22,45 @@ const CompetitionSignup: React.FC = () => {
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState('');
 
-  // Update contact email when user changes
-  React.useEffect(() => {
+  // Auto-fill contact email if user is logged in
+  useEffect(() => {
     if (user && !formData.contact_email) {
-      setFormData(prev => ({
-        ...prev,
-        contact_email: user.email || ''
-      }));
+      setFormData(prev => ({ ...prev, contact_email: user.email || '' }));
     }
   }, [user, formData.contact_email]);
 
   const categories = [
-    'Business',
-    'Sustainability',
-    'Innovation',
-    'Social Impact',
-    'Technology',
-    'Healthcare',
-    'Education',
-    'Other'
+    'Business', 'Sustainability', 'Innovation', 'Social Impact',
+    'Technology', 'Healthcare', 'Education', 'Other'
   ];
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+  ) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handleTeamMemberChange = (index: number, value: string) => {
     const newTeamMembers = [...formData.team_members];
     newTeamMembers[index] = value;
-    setFormData({
-      ...formData,
-      team_members: newTeamMembers
-    });
+    setFormData({ ...formData, team_members: newTeamMembers });
   };
 
   const addTeamMember = () => {
     if (formData.team_members.length < 5) {
-      setFormData({
-        ...formData,
-        team_members: [...formData.team_members, '']
-      });
+      setFormData({ ...formData, team_members: [...formData.team_members, ''] });
     }
   };
 
   const removeTeamMember = (index: number) => {
     if (formData.team_members.length > 1) {
       const newTeamMembers = formData.team_members.filter((_, i) => i !== index);
-      setFormData({
-        ...formData,
-        team_members: newTeamMembers
-      });
+      setFormData({ ...formData, team_members: newTeamMembers });
     }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
     if (!user) {
       setIsAuthModalOpen(true);
       return;
@@ -90,13 +70,9 @@ const CompetitionSignup: React.FC = () => {
     setError('');
 
     try {
-      const filteredTeamMembers = formData.team_members.filter(member => member.trim() !== '');
-      
-      const { error } = await submitCompetitionEntry({
-        ...formData,
-        team_members: filteredTeamMembers
-      });
-      
+      const filteredTeamMembers = formData.team_members.filter(m => m.trim() !== '');
+      const { error } = await submitCompetitionEntry({ ...formData, team_members: filteredTeamMembers });
+
       if (error) {
         setError(error.message);
       } else {
@@ -113,7 +89,7 @@ const CompetitionSignup: React.FC = () => {
           country: ''
         });
       }
-    } catch (err) {
+    } catch {
       setError('An unexpected error occurred');
     } finally {
       setLoading(false);
@@ -149,199 +125,119 @@ const CompetitionSignup: React.FC = () => {
           <p className="text-gray-600 mb-4">
             Ready to showcase your innovative idea? Fill out the form below to register for GYEC.
           </p>
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 text-left">
-            <h4 className="font-bold text-gray-900 mb-2">How to Participate:</h4>
-            <ol className="list-decimal list-inside space-y-1 text-sm text-gray-700">
-              <li>Register via this form</li>
-              <li>Prepare a short concept (150–250 words) or a 2-minute video pitch</li>
-              <li>Submit before deadline</li>
-              <li>Evaluation by our judging panel</li>
-              <li>Shortlisting announcement</li>
-              <li>Presentation (if selected)</li>
-              <li>Results announcement</li>
-            </ol>
-          </div>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-6">
-          {/* FORM FIELD LAYOUT FIXED FOR MOBILE AND DESKTOP */}
+          {/* Team & Category */}
           <div className="grid md:grid-cols-2 gap-6">
             <div>
-              <label htmlFor="team_name" className="block text-sm font-medium text-gray-700 mb-2">
-                Team Name *
-              </label>
+              <label htmlFor="team_name" className="block text-sm font-medium text-gray-700 mb-2">Team Name *</label>
               <input
-                type="text"
-                id="team_name"
-                name="team_name"
-                value={formData.team_name}
-                onChange={handleChange}
-                required
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+                type="text" id="team_name" name="team_name" value={formData.team_name} onChange={handleChange} required
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all text-gray-900 bg-white"
                 placeholder="Enter your team name"
               />
             </div>
-
             <div>
-              <label htmlFor="category" className="block text-sm font-medium text-gray-700 mb-2">
-                Category *
-              </label>
+              <label htmlFor="category" className="block text-sm font-medium text-gray-700 mb-2">Category *</label>
               <select
-                id="category"
-                name="category"
-                value={formData.category}
-                onChange={handleChange}
-                required
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+                id="category" name="category" value={formData.category} onChange={handleChange} required
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all text-gray-900 bg-white"
               >
                 <option value="">Select a category</option>
-                {categories.map((category) => (
-                  <option key={category} value={category}>{category}</option>
-                ))}
+                {categories.map(c => <option key={c} value={c}>{c}</option>)}
               </select>
             </div>
           </div>
 
+          {/* Project Title & Description */}
           <div>
-            <label htmlFor="project_title" className="block text-sm font-medium text-gray-700 mb-2">
-              Project Title *
-            </label>
+            <label htmlFor="project_title" className="block text-sm font-medium text-gray-700 mb-2">Project Title *</label>
             <input
-              type="text"
-              id="project_title"
-              name="project_title"
-              value={formData.project_title}
-              onChange={handleChange}
-              required
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+              type="text" id="project_title" name="project_title" value={formData.project_title} onChange={handleChange} required
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all text-gray-900 bg-white"
               placeholder="What's your project called?"
             />
           </div>
-
           <div>
-            <label htmlFor="project_description" className="block text-sm font-medium text-gray-700 mb-2">
-              Project Description *
-            </label>
+            <label htmlFor="project_description" className="block text-sm font-medium text-gray-700 mb-2">Project Description *</label>
             <textarea
-              id="project_description"
-              name="project_description"
-              value={formData.project_description}
-              onChange={handleChange}
-              required
-              rows={6}
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all resize-none"
+              id="project_description" name="project_description" value={formData.project_description} onChange={handleChange} required
+              rows={6} className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all resize-none text-gray-900 bg-white"
               placeholder="Describe your project, its impact, and how it solves a real-world problem..."
             />
           </div>
 
+          {/* Team Members */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
               Team Members * (Individual or up to 4 members)
             </label>
-            {formData.team_members.map((member, index) => (
-              <div key={index} className="flex items-center space-x-2 mb-2">
-                <input
-                  type="text"
-                  value={member}
-                  onChange={(e) => handleTeamMemberChange(index, e.target.value)}
-                  className="flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
-                  placeholder={`Team member ${index + 1} name`}
-                  required={index === 0}
-                />
-                {index > 0 && (
-                  <button
-                    type="button"
-                    onClick={() => removeTeamMember(index)}
-                    className="text-red-500 hover:text-red-700"
-                  >
-                    <X className="w-5 h-5" />
-                  </button>
-                )}
-              </div>
-            ))}
+            <div className="flex flex-col gap-2">
+              {formData.team_members.map((member, index) => (
+                <div key={index} className="flex flex-wrap gap-2 items-center">
+                  <input
+                    type="text" value={member} onChange={e => handleTeamMemberChange(index, e.target.value)}
+                    className="flex-1 min-w-[150px] px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all text-gray-900 bg-white"
+                    placeholder={`Team member ${index + 1} name`}
+                    required={index === 0}
+                  />
+                  {index > 0 && (
+                    <button type="button" onClick={() => removeTeamMember(index)} className="text-red-500 hover:text-red-700 shrink-0">
+                      <X className="w-5 h-5" />
+                    </button>
+                  )}
+                </div>
+              ))}
+            </div>
             {formData.team_members.length < 5 && (
-              <button
-                type="button"
-                onClick={addTeamMember}
-                className="flex items-center space-x-2 text-purple-600 hover:text-purple-700 font-medium"
-              >
-                <Plus className="w-4 h-4" />
-                <span>Add Team Member</span>
+              <button type="button" onClick={addTeamMember} className="mt-2 flex items-center space-x-2 text-purple-600 hover:text-purple-700 font-medium">
+                <Plus className="w-4 h-4" /> <span>Add Team Member</span>
               </button>
             )}
           </div>
 
+          {/* Contact & Country */}
           <div className="grid md:grid-cols-2 gap-6">
             <div>
-              <label htmlFor="contact_email" className="block text-sm font-medium text-gray-700 mb-2">
-                Contact Email *
-              </label>
+              <label htmlFor="contact_email" className="block text-sm font-medium text-gray-700 mb-2">Contact Email *</label>
               <input
-                type="email"
-                id="contact_email"
-                name="contact_email"
-                value={formData.contact_email}
-                onChange={handleChange}
-                required
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+                type="email" id="contact_email" name="contact_email" value={formData.contact_email} onChange={handleChange} required
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all text-gray-900 bg-white"
                 placeholder="team@example.com"
               />
             </div>
-
             <div>
-              <label htmlFor="phone_number" className="block text-sm font-medium text-gray-700 mb-2">
-                Phone Number
-              </label>
+              <label htmlFor="phone_number" className="block text-sm font-medium text-gray-700 mb-2">Phone Number</label>
               <input
-                type="tel"
-                id="phone_number"
-                name="phone_number"
-                value={formData.phone_number}
-                onChange={handleChange}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+                type="tel" id="phone_number" name="phone_number" value={formData.phone_number} onChange={handleChange}
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all text-gray-900 bg-white"
                 placeholder="+1 (555) 123-4567"
               />
             </div>
           </div>
 
+          {/* School & Country */}
           <div className="grid md:grid-cols-2 gap-6">
             <div>
-              <label htmlFor="school_organization" className="block text-sm font-medium text-gray-700 mb-2">
-                School/Organization
-              </label>
+              <label htmlFor="school_organization" className="block text-sm font-medium text-gray-700 mb-2">School/Organization</label>
               <input
-                type="text"
-                id="school_organization"
-                name="school_organization"
-                value={formData.school_organization}
-                onChange={handleChange}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+                type="text" id="school_organization" name="school_organization" value={formData.school_organization} onChange={handleChange}
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all text-gray-900 bg-white"
                 placeholder="Your school or organization"
               />
             </div>
-
             <div>
-              <label htmlFor="country" className="block text-sm font-medium text-gray-700 mb-2">
-                Country *
-              </label>
+              <label htmlFor="country" className="block text-sm font-medium text-gray-700 mb-2">Country *</label>
               <input
-                type="text"
-                id="country"
-                name="country"
-                value={formData.country}
-                onChange={handleChange}
-                required
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+                type="text" id="country" name="country" value={formData.country} onChange={handleChange} required
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all text-gray-900 bg-white"
                 placeholder="Your country"
               />
             </div>
           </div>
 
-          {error && (
-            <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg">
-              {error}
-            </div>
-          )}
+          {error && <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg">{error}</div>}
 
           <button
             type="submit"
