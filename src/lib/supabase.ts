@@ -3,9 +3,16 @@ import { createClient } from '@supabase/supabase-js';
 /* =======================================================
    🔗 SUPABASE CONFIGURATION
 ======================================================= */
-const supabaseUrl = 'https://wlhfqgfkkfumasutrvct.supabase.co';
+const supabaseUrl =
+  import.meta.env.VITE_SUPABASE_URL || 'https://wlhfqgfkkfumasutrvct.supabase.co';
 const supabaseAnonKey =
+  import.meta.env.VITE_SUPABASE_ANON_KEY ||
   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndsaGZxZ2Zra2Z1bWFzdXRydmN0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTkyNDc3NDMsImV4cCI6MjA3NDgyMzc0M30.5fwgDmWYND6UuXzJiM05yRZSUFP_g2JL-k3RO2faep4';
+
+// Throw error if still missing (prevents silent failures)
+if (!supabaseUrl || !supabaseAnonKey) {
+  throw new Error('Missing Supabase environment variables!');
+}
 
 export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
   auth: {
