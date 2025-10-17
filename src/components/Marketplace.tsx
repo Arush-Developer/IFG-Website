@@ -18,7 +18,7 @@ const Marketplace: React.FC = () => {
         </div>
 
         {/* Coming Soon Message */}
-        <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-extrabold text-white mb-4">
+        <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-[#FFD700] via-[#FFDF00] to-[#F5F5F5] mb-4">
           Coming Soon
         </h1>
         <p className="text-2xl text-[#F5F5F5] mb-6">
