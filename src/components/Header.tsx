@@ -29,7 +29,7 @@ const Header: React.FC = () => {
     <>
       <nav className="fixed top-0 w-full bg-white/90 backdrop-blur-md shadow-lg z-50 transition-all duration-300 animate-slide-in-left">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center py-2"> {/* Reduced py-4 to py-2 to reduce header size */}
+          <div className="flex justify-between items-center py-3"> {/* Adjusted padding to reduce header height */}
             {/* Logo Section */}
             <div className="flex items-center space-x-3 animate-bounce-in">
               <img 
@@ -53,7 +53,7 @@ const Header: React.FC = () => {
               <Link to="/about" className="text-gray-700 hover:text-blue-600 font-medium transition-colors hover-scale">About</Link>
               <Link to="/benefits" className="text-gray-700 hover:text-blue-600 font-medium transition-colors hover-scale">Benefits</Link>
               <Link to="/contact" className="text-gray-700 hover:text-blue-600 font-medium transition-colors hover-scale">Contact</Link>
-              <Link to="/arcade" className="text-gray-700 hover:text-yellow-600 font-medium transition-colors hover-scale whitespace-nowrap">
+              <Link to="/arcade" className="text-gray-700 hover:text-yellow-600 font-medium transition-colors hover-scale whitespace-nowrap"> {/* Fixed whitespace-nowrap */}
                 Innovation Arcade
               </Link>
               <Link to="/marketplace" className="text-gray-700 hover:text-purple-600 font-medium transition-colors hover-scale">
