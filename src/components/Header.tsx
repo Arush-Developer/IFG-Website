@@ -29,7 +29,7 @@ const Header: React.FC = () => {
     <>
       <nav className="fixed top-0 w-full bg-white/90 backdrop-blur-md shadow-lg z-50 transition-all duration-300 animate-slide-in-left">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center py-3"> {/* Adjusted padding to reduce header height */}
+          <div className="flex justify-between items-center py-3"> {/* Adjusted padding */}
             {/* Logo Section */}
             <div className="flex items-center space-x-3 animate-bounce-in">
               <img 
@@ -38,7 +38,7 @@ const Header: React.FC = () => {
                 className="w-12 h-12 rounded-xl object-cover pulse-glow hover-scale"
               />
               <div>
-                <h1 className="text-2xl font-bold gradient-text animate-gradient-shift">
+                <h1 className="text-lg font-bold gradient-text animate-gradient-shift"> {/* Reduced font size */}
                   IdeaForge Global
                 </h1>
                 <p className="text-sm text-gray-600 animate-fade-in stagger-1">
@@ -49,17 +49,17 @@ const Header: React.FC = () => {
 
             {/* Desktop Menu */}
             <div className="hidden md:flex items-center space-x-8 animate-fade-in stagger-2">
-              <Link to="/" className="text-gray-700 hover:text-blue-600 font-medium transition-colors hover-scale">Home</Link>
-              <Link to="/about" className="text-gray-700 hover:text-blue-600 font-medium transition-colors hover-scale">About</Link>
-              <Link to="/benefits" className="text-gray-700 hover:text-blue-600 font-medium transition-colors hover-scale">Benefits</Link>
-              <Link to="/contact" className="text-gray-700 hover:text-blue-600 font-medium transition-colors hover-scale">Contact</Link>
-              <Link to="/arcade" className="text-gray-700 hover:text-yellow-600 font-medium transition-colors hover-scale whitespace-nowrap"> {/* Fixed whitespace-nowrap */}
+              <Link to="/" className="text-gray-700 font-bold hover:text-blue-600 transition-colors hover-scale">Home</Link>
+              <Link to="/about" className="text-gray-700 font-bold hover:text-blue-600 transition-colors hover-scale">About</Link>
+              <Link to="/benefits" className="text-gray-700 font-bold hover:text-blue-600 transition-colors hover-scale">Benefits</Link>
+              <Link to="/contact" className="text-gray-700 font-bold hover:text-blue-600 transition-colors hover-scale">Contact</Link>
+              <Link to="/arcade" className="text-gray-700 font-bold hover:text-yellow-600 transition-colors hover-scale whitespace-nowrap"> 
                 Innovation Arcade
               </Link>
-              <Link to="/marketplace" className="text-gray-700 hover:text-purple-600 font-medium transition-colors hover-scale">
+              <Link to="/marketplace" className="text-gray-700 font-bold hover:text-purple-600 transition-colors hover-scale">
                 Marketplace
               </Link>
-              
+
               {user ? (
                 <div className="flex items-center space-x-4">
                   <div className="flex items-center space-x-2 animate-fade-in">
@@ -68,7 +68,7 @@ const Header: React.FC = () => {
                   </div>
                   <Link
                     to="/dashboard"
-                    className="text-gray-700 hover:text-blue-600 font-medium transition-colors hover-scale"
+                    className="text-gray-700 font-bold hover:text-blue-600 transition-colors hover-scale"
                   >
                     Dashboard
                   </Link>
@@ -84,7 +84,7 @@ const Header: React.FC = () => {
                 <div className="flex items-center space-x-4">
                   <button
                     onClick={() => handleAuthClick('signin')}
-                    className="text-gray-700 hover:text-blue-600 font-medium transition-colors hover-scale"
+                    className="text-gray-700 font-bold hover:text-blue-600 transition-colors hover-scale"
                   >
                     Sign In
                   </button>
@@ -112,25 +112,25 @@ const Header: React.FC = () => {
         {isMenuOpen && (
           <div className="md:hidden">
             <div className="px-2 pt-2 pb-3 space-y-1 bg-white border-t">
-              <Link to="/" className="block px-3 py-2 text-gray-700" onClick={() => setIsMenuOpen(false)}>Home</Link>
-              <Link to="/about" className="block px-3 py-2 text-gray-700" onClick={() => setIsMenuOpen(false)}>About</Link>
-              <Link to="/benefits" className="block px-3 py-2 text-gray-700" onClick={() => setIsMenuOpen(false)}>Benefits</Link>
-              <Link to="/contact" className="block px-3 py-2 text-gray-700" onClick={() => setIsMenuOpen(false)}>Contact</Link>
+              <Link to="/" className="block px-3 py-2 text-gray-700 font-bold" onClick={() => setIsMenuOpen(false)}>Home</Link>
+              <Link to="/about" className="block px-3 py-2 text-gray-700 font-bold" onClick={() => setIsMenuOpen(false)}>About</Link>
+              <Link to="/benefits" className="block px-3 py-2 text-gray-700 font-bold" onClick={() => setIsMenuOpen(false)}>Benefits</Link>
+              <Link to="/contact" className="block px-3 py-2 text-gray-700 font-bold" onClick={() => setIsMenuOpen(false)}>Contact</Link>
               <Link
                 to="/arcade"
-                className="block px-3 py-2 text-gray-700"
+                className="block px-3 py-2 text-gray-700 font-bold"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Innovation Arcade
               </Link>
               <Link
                 to="/marketplace"
-                className="block px-3 py-2 text-gray-700"
+                className="block px-3 py-2 text-gray-700 font-bold"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Marketplace
               </Link>
-              
+
               {user ? (
                 <div className="px-3 py-2 space-y-2">
                   <div className="text-sm text-gray-700">{user?.user_metadata?.full_name || user?.email}</div>
