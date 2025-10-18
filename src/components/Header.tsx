@@ -53,7 +53,7 @@ const Header: React.FC = () => {
               <Link to="/about" className="text-gray-700 hover:text-blue-600 font-medium transition-colors hover-scale">About</Link>
               <Link to="/benefits" className="text-gray-700 hover:text-blue-600 font-medium transition-colors hover-scale">Benefits</Link>
               <Link to="/contact" className="text-gray-700 hover:text-blue-600 font-medium transition-colors hover-scale">Contact</Link>
-              <Link to="/arcade" className="text-gray-700 hover:text-yellow-600 font-medium transition-colors hover-scale">
+              <Link to="/arcade" className="text-gray-700 hover:text-yellow-600 font-medium transition-colors hover-scale whitespace-nowrap">
                 Innovation Arcade
               </Link>
               <Link to="/marketplace" className="text-gray-700 hover:text-purple-600 font-medium transition-colors hover-scale">
