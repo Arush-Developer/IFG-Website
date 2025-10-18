@@ -29,7 +29,7 @@ const Header: React.FC = () => {
     <>
       <nav className="fixed top-0 w-full bg-white/90 backdrop-blur-md shadow-lg z-50 transition-all duration-300 animate-slide-in-left">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center py-4">
+          <div className="flex justify-between items-center py-2"> {/* Reduced py-4 to py-2 to reduce header size */}
             {/* Logo Section */}
             <div className="flex items-center space-x-3 animate-bounce-in">
               <img 
