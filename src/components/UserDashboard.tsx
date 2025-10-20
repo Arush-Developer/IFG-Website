@@ -211,8 +211,8 @@ const UserDashboard: React.FC = () => {
           {activeTab === 'overview' && (
             <div className="space-y-6">
               <div>
-                <h1 className="text-2xl lg:text-3xl font-bold text-gray-900 mb-2">Welcome back, {profile?.full_name || 'User'}!</h1>
-                <p className="text-gray-600">Here's your activity overview</p>
+                <h1 className="text-2xl lg:text-3xl font-bold text-yellow-500 mb-2">Welcome back, {profile?.full_name || 'User'}!</h1>
+                <p className="text-yellow-500">Here's your activity overview</p>
               </div>
 
               {/* Stats Cards */}
@@ -292,7 +292,7 @@ const UserDashboard: React.FC = () => {
             <div className="space-y-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <h2 className="text-2xl font-bold text-gray-900 mb-2">Profile Settings</h2>
+                  <h2 className="text-2xl font-bold text-yellow-500 mb-2">Profile Settings</h2>
                   <p className="text-yellow-600">Manage your personal information</p>
                 </div>
                 {!isEditingProfile && (
@@ -313,7 +313,7 @@ const UserDashboard: React.FC = () => {
                   </div>
                   <div>
                     <h3 className="text-xl font-semibold text-gray-900">{profile?.full_name || 'User'}</h3>
-                    <p className="text-yellow-500">{user?.email}</p>
+                    <p className="text-gray-900">{user?.email}</p>
                     <p className="text-sm text-gray-500">Member since {new Date(user?.created_at || '').toLocaleDateString()}</p>
                   </div>
                 </div>
@@ -386,7 +386,7 @@ const UserDashboard: React.FC = () => {
                   <div className="space-y-4">
                     <div>
                       <h4 className="text-sm font-medium text-yellow-400 mb-1">Bio</h4>
-                      <p className="text-yellow-400">{profile?.bio || 'No bio added yet.'}</p>
+                      <p className="text-gray-900">{profile?.bio || 'No bio added yet.'}</p>
                     </div>
                     <div>
                       <h4 className="text-sm font-medium text-yellow-400 mb-1">Website</h4>
@@ -407,7 +407,7 @@ const UserDashboard: React.FC = () => {
           {activeTab === 'competitions' && (
             <div className="space-y-6">
               <div>
-                <h2 className="text-2xl font-bold text-gray-900 mb-2">My Competitions</h2>
+                <h2 className="text-2xl font-bold text-yellow-600 mb-2">My Competitions</h2>
                 <p className="text-gray-400">Track your competition entries and results</p>
               </div>
 
@@ -439,8 +439,8 @@ const UserDashboard: React.FC = () => {
                 {competitions.length === 0 && (
                   <div className="text-center py-12">
                     <Trophy className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-                    <h3 className="text-lg font-medium text-gray-900 mb-2">No competitions yet</h3>
-                    <p className="text-gray-600">Join a competition to see your entries here</p>
+                    <h3 className="text-lg font-medium text-yellow-500 mb-2">No competitions yet</h3>
+                    <p className="text-yellow-600">Join a competition to see your entries here</p>
                   </div>
                 )}
               </div>
@@ -450,7 +450,7 @@ const UserDashboard: React.FC = () => {
           {activeTab === 'courses' && (
             <div className="space-y-6">
               <div>
-                <h2 className="text-2xl font-bold text-gray-900 mb-2">My Courses</h2>
+                <h2 className="text-2xl font-bold text-yellow-500 mb-2">My Courses</h2>
                 <p className="text-gray-600">Track your learning progress</p>
               </div>
 
@@ -495,8 +495,8 @@ const UserDashboard: React.FC = () => {
                 {courses.length === 0 && (
                   <div className="text-center py-12">
                     <BookOpen className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-                    <h3 className="text-lg font-medium text-gray-900 mb-2">No courses yet</h3>
-                    <p className="text-gray-600">Enroll in courses to track your progress here</p>
+                    <h3 className="text-lg font-medium text-yellow-600 mb-2">No courses yet</h3>
+                    <p className="text-yellow-600">Enroll in courses to track your progress here</p>
                   </div>
                 )}
               </div>
@@ -506,7 +506,7 @@ const UserDashboard: React.FC = () => {
           {activeTab === 'achievements' && (
             <div className="space-y-6">
               <div>
-                <h2 className="text-2xl font-bold text-gray-900 mb-2">My Achievements</h2>
+                <h2 className="text-2xl font-bold text-yellow-600 mb-2">My Achievements</h2>
                 <p className="text-gray-600">Your certificates, badges, and awards</p>
               </div>
 
@@ -540,8 +540,8 @@ const UserDashboard: React.FC = () => {
                 {achievements.length === 0 && (
                   <div className="text-center py-12">
                     <Award className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-                    <h3 className="text-lg font-medium text-gray-900 mb-2">No achievements yet</h3>
-                    <p className="text-gray-600">Complete courses and competitions to earn achievements</p>
+                    <h3 className="text-lg font-medium text-yellow-600 mb-2">No achievements yet</h3>
+                    <p className="text-yellow-600">Complete courses and competitions to earn achievements</p>
                   </div>
                 )}
               </div>
@@ -551,7 +551,7 @@ const UserDashboard: React.FC = () => {
           {activeTab === 'marketplace' && (
             <div className="space-y-6">
               <div>
-                <h2 className="text-2xl font-bold text-gray-900 mb-2">My Marketplace Products</h2>
+                <h2 className="text-2xl font-bold text-yellow-600 mb-2">My Marketplace Products</h2>
                 <p className="text-gray-600">Manage your products in the IFG Marketplace</p>
               </div>
 
@@ -597,8 +597,8 @@ const UserDashboard: React.FC = () => {
                 {userProducts.length === 0 && (
                   <div className="text-center py-12">
                     <ShoppingCart className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-                    <h3 className="text-lg font-medium text-gray-900 mb-2">No products yet</h3>
-                    <p className="text-gray-600">Visit the marketplace to create your first product</p>
+                    <h3 className="text-lg font-medium text-yellow-600 mb-2">No products yet</h3>
+                    <p className="text-yellow-600">Visit the marketplace to create your first product</p>
                   </div>
                 )}
               </div>
