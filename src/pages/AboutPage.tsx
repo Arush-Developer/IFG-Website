@@ -205,23 +205,23 @@ const AboutPage: React.FC = () => {
                     {[{
                       phase: 'Registration Opens',
                       desc: 'Students begin to register',
-                      date: 'To be updated',
+                      date: '20/10/2025',
                     }, {
                       phase: 'Submission Deadline',
                       desc: 'Last date for idea submission',
-                      date: 'To be updated',
+                      date: '09/11/2025',
                     }, {
                       phase: 'Shortlisting',
                       desc: 'Evaluation and finalist selection',
-                      date: 'To be updated',
+                      date: '17/11/2025',
                     }, {
                       phase: 'Final Round',
                       desc: 'Virtual presentations',
-                      date: 'To be updated',
+                      date: '23/11/2025',
                     }, {
                       phase: 'Results Announcement',
                       desc: 'Winners revealed',
-                      date: 'To be updated',
+                      date: '02/12/2025',
                     }].map((item, idx) => (
                       <tr key={idx} className="border-b border-yellow-400/20">
                         <td className="p-2">{item.phase}</td>
