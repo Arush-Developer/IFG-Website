@@ -121,7 +121,7 @@ const HomePage: React.FC = () => {
                 "Submit your innovative idea or video pitch",
                 "Global judging panel from leading institutions",
                 "Winners receive certificates, rewards, and global exposure",
-                "📅 Registration Deadline: 09-11-2025",
+                "Registration Deadline: 09-11-2025",
               ].map((item, index) => (
                 <div
                   key={index}
