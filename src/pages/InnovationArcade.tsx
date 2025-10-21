@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowLeft, Lightbulb, BookOpen, Trophy, GraduationCap, Lock } from 'lucide-react';
+import { ArrowLeft, Lightbulb, BookOpen, Trophy, GraduationCap, Lock, ExternalLink } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
 
 interface ArcadeItem {
@@ -10,6 +10,7 @@ interface ArcadeItem {
   category: string;
   image_url?: string;
   created_at: string;
+  registrationLink?: string;
 }
 
 const InnovationArcade: React.FC = () => {
@@ -31,10 +32,24 @@ const InnovationArcade: React.FC = () => {
     setLoading(true);
     try {
       await new Promise(resolve => setTimeout(resolve, 500));
+
       setProjects([]);
       setSkillDrops([]);
-      setCompetitions([]);
       setCourses([]);
+
+      // ✅ Add GYEC Competition
+      setCompetitions([
+        {
+          id: 'gyec-2025',
+          title: 'Global Youth Entrepreneurship Challenge (GYEC)',
+          description:
+            'A global innovation challenge empowering young entrepreneurs to turn ideas into impactful ventures. Open for all students worldwide!',
+          category: 'Entrepreneurship',
+          image_url: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1000&q=80',
+          created_at: new Date().toISOString(),
+          registrationLink: '/about#competition',
+        },
+      ]);
     } catch (error) {
       console.error('Error fetching arcade data:', error);
     } finally {
@@ -179,9 +194,19 @@ const InnovationArcade: React.FC = () => {
                       {item.title}
                     </h3>
                     <p className="text-gray-300 text-sm mb-3 line-clamp-3">{item.description}</p>
-                    <span className="inline-block px-3 py-1 bg-yellow-400/20 text-yellow-400 rounded-full text-xs font-medium">
-                      {item.category}
-                    </span>
+                    <div className="flex items-center justify-between">
+                      <span className="inline-block px-3 py-1 bg-yellow-400/20 text-yellow-400 rounded-full text-xs font-medium">
+                        {item.category}
+                      </span>
+                      {item.registrationLink && (
+                        <Link
+                          to={item.registrationLink}
+                          className="flex items-center text-sm font-semibold text-yellow-300 hover:text-yellow-200 transition-all"
+                        >
+                          Register <ExternalLink className="w-4 h-4 ml-1" />
+                        </Link>
+                      )}
+                    </div>
                   </div>
                 ))}
               </div>
