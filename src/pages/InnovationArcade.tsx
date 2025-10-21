@@ -1,6 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { ArrowLeft, Lightbulb, BookOpen, Trophy, GraduationCap, Lock, ExternalLink } from 'lucide-react';
+import { Link, useNavigate } from 'react-router-dom';
+import {
+  ArrowLeft,
+  Lightbulb,
+  BookOpen,
+  Trophy,
+  GraduationCap,
+  Lock,
+  ExternalLink,
+} from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
 
 interface ArcadeItem {
@@ -15,6 +23,7 @@ interface ArcadeItem {
 
 const InnovationArcade: React.FC = () => {
   const { user } = useAuth();
+  const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState<'projects' | 'skill_drops' | 'competitions' | 'courses'>('projects');
   const [projects, setProjects] = useState<ArcadeItem[]>([]);
   const [skillDrops, setSkillDrops] = useState<ArcadeItem[]>([]);
@@ -31,13 +40,13 @@ const InnovationArcade: React.FC = () => {
   const fetchArcadeData = async () => {
     setLoading(true);
     try {
-      await new Promise(resolve => setTimeout(resolve, 500));
+      await new Promise((resolve) => setTimeout(resolve, 500));
 
       setProjects([]);
       setSkillDrops([]);
       setCourses([]);
 
-      // ✅ Add GYEC Competition
+      // ✅ GYEC competition entry
       setCompetitions([
         {
           id: 'gyec-2025',
@@ -45,7 +54,8 @@ const InnovationArcade: React.FC = () => {
           description:
             'A global innovation challenge empowering young entrepreneurs to turn ideas into impactful ventures. Open for all students worldwide!',
           category: 'Entrepreneurship',
-          image_url: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1000&q=80',
+          image_url:
+            'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1000&q=80',
           created_at: new Date().toISOString(),
           registrationLink: '/about#competition',
         },
@@ -55,6 +65,17 @@ const InnovationArcade: React.FC = () => {
     } finally {
       setLoading(false);
     }
+  };
+
+  // ✅ FIXED FUNCTION — identical scroll behavior to HomePage
+  const handleGoToCompetition = () => {
+    navigate('/about');
+    setTimeout(() => {
+      const element = document.getElementById('competition');
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }, 300);
   };
 
   const tabs = [
@@ -174,7 +195,7 @@ const InnovationArcade: React.FC = () => {
                 <div className="animate-spin rounded-full h-12 w-12 border-4 border-yellow-400 border-t-transparent"></div>
               </div>
             ) : getCurrentData().length === 0 ? (
-              <EmptyState type={tabs.find(t => t.id === activeTab)?.label || ''} />
+              <EmptyState type={tabs.find((t) => t.id === activeTab)?.label || ''} />
             ) : (
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 {getCurrentData().map((item, index) => (
@@ -199,12 +220,12 @@ const InnovationArcade: React.FC = () => {
                         {item.category}
                       </span>
                       {item.registrationLink && (
-                        <Link
-                          to={item.registrationLink}
+                        <button
+                          onClick={handleGoToCompetition}
                           className="flex items-center text-sm font-semibold text-yellow-300 hover:text-yellow-200 transition-all"
                         >
                           Register <ExternalLink className="w-4 h-4 ml-1" />
-                        </Link>
+                        </button>
                       )}
                     </div>
                   </div>
