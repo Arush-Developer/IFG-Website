@@ -208,7 +208,7 @@ const CompetitionSignup: React.FC = () => {
               />
             </div>
             <div>
-              <label htmlFor="phone_number" className="block text-sm font-medium text-gray-700 mb-2">Phone Number</label>
+              <label htmlFor="phone_number (Optional)" className="block text-sm font-medium text-gray-700 mb-2">Phone Number</label>
               <input
                 type="tel" id="phone_number" name="phone_number" value={formData.phone_number} onChange={handleChange}
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all text-gray-900 bg-white"
